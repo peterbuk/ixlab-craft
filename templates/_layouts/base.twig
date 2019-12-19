@@ -4,12 +4,16 @@
 
 <!-- Template created by Piotr Pogorzelski - craftsnippets.com -->
 
-{% include '_system/seo' %}
+{# {% include '_system/seo' %} #}
 {% include '_system/meta' %}
 {% include '_system/favicons' %}
 {% include '_system/fonts' %}
 {% include '_system/static' %}
 {% include '_system/tag_manager' %}
+
+
+<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+
 {% block head %}{% endblock %}
 
 </head>

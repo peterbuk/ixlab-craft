@@ -1,0 +1,25 @@
+{% extends '_layouts/layout_main' %}
+
+{% block content %}
+
+
+<div class="container">
+  <h1 class="title">
+    {{ entry.title }}
+  </h1>
+
+  <h3 class="heading">Authors</h3>
+  <p>{{ entry.authors }}</p>
+  
+  <h3 class="heading">Abstract</h3>
+  <p>{{ entry.abstract }}</p>
+
+  <h3 class="heading">Images</h3>
+  {# {% set item = entry.media.one() %} #}
+  {# {% set itemUrl = item.getUrl() %} #}
+  <img src="../{{ entry.media.one().getUrl() }}">
+  {# need to get multiple images #}
+  
+</div>
+
+{% endblock %}

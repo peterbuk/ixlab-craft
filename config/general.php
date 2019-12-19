@@ -37,6 +37,12 @@ return [
             // 'color' => '#000000'
             // 'gtm_id' => '',
         ],
+
+        'aliases' => [
+            // '@web' => 'http://localhost:8888',
+            '@siteUrl' => getenv('SITE_URL'),
+            '@assetUrl' => getenv('ASSET_BASE_URL'),
+        ],
         
     ],
 ];

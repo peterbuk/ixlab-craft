@@ -1,0 +1,22 @@
+{# News index page, should be a 'single' section #}
+
+{% extends '_layouts/layout_main' %}
+
+{% set body_class = 'page-news' %}
+{% set title = "News - ixLab" %}
+
+{% block content %}
+
+  <div class="container">
+    {% for entry in craft.entries.section('news').all() %}
+    <div class="section box">
+      <h1 class="title is-size-4">{{ entry.title }}</h1>
+      <p class="heading">{{ entry.date | date('M, d Y') }}</p>
+      <p>{{ entry.body }}</p>
+
+      <a class="button" href="{{ entry.url }}">Read More</a>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

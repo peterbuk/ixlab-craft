@@ -2,16 +2,30 @@
 
 {% block layout %}
 <div class="l-external-container">
-<div class="l-main">
+<div class="l-main container">
+	
+	<div class="level">
+		<a class="level-item" href="{{ siteUrl }}"><img src="{{ alias('@assetUrl/img/siteAssets/ixlab.svg') }}" width="300" height="125" alt="ixLab"></a>
+	</div>
 
-  	<div class="l-outside-footer">
-      	{% block content %}{% endblock %}
-    </div>
 
-  	<div class="l-footer-fixed">
-        {% include "_components/footer" %}
-    	{% block footer %}{% endblock %}
-    </div>
+	<nav class="level">
+		<a class="level-item heading" href="{{ siteUrl }}">HOME</a>
+		<a class="level-item heading" href="{{ siteUrl }}./research">RESEARCH</a>
+		<a class="level-item heading" href="{{ siteUrl }}./people">PEOPLE</a>
+		<a class="level-item heading" href="{{ siteUrl }}./news">NEWS</a>
+		<a class="level-item heading" href="{{ siteUrl }}./courses">COURSES</a>
+		<a class="level-item heading" href="{{ siteUrl }}./affiliations">AFFILIATIONS</a>
+	</nav>
+
+	<div class="l-outside-footer">
+		{% block content %}{% endblock %}
+	</div>
+
+	<div class="l-footer-fixed">
+		{% include "_components/footer" %}
+		{% block footer %}{% endblock %}
+	</div>
 
 </div>
 </div>
