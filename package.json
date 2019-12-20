@@ -12,5 +12,8 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
     "node-notifier": "^5.2.1"
+  },
+  "dependencies": {
+    "install": "^0.13.0"
   }
 }
