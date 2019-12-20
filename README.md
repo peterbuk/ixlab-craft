@@ -12,14 +12,14 @@ This is a starter theme for Craft CMS - it can be used as scaffolding for any pr
 **Documentation can be found on [http://craftsnippets.com/starter-theme-for-craft-cms](http://craftsnippets.com/starter-theme-for-craft-cms).**
 
 # Getting Set Up
-=====
+
 You'll need:
 * Composer
 * Glup
 * Node.js
 
 ## Installing Composer and Craft
-=====
+
 Download Composer at https://getcomposer.org/download/
 Once Composer is downloaded, you'll need to get it to install all of the dependencies required in the craft project. In your command prompt, navigate to this folder path.
 
@@ -52,11 +52,11 @@ try to set up craft from the browser. This is done by typing in
 Follow the wizard accordingly. The wizard might ask you to set up the database. Enter in the information that matches your local environment. Remember the .env might need to be changed to best match your local environment.
 
 ## Installing Node.js
-=====
+
 Downloading node.js gives us access to the amazing libraries, scripts, and plugins the community has created. Once node.js is downloaded and installed, you can start using npm to install things.
 
 ## Installing Glup
-=====
+
 ```
 npm install --save gulp-install
 ```
@@ -64,7 +64,7 @@ npm install --save gulp-install
 We are using glup to compile the sass code into css files.
 
 # Database Details
-=====
+
 **MySQL**
 `Default Character Set: utf8`
 `Default Collation: utf8_unicode_ci`
