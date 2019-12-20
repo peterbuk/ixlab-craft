@@ -64,7 +64,11 @@ npm install --save gulp-install
 We are using glup to compile the sass code into css files.
 
 # Database Details
+In case you have to use a local instance of the database. There should be a sql file in the repo. Create a database with the following details and import the file into the database.
 
 **MySQL**
-`Default Character Set: utf8`
-`Default Collation: utf8_unicode_ci`
+
+```
+Default Character Set: utf8
+Default Collation: utf8_unicode_ci
+```
