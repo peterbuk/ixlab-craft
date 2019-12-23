@@ -1,4 +1,4 @@
-{# Research index page, should be a 'single' section #}
+{# This is the Research index page, it holds the channel of research projects. It should be a 'single' section #}
 
 
 {% extends '_layouts/layout_main' %}
@@ -9,7 +9,34 @@
 {% block content %}
 
   <div class="container">
+  <h1 class="title is-size-4">Selected Projects</h1>
     Umbrella page for featured research projects, will highlight and link to individual research projects.
+    <div class="columns">
+      {% for project in craft.entries.section('research').all() %}
+      <div class="column is-primary is-parent is-4">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+            {% set image = project.media.one() %}
+            {% if image %}
+             <img src="{{ image.getUrl() }}" alt="Project image">
+            {% endif %}
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h1 class="title is-4">{{ project.title }}</h1>
+              </div>
+            </div>
+            <div class="content">
+              {{ project.abstract }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 
 {% endblock %}
