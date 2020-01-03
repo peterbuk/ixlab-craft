@@ -9,10 +9,20 @@
 {% block content %}
 
   <div class="container">
-  <h1 class="title is-size-4">Selected Projects</h1>
-    Umbrella page for featured research projects, will highlight and link to individual research projects.
+  <h1 class="title is-size-2">Selected Projects</h1>
+    <div class="columns is-gapless">
+      <div class=" column is-one-fifth">
+        <h1 class="title is-size-3">Parmit Lab</h1>
+        <button class="button is-medium is-primary">Visit the Lab</button>
+      </div>
+      <div class="column">
+        This research group focuses on designing social, usable, interactive technologies. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.
+      </div>
+      <div class="column">{# this column is to create the 3 thirds column view. #}</div>
+    </div>
     <div class="columns">
-      {% for project in craft.entries.section('research').all() %}
+      {% set category = craft.categories.group('researchlab').first() %}
+      {% for project in craft.entries.section('research').limit(5).relatedTo(category) %}
       <div class="column is-primary is-parent is-4">
         <div class="card">
           <div class="card-image">
@@ -27,6 +37,48 @@
             <div class="media">
               <div class="media-content">
                 <h1 class="title is-4">{{ project.title }}</h1>
+                <p class="subtitle is-4">{{ project.authors }}</p><br>
+              </div>
+            </div>
+            <div class="content abstract">
+              {{ project.abstract }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <br>
+
+    <div class="columns is-gapless">
+      <div class=" column is-one-fifth">
+        <h1 class="title is-size-3">InnoVis</h1>
+        <button class="button is-medium is-primary">Visit the Lab</button>
+      </div>
+      <div class="column">
+        This research group focuses on designing innovative, compelling, and engaging visuals. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.
+      </div>
+      <div class="column">{# this column is to create the 3 thirds column view. #}</div>
+    </div>
+    <div class="columns">
+      {% set category = craft.categories.group('researchlab').all() %}
+      {% for project in craft.entries.section('research').limit(5).relatedTo(category[1]) %}
+      <div class="column is-primary is-parent is-4">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+            {% set image = project.media.one() %}
+            {% if image %}
+             <img src="{{ image.getUrl() }}" alt="Project image">
+            {% endif %}
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <h1 class="title is-4">{{ project.title }}</h1>
+                <p class="subtitle is-4">{{ project.authors }}</p><br>
               </div>
             </div>
             <div class="content">
