@@ -17,7 +17,7 @@ The ixlab website uses Craft CMS as a foundation. Bulma is the visual framework 
 You'll need:
 * Composer
 * Glup
-* Node.js
+* Node.js (Version 11)
 
 ## Installing Composer and Craft
 
@@ -56,19 +56,15 @@ Follow the wizard accordingly. The wizard might ask you to set up the database. 
 
 Downloading node.js gives us access to the amazing libraries, scripts, and plugins the community has created. Once node.js is downloaded and installed, you can start using npm to install things.
 
+Note: For this repo, we use version 11. Version 12 is not compatible with Gulp version 3.
+
 ## Installing Gulp
 
 ```
 npm install --global gulp-cli
 ```
 
-We are using gulp to compile the sass code into css files. The gulp you have installed is on version 3, which is no longer supported by Node 12, therefore, we'll need to update gulp to version 4 manually.
-
-## Updating Gulp from 3.0 to 4.0
-
-```
-npm install --save-dev gulp
-```
+We are using gulp to compile the sass code into css files.
 
 # Database Details
 In case you have to use a local instance of the database. There should be a sql file in the repo. Create a database with the following details and import the file into the database.
