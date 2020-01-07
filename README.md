@@ -67,6 +67,15 @@ npm install --global gulp-cli
 We are using gulp to compile the sass code into css files.
 
 # Database Details
+Craft allows database syncing between environments. Ideally, this syncing would pull from the live server, however, we are still using github on our local machines. Hence, the database pulls will be from the master server.
+
+If there's a discrepancy between the database syncing, you will need to call composer to install again.
+
+```
+composer install
+
+```
+
 In case you have to use a local instance of the database. There should be a sql file in the repo. Create a database with the following details and import the file into the database.
 
 **MySQL**
