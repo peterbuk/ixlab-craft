@@ -16,11 +16,10 @@ gulp.task('prod', ['sass:production', 'uglify:production']);
 // browser sync
 gulp.task('browser-sync', function() {
 
-    var file_path = __dirname;
-    var explode = file_path.split('htdocs');
+    var file_path = '/ixlab-craft/web/';
 
     browserSync.init({
-        proxy: "localhost"+explode[1]+'/web'
+        proxy: "localhost:8888"+file_path
     });
 
 });

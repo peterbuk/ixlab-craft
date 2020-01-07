@@ -2,21 +2,23 @@
 
 {% block layout %}
 <div class="l-external-container">
-<div class="l-main container">
+<div class="l-main">
 	
 	<header>
-		<div class="level">
-			<a class="level-item" href="{{ siteUrl }}"><img src="{{ alias('@assetUrl/img/siteAssets/ixlab.svg') }}" width="300" height="125" alt="ixLab"></a>
-		</div>
+		<div class="container">
+			<div class="level">
+				<a class="level-item" href="{{ siteUrl }}"><img src="{{ alias('@assetUrl/img/siteAssets/ixlab.svg') }}" width="300" height="125" alt="ixLab"></a>
+			</div>
 
-		<nav class="level">
-			<a class="level-item heading" href="{{ siteUrl }}">Home</a>
-			<a class="level-item heading" href="{{ siteUrl }}./research">Research</a>
-			<a class="level-item heading" href="{{ siteUrl }}./news">News</a>
-			<a class="level-item heading" href="{{ siteUrl }}./courses">Courses</a>
-			<a class="level-item heading" href="{{ siteUrl }}./people">People</a>
-			<a class="level-item heading" href="{{ siteUrl }}./affiliations">Affiliations</a>
-		</nav>
+			<nav class="level">
+				<a class="level-item heading" href="{{ siteUrl }}">Home</a>
+				<a class="level-item heading" href="{{ siteUrl }}./research">Research</a>
+				<a class="level-item heading" href="{{ siteUrl }}./news">News</a>
+				<a class="level-item heading" href="{{ siteUrl }}./courses">Courses</a>
+				<a class="level-item heading" href="{{ siteUrl }}./people">People</a>
+				<a class="level-item heading" href="{{ siteUrl }}./affiliations">Affiliations</a>
+			</nav>
+		</div>
 	</header>
 
 	<div class="l-outside-footer">
