@@ -1,3 +1,7 @@
+/* Use this file for Global components like headers and footers
+  Could split off into own scss files in /components, but might be too much
+*/
+
 // transition for links and buttons
 button,a {
   transition: color .3s ease,background-color .3s ease,border-color .3s ease,opacity .3s ease;
@@ -18,4 +22,20 @@ body{
   align-items: center;
   justify-content: center;
   margin: 1em auto;
+}
+
+/* GLOBAL COMPONENTS */
+
+header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+footer {
+  background-color: #C4C4C4;
+  margin-top: 10vh;
+}
+
+.columns {
+  margin-bottom: 2rem;
 }

@@ -1,11 +1,3 @@
-// mobile container
-.container:not(.touch-full-width){
-	padding-left: 1rem;
-	padding-right: 1rem;
-	@include touch{
-		max-width: $mobile_container;
-	}
-}
 
 // fixed footer
 .l-main{

@@ -2,6 +2,8 @@
 
     {% set staticFiles = [
         'static/libs/jquery-3.4.1.min.js',
+        'static/libs/uikit.min.js',
+        'static/libs/uikit-icons.min.js',
         'static/main.css',
         'static/js/main.js',
     ] %}
@@ -14,7 +16,7 @@
         {% elseif type == 'css' %}
             {% do view.registerCssFile(file) %}
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
 {% else %}
     {% do view.registerJsFile(alias('@web')~'/'~'static/main.min.js') %}
