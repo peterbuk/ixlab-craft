@@ -3,14 +3,55 @@
 {% set body_class = 'page-home' %}
 
 {% block content %}
-  {# {% include '_pages/home/home_example' %} #}
-
   <section class="l-section">
-  <div class="container">
 
-    <h1>Welcome to the ixlab.</h1>
-    
+    <div class="hero">
+      <div id="heroImage"></div>
+    </div>
 
-  </div>
+
+    <!-- about section-->
+    <section class="container">
+      <div class="columns is-vcentered">
+        <div class="column">
+          <p>
+            The Interactive Experiences Lab (ixLab) at Simon Fraser University’s School of Computing Science specializes in Human-Computer Interaction (HCI) and Information Visualization (InfoVis). Using an interdisciplinary, human-centered approach, we design and evaluate novel interactive computing systems and data visualizations to empower users to tackle challenges in a variety of domains.
+          </p>
+        </div>
+
+        <div class="column">
+          <div class="box has-background-light"><!--nested box-->
+            <h3 class="is-size-3">Join our Lab!</h3>
+            <!--TODO: move this content to CMS -->
+            <div class="columns">
+              <div class="column">
+                <h4 class="is-size-4">InnoVis</h4>
+                <p class="is-size-6">
+                  Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.
+                  <br>
+                  <a href="#" class="has-text-link">Postdoc Positions</a><br>
+                  <a href="#" class="has-text-link">PhD Positions</a>
+                </p>
+              </div>
+              <div class="column">
+                <h4 class="is-size-4">InnoVis</h4>
+                <p class="is-size-6">
+                  Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.
+                  <br>
+                  <a href="#" class="has-text-link">Postdoc Positions</a><br>
+                  <a href="#" class="has-text-link">PhD Positions</a>
+                </p>
+              </div>
+            </div>
+          </div><!--end nested box-->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- news section -->
+    <h1 class="is-size-2 title has-text-centered">News</h1>
+
   </section>
+
 {% endblock %}

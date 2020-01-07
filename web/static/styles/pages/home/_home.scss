@@ -1,1 +1,11 @@
-// styles for home example part of homepage
+// styles for homepage
+
+.hero {
+  margin-bottom: 2rem;
+}
+
+#heroImage {
+  height: 60vh;
+  background: url(./img/siteAssets/banner.jpg) no-repeat center center;
+  background-size: cover;
+}
