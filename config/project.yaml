@@ -1,0 +1,601 @@
+categoryGroups:
+  6be471a8-ca3b-429f-a5e1-eb10a4213bb5:
+    name: 'Research Lab'
+    handle: researchLab
+    structure:
+      uid: 423646a9-4d6f-4128-9e9e-f38de78c60d9
+      maxLevels: 2
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        hasUrls: true
+        uriFormat: 'research-lab/{slug}'
+        template: ''
+dateModified: 1576881591
+email:
+  fromEmail: peter_buk@sfu.ca
+  fromName: ixlab
+  transportType: craft\mail\transportadapters\Sendmail
+fieldGroups:
+  00648b08-5880-47d5-ab41-599ad38f5fd0:
+    name: Courses
+  0391abea-adb9-420d-befa-b8a798995a31:
+    name: Research
+  0f7f27e8-d76c-452c-a2ee-0d0656e5337a:
+    name: People
+  87a50924-5642-49a0-a844-bc8254ad0ebc:
+    name: Common
+  a6284d4e-20d6-47b6-a67e-84d8a89e9313:
+    name: News
+fields:
+  02e4f87a-e7f4-49c2-b5b3-611c2c45bbb1:
+    name: Publication
+    handle: publication
+    instructions: 'Publication citation'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  033ff0b1-cae2-4a02-88e4-7599dfb73576:
+    name: body
+    handle: body
+    instructions: 'Body content for this news article'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
+  0c8174e2-3f6b-43f6-9b8d-ac9644eb25a0:
+    name: Website
+    handle: website
+    instructions: 'Optional link to person''s website'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Url
+    settings:
+      placeholder: ''
+      maxLength: '255'
+    contentColumnType: string(255)
+    fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
+  0d61c45f-abc7-43c0-9271-d2db00f2ac4d:
+    name: 'Profile Image'
+    handle: profileImage
+    instructions: 'Profile Image of the Person'
+    searchable: false
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      singleUploadLocationSubpath: /people/
+      restrictFiles: ''
+      allowedKinds: null
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
+  30ecede2-23c8-4d30-a51e-9498647db8f9:
+    name: Abstract
+    handle: abstract
+    instructions: 'Abstract of the project'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  4aa60cf6-5dc4-4012-9dba-be5823ae0fc3:
+    name: 'Course Code'
+    handle: courseCode
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 00648b08-5880-47d5-ab41-599ad38f5fd0
+  599a7231-c33d-4da1-8ba6-a8aacbb01c86:
+    name: Image
+    handle: image
+    instructions: 'Any images with the courses'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: ''
+      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      defaultUploadLocationSubpath: 'courses/{slug}/'
+      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      singleUploadLocationSubpath: ''
+      restrictFiles: ''
+      allowedKinds: null
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: list
+      limit: ''
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 00648b08-5880-47d5-ab41-599ad38f5fd0
+  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
+    name: Media
+    handle: media
+    instructions: 'Any associate media files with the project'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      defaultUploadLocationSubpath: '/research/{slug}/'
+      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      singleUploadLocationSubpath: '/research/{slug}/'
+      restrictFiles: ''
+      allowedKinds: null
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: ''
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  6fae3e75-7045-4b68-9634-7467d086fa82:
+    name: Description
+    handle: description
+    instructions: 'Description of the course'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 00648b08-5880-47d5-ab41-599ad38f5fd0
+  7166459b-4a18-41d3-81c2-4d775c2a7024:
+    name: Bio
+    handle: bio
+    instructions: 'One to two line bio for this person'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
+  8fcd5a2d-5e1f-43cb-b2f0-b83b54d46aa6:
+    name: Authors
+    handle: authors
+    instructions: 'Authors for the project'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  d3d5dfac-7770-4737-bb3a-0fd910cbfeef:
+    name: researchLab
+    handle: researchlab
+    instructions: 'Which research lab does this belong to?'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Categories
+    settings:
+      allowLimit: false
+      allowMultipleSources: false
+      branchLimit: ''
+      sources: '*'
+      source: 'group:6be471a8-ca3b-429f-a5e1-eb10a4213bb5'
+      targetSiteId: null
+      viewMode: null
+      limit: null
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
+  d5f28552-4c77-446b-8822-9510a5616ad0:
+    name: Date
+    handle: date
+    instructions: 'Date this news is published'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Date
+    settings:
+      showDate: true
+      showTime: false
+      minuteIncrement: '30'
+    contentColumnType: datetime
+    fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
+plugins:
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+sections:
+  2cb363b3-4783-43ac-983e-1f5b7663e1d0:
+    name: Affiliations
+    handle: affiliations
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: affiliations
+        template: _pages/affiliations/affiliations.twig
+    entryTypes:
+      1ac95e25-974b-4724-9aa9-8a1801919f85:
+        name: Affiliations
+        handle: affiliations
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          a069186e-9a8d-4a03-9357-c83ae037da17:
+            tabs:
+              -
+                name: Content
+                sortOrder: 1
+                fields:
+                  033ff0b1-cae2-4a02-88e4-7599dfb73576:
+                    required: false
+                    sortOrder: 1
+  3846705d-50f3-453d-ba99-a6e3cca49b2d:
+    name: Research
+    handle: research
+    type: channel
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'research/{slug}'
+        template: _pages/research/_research_entry.twig
+    entryTypes:
+      27c68ace-bf5a-4fbe-9bf4-21ec72eee065:
+        name: Research
+        handle: research
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          1d8079f8-13be-4053-a0e9-3856a71a2cb1:
+            tabs:
+              -
+                name: Research
+                sortOrder: 1
+                fields:
+                  02e4f87a-e7f4-49c2-b5b3-611c2c45bbb1:
+                    required: false
+                    sortOrder: 5
+                  30ecede2-23c8-4d30-a51e-9498647db8f9:
+                    required: false
+                    sortOrder: 3
+                  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
+                    required: false
+                    sortOrder: 4
+                  8fcd5a2d-5e1f-43cb-b2f0-b83b54d46aa6:
+                    required: false
+                    sortOrder: 2
+                  d3d5dfac-7770-4737-bb3a-0fd910cbfeef:
+                    required: false
+                    sortOrder: 1
+  6311178c-704d-480d-97d1-37f17b3cc48b:
+    name: Homepage
+    handle: home
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: __home__
+        template: _pages/home/home.twig
+    entryTypes:
+      bc253235-dd89-497c-adb1-a8001db5c241:
+        name: Homepage
+        handle: home
+        hasTitleField: false
+        titleLabel: null
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
+  83095466-6133-4161-84a9-74a5c7c6d415:
+    name: People
+    handle: people
+    type: channel
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'people/{slug}'
+        template: _pages/people/_people_entry.twig
+    entryTypes:
+      2eb3b0ee-57d0-43db-84d4-20572be068fc:
+        name: People
+        handle: people
+        hasTitleField: true
+        titleLabel: Name
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          eaaf8569-5bf3-4790-9f6b-01bb14f9e9eb:
+            tabs:
+              -
+                name: People
+                sortOrder: 1
+                fields:
+                  0c8174e2-3f6b-43f6-9b8d-ac9644eb25a0:
+                    required: false
+                    sortOrder: 3
+                  0d61c45f-abc7-43c0-9271-d2db00f2ac4d:
+                    required: false
+                    sortOrder: 2
+                  7166459b-4a18-41d3-81c2-4d775c2a7024:
+                    required: false
+                    sortOrder: 1
+  a21fe2e1-43d4-4493-a462-96d779a08978:
+    name: 'People Index'
+    handle: peopleIndex
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: people
+        template: _pages/people/people.twig
+    entryTypes:
+      0b62424c-e32f-4a46-86e1-63d3663d0e02:
+        name: 'People Index'
+        handle: peopleIndex
+        hasTitleField: false
+        titleLabel: ''
+        titleFormat: People
+        sortOrder: 1
+  a7edf02d-2254-4734-8d41-d7949167e0f0:
+    name: 'Course Index'
+    handle: courseIndex
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: courses
+        template: _pages/courses/courses.twig
+    entryTypes:
+      29257d21-4ba5-49a2-843d-10917b1ee49c:
+        name: 'Course Index'
+        handle: courseIndex
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: null
+        sortOrder: 1
+  b1ea6f78-b28a-4add-9aa9-b3dff4582b7e:
+    name: News
+    handle: news
+    type: channel
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'news/{slug}'
+        template: _pages/news/_news_entry.twig
+    entryTypes:
+      1162e949-017e-42a9-9bf1-c470441b230d:
+        name: News
+        handle: news
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          0946d45e-3449-41f7-a617-a3c841435138:
+            tabs:
+              -
+                name: News
+                sortOrder: 1
+                fields:
+                  033ff0b1-cae2-4a02-88e4-7599dfb73576:
+                    required: false
+                    sortOrder: 2
+                  d5f28552-4c77-446b-8822-9510a5616ad0:
+                    required: false
+                    sortOrder: 1
+  b4b3aa00-328d-44cd-b7ca-e93ad43d66b8:
+    name: Courses
+    handle: courses
+    type: channel
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'courses/{slug}'
+        template: _pages/courses/_course_entry.twig
+    entryTypes:
+      6ce686ba-cf72-4669-8dd1-d75882bc18d2:
+        name: Courses
+        handle: courses
+        hasTitleField: true
+        titleLabel: Title
+        titleFormat: null
+        sortOrder: 1
+  c3a36ce8-b283-4b75-8f94-302209f9ce94:
+    name: 'News Index'
+    handle: newsIndex
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: news
+        template: _pages/news/news.twig
+    entryTypes:
+      f187e35c-e27e-462b-b0e7-a6485b0bbc14:
+        name: 'News Index'
+        handle: newsIndex
+        hasTitleField: false
+        titleLabel: null
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
+  ed3ebfa3-8e6c-42f7-819d-7c63ec327600:
+    name: 'Research Index'
+    handle: researchIndex
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: research
+        template: _pages/research/research.twig
+    entryTypes:
+      dfae410e-da81-4fb7-b87f-369f6427c3c4:
+        name: 'Research Index'
+        handle: researchIndex
+        hasTitleField: false
+        titleLabel: null
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
+siteGroups:
+  63961ea1-ba8f-4e9c-86bb-a99915f7942a:
+    name: ixlab
+sites:
+  d4d97380-b07f-42e2-be39-f820292a8d6f:
+    baseUrl: $DEFAULT_SITE_URL
+    handle: default
+    hasUrls: true
+    language: en-US
+    name: ixlab
+    primary: true
+    siteGroup: 63961ea1-ba8f-4e9c-86bb-a99915f7942a
+    sortOrder: 1
+system:
+  edition: solo
+  name: ixlab
+  live: true
+  schemaVersion: 3.3.3
+  timeZone: America/Los_Angeles
+users:
+  requireEmailVerification: true
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoVolumeUid: null
+  photoSubpath: ''
+volumes:
+  a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc:
+    name: 'Site Assets'
+    handle: siteAssets
+    type: craft\volumes\Local
+    hasUrls: true
+    url: ./static/img/siteAssets
+    settings:
+      path: ./static/img/siteAssets
+    sortOrder: 2
