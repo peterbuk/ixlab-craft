@@ -35,7 +35,9 @@ gulp.task('watch:development', function() {
 gulp.task('sass:development', function() {
   gulp.src('web/static/styles/main.scss')
   .pipe(sourcemaps.init())
-  .pipe(sass())
+  .pipe(sass({
+    includePaths: ['node_modules/']
+  }))
   .on('error', swallowError)
   .pipe(concat('main.css'))
   .pipe(sourcemaps.write())
@@ -47,6 +49,9 @@ gulp.task('sass:development', function() {
 // concat and minify JS
 gulp.task('uglify:production', function() {
   return gulp.src([
+    'web/static/libs/jquery-3.4.1.min.js',
+    'web/static/libs/uikit.min.js',
+    'web/static/libs/uikit-icons.min.js',
     'web/static/js/main.js',
     // file paths here..
   ])
@@ -65,7 +70,9 @@ gulp.task('sass:production', function() {
     'web/static/main.css',
     // file paths here...
   ])
-  .pipe(sass())
+  .pipe(sass({
+    includePaths: ['node_modules/']
+  }))
   .on('error', swallowError) 
   .pipe(concat('main.min.css'))
   .pipe(autoprefixer())

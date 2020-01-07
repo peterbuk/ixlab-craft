@@ -1,22 +1,25 @@
 
-// replacing bulma variables comes first due to !default flag on bulma sass
+// building uikit
+// https://getuikit.com/docs/sass
+
+// 1. Your custom variables and variable overwrites.
 @import 'base/variables';
 
-// bulma
-$gap: 32px;
-@import 'plugins/bulma-0.7.2/sass/utilities/_all';
-@import 'plugins/bulma-0.7.2/sass/base/_all';
-@import 'plugins/bulma-0.7.2/sass/elements/_all';
-@import 'plugins/bulma-0.7.2/sass/components/_all';
-@import 'plugins/bulma-0.7.2/sass/grid/_all';
-@import 'plugins/bulma-0.7.2/sass/layout/_all';
+// 2. Import default variables and available mixins.
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
 
-// libs
-@import 'plugins/normalize';
+// 3. Your custom mixin overwrites.
+
+// 4. Import UIkit.
+@import "uikit/src/scss/uikit-theme.scss";
+
+
 
 // base
-@import 'base/z-index';
-@import 'base/reset';
+// see http://craftsnippets.com/starter-theme-for-craft-cms#styles
+@import 'base/z-index'; // set all z-indexes here to keep track of them
+// @import 'base/reset'; // don't need reset because UIkit includes normalize.css
 @import 'base/mixins';
 @import 'base/structure';
 @import 'classes';
