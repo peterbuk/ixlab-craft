@@ -124,3 +124,11 @@
 {{svg|raw}}
 {% endif %}
 {%- endmacro -%}
+
+{# add active class to navbar item #}
+{# https://craftcms.stackexchange.com/a/575 #}
+{% macro is_active(segment) %}
+{% if craft.request.firstSegment == segment %}
+	uk-active
+{% endif %}
+{% endmacro %}

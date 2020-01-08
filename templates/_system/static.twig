@@ -2,10 +2,14 @@
 
     {% set staticFiles = [
         'static/libs/jquery-3.4.1.min.js',
-        'static/libs/uikit.min.js',
-        'static/libs/uikit-icons.min.js',
         'static/main.css',
         'static/js/main.js',
+    ] %}
+
+    <!-- load in <head> -->
+    {% set headScripts = [
+        'static/libs/uikit.min.js',
+        'static/libs/uikit-icons.min.js',
     ] %}
 
     {% for file in staticFiles %}
@@ -13,6 +17,16 @@
         {% set file = alias('@web')~'/'~file %}
         {% if type == 'js' %}
             {% do view.registerJsFile(file) %}
+        {% elseif type == 'css' %}
+            {% do view.registerCssFile(file) %}
+        {% endif %}
+    {% endfor %}
+
+    {% for file in headScripts %}
+        {% set type = file|split('.')|last %}
+        {% set file = alias('@web')~'/'~file %}
+        {% if type == 'js' %}
+            {% do view.registerJsFile(file, {"position":"1"}) %}
         {% elseif type == 'css' %}
             {% do view.registerCssFile(file) %}
         {% endif %}

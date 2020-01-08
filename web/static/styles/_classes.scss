@@ -1,41 +1,23 @@
 /* Use this file for Global components like headers and footers
-  Could split off into own scss files in /components, but might be too much
+  If a component gets messy, split off into own scss files in /components and import it
 */
 
-// transition for links and buttons
-button,a {
-  transition: color .3s ease,background-color .3s ease,border-color .3s ease,opacity .3s ease;
+
+/* NAVBAR */
+
+.uk-active {
+  font-weight: 700;
+}
+@media (min-width: 960px) {
+  .uk-navbar-nav li {
+    padding: 0 20px;
+  }
 }
 
-// default cursor
-body{
-  cursor:default;
-}
 
-// remove blue border from focused elements
-*:focus {
-  outline:0;
-}
 
-.image.is-centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1em auto;
-}
-
-/* GLOBAL COMPONENTS */
-
-header {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
+/* FOOTER */
 
 footer {
-  background-color: #C4C4C4;
-  margin-top: 10vh;
-}
-
-.columns {
-  margin-bottom: 2rem;
+  background-color: #d5d5d5;
 }
