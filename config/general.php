@@ -21,11 +21,15 @@ return [
         'cpTrigger' => 'admin',
 
         // The secure key Craft will use for hashing and encrypting data
-        'securityKey' => getenv('SECURITY_KEY'),
+        'securityKey' => '$SECURITY_KEY',
 
         // Whether to save the project config out to config/project.yaml
         // (see https://docs.craftcms.com/v3/project-config.html)
-        'useProjectConfigFile' => false,
+        'useProjectConfigFile' => true,
+
+        'production' => [
+        // Disable project config changes on production
+        'allowAdminChanges' => false, ],
 
         // https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#errortemplateprefix
         'errorTemplatePrefix' => '_',
@@ -43,6 +47,6 @@ return [
             '@siteUrl' => getenv('SITE_URL'),
             '@assetUrl' => getenv('ASSET_BASE_URL'),
         ],
-        
+
     ],
 ];
