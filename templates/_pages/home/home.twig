@@ -3,59 +3,94 @@
 {% set body_class = 'page-home' %}
 
 {% block content %}
-  <section class="l-section">
 
-    <div class="hero">
-      <div id="heroImage"></div>
-    </div>
+<div id="heroImage" class="uk-margin"></div>
 
+<div class="uk-container">
+  <!-- about section-->
+  <section class="uk-margin-large-top">
+    {% set home = craft.entries.section('home').first() %}
+    <div class="uk-flex uk-flex-middle uk-grid-match uk-grid-medium" uk-grid>
+      <div class="uk-width-2-5@m">
+        <p id="aboutText">
+          {{ home.about }}
+        </p>
+      </div>
 
-    <!-- about section-->
-    <section class="container">
-      <div class="columns is-vcentered">
-        <div class="column">
-          <p>
-            The Interactive Experiences Lab (ixLab) at Simon Fraser University’s School of Computing Science specializes in Human-Computer Interaction (HCI) and Information Visualization (InfoVis). Using an interdisciplinary, human-centered approach, we design and evaluate novel interactive computing systems and data visualizations to empower users to tackle challenges in a variety of domains.
-          </p>
-        </div>
-
-        <div class="column">
-          <div class="box has-background-light"><!--nested box-->
-            <h3 class="is-size-3">Join our Lab!</h3>
-            <!--TODO: move this content to CMS -->
-            <div class="columns">
-              <div class="column">
-                <h4 class="is-size-4">InnoVis</h4>
-                <p class="is-size-6">
-                  Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.
-                  <br>
-                  <a href="#" class="has-text-link">Postdoc Positions</a><br>
-                  <a href="#" class="has-text-link">PhD Positions</a>
-                </p>
-              </div>
-              <div class="column">
-                <h4 class="is-size-4">InnoVis</h4>
-                <p class="is-size-6">
-                  Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.
-                  <br>
-                  <a href="#" class="has-text-link">Postdoc Positions</a><br>
-                  <a href="#" class="has-text-link">PhD Positions</a>
-                </p>
-              </div>
+      <div class="uk-width-3-5" id="recruitBox">
+        <div class="uk-card uk-card-body">
+          <h3  class="uk-card-title">{{ home.recruitmentHeader }}</h3>
+          <div class="uk-column-1-1@s uk-column-1-2@m">
+            <div class="">
+              {{ home.recruitmentLeft }}
             </div>
-          </div><!--end nested box-->
+            <div class="">
+              {{ home.recruitmentRight }}
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-
-
-    <!-- news section -->
-    <h1 class="is-size-2 title has-text-centered">News</h1>
-
-    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-      <h3 class="uk-card-title">Default</h3>
-      <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
+    </div>
   </section>
+
+
+  <!-- news section -->
+  <section class="uk-margin-large-top">
+    <h1 class="section-header uk-flex uk-flex-center">News</h1>
+
+    <div class="uk-child-width-1-3 uk-grid-divider" uk-grid>
+      {% for entry in craft.entries.section('news').limit(3) %}
+      <div>
+        <div class="uk-card uk-card-small uk-card-body">
+          <h3 class="uk-card-title">{{ entry.title }}</h3>
+          <p>{{ entry.date | date('M d, Y') }}</p>
+          <p>{{ entry.body }}</p>
+          <a class="button" href="{{ entry.url }}">Read More</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="uk-flex uk-flex-center uk-margin">
+      <a class="uk-button uk-button-primary" href="{{ siteUrl }}./news">See more News</a> 
+    </div>
+  </section>
+
+
+<!-- research section -->
+  <section class="uk-margin-large-top">
+    <h1 class="section-header uk-flex uk-flex-center">Our Research</h1>
+
+    <div class="uk-grid-match" uk-grid>
+      {% for entry in craft.entries.section('research').limit(3) %}
+      <div class="uk-width-1-3">
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-media-top">
+            {% set image = entry.media.one() %}
+            {% if image %}
+              <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+            {% else %}
+              <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder">
+            {% endif %}
+          </div>
+          <div class="uk-card-body">
+            <h3 class="uk-margin-remove-bottom">{{ entry.title }}</h3>
+            <span>{{ entry.authors }}</span>
+            <p>{{ entry.shortAbstract }}</p>
+            <a class="button" href="{{ entry.url }}">Read More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="uk-flex uk-flex-center uk-margin">
+      <a class="uk-button uk-button-primary" href="{{ siteUrl }}./research">See more Research</a> 
+    </div>
+  </section>
+
+
+
+</div>
 
 {% endblock %}
