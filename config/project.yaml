@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'research-lab/{slug}'
         template: ''
-dateModified: 1578619057
+dateModified: 1578685120
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -392,6 +392,17 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
+imageTransforms:
+  3832c9e1-0616-486e-a01d-933a7963030c:
+    format: null
+    handle: thumbWide
+    height: 320
+    interlace: none
+    mode: crop
+    name: 'Thumbnail 580x320'
+    position: center-center
+    quality: null
+    width: 580
 plugins:
   redactor:
     edition: standard

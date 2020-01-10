@@ -68,9 +68,9 @@
           <div class="uk-card-media-top">
             {% set image = entry.media.one() %}
             {% if image %}
-              <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+              <img data-src="{{ image.getUrl('thumbWide') }}" alt="Project image" width="{{ image.getWidth('thumbWide') }}" height="{{ image.getHeight('thumbWide') }}" uk-img>
             {% else %}
-              <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder">
+              <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder">
             {% endif %}
           </div>
           <div class="uk-card-body">
