@@ -6,5 +6,13 @@ $mobile_container: 600px;
 $external_container_background: white;
 $main_background: white;
 
-// typography TODO
+
+/* UIkit variable overrides */
+/* for reference: https://github.com/uikit/uikit/blob/develop/src/scss/variables.scss */
+
+// typography
 // $family-sans-serif: "Arial", sans-serif;
+
+// colors
+// $global_primary_background: #FF9955;
+$bright_grey: rgb(242, 241, 241); 

@@ -2,6 +2,12 @@
   If a component gets messy, split off into own scss files in /components and import it
 */
 
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 
 /* NAVBAR */
 
