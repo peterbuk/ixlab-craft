@@ -1,4 +1,15 @@
 categoryGroups:
+  27784841-eb79-44b5-ac08-9d08f628e646:
+    name: 'News Category'
+    handle: newsCategory
+    structure:
+      uid: 1116b6b6-5e6f-43d9-a05f-0ac1b618b658
+      maxLevels: null
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        hasUrls: true
+        uriFormat: 'news-category/{slug}'
+        template: ''
   6be471a8-ca3b-429f-a5e1-eb10a4213bb5:
     name: 'Research Lab'
     handle: researchLab
@@ -10,7 +21,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'research-lab/{slug}'
         template: ''
-dateModified: 1578520043
+dateModified: 1578606348
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
