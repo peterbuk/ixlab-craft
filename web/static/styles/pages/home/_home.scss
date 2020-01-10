@@ -6,3 +6,21 @@
   background: url(./img/siteAssets/banner.jpg) no-repeat center center;
   background-size: cover;
 }
+
+#recruitBox {
+  background-color: $bright_grey;
+}
+
+#aboutText {
+  line-height: 1.6rem;
+}
+
+.uk-container {
+  // testing
+  // background-color: #ffd4d4;
+}
+
+.section-header {
+  text-transform: uppercase;
+  font-weight: 300;
+}
