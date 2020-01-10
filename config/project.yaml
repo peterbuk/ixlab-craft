@@ -10,7 +10,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'research-lab/{slug}'
         template: ''
-dateModified: 1578520043
+dateModified: 1578619057
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -26,6 +26,8 @@ fieldGroups:
     name: Common
   a6284d4e-20d6-47b6-a67e-84d8a89e9313:
     name: News
+  e4c216c7-b297-4772-98b5-7a7b8d5fcced:
+    name: Homepage
 fields:
   02e4f87a-e7f4-49c2-b5b3-611c2c45bbb1:
     name: Publication
@@ -108,6 +110,23 @@ fields:
       validateRelatedElements: ''
     contentColumnType: string
     fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
+  2841a200-68ce-4e7a-b1bd-06d929cceba7:
+    name: 'Recruitment Header'
+    handle: recruitmentHeader
+    instructions: 'Header for recruitment box'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
   30ecede2-23c8-4d30-a51e-9498647db8f9:
     name: Abstract
     handle: abstract
@@ -129,6 +148,48 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  3f98a065-d118-4627-94ea-9e0adc9cafce:
+    name: About
+    handle: about
+    instructions: 'Description of the lab, shown on left side under the hero image.'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
+  46e45f81-a396-4159-9f72-0dea0664967f:
+    name: 'Recruitment Right'
+    handle: recruitmentRight
+    instructions: 'The recruitment text, right side'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
   4aa60cf6-5dc4-4012-9dba-be5823ae0fc3:
     name: 'Course Code'
     handle: courseCode
@@ -310,6 +371,27 @@ fields:
       minuteIncrement: '30'
     contentColumnType: datetime
     fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
+  d69f5e4f-5f4e-47ba-9324-68d8f28162e1:
+    name: 'Recruitment Left'
+    handle: recruitmentLeft
+    instructions: 'The recruitment text, left side'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
 plugins:
   redactor:
     edition: standard
@@ -317,7 +399,7 @@ plugins:
     schemaVersion: 2.3.0
   ckeditor:
     edition: standard
-    enabled: true
+    enabled: false
     schemaVersion: 1.0.0
 sections:
   2cb363b3-4783-43ac-983e-1f5b7663e1d0:
@@ -412,9 +494,28 @@ sections:
         name: Homepage
         handle: home
         hasTitleField: false
-        titleLabel: null
+        titleLabel: ''
         titleFormat: '{section.name|raw}'
         sortOrder: 1
+        fieldLayouts:
+          9c659209-936c-4951-ad54-123988b6035d:
+            tabs:
+              -
+                name: Homepage
+                sortOrder: 1
+                fields:
+                  2841a200-68ce-4e7a-b1bd-06d929cceba7:
+                    required: false
+                    sortOrder: 2
+                  3f98a065-d118-4627-94ea-9e0adc9cafce:
+                    required: false
+                    sortOrder: 1
+                  46e45f81-a396-4159-9f72-0dea0664967f:
+                    required: false
+                    sortOrder: 4
+                  d69f5e4f-5f4e-47ba-9324-68d8f28162e1:
+                    required: false
+                    sortOrder: 3
   83095466-6133-4161-84a9-74a5c7c6d415:
     name: People
     handle: people

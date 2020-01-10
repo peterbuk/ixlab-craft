@@ -9,33 +9,23 @@
 <div class="uk-container">
   <!-- about section-->
   <section class="uk-margin-large-top">
+    {% set home = craft.entries.section('home').first() %}
     <div class="uk-flex uk-flex-middle uk-grid-match uk-grid-medium" uk-grid>
       <div class="uk-width-2-5@m">
         <p id="aboutText">
-          The Interactive Experiences Lab (ixLab) at Simon Fraser University’s School of Computing Science specializes in Human-Computer Interaction (HCI) and Information Visualization (InfoVis). Using an interdisciplinary, human-centered approach, we design and evaluate novel interactive computing systems and data visualizations to empower users to tackle challenges in a variety of domains.
+          {{ home.about }}
         </p>
       </div>
 
       <div class="uk-width-3-5" id="recruitBox">
         <div class="uk-card uk-card-body">
-          <!--TODO: move this content to CMS -->
-          <h3  class="uk-card-title">Join our Lab!</h3>
+          <h3  class="uk-card-title">{{ home.recruitmentHeader }}</h3>
           <div class="uk-column-1-1@s uk-column-1-2@m">
             <div class="">
-              <h4>InnoVis</h4>
-              <p>
-                Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.<br>
-                <a href="#">Postdoc Positions</a><br>
-                <a href="#">PhD Positions</a>
-              </p>
+              {{ home.recruitmentLeft }}
             </div>
             <div class="">
-              <h4>InnoVis</h4>
-              <p>
-                Sheelagh Carpendale is looking for individuals interested in information visualization, interaction design, and etc.<br>
-                <a href="#">Postdoc Positions</a><br>
-                <a href="#">PhD Positions</a>
-              </p>
+              {{ home.recruitmentRight }}
             </div>
           </div>
         </div>
