@@ -7,16 +7,92 @@
 
 {% block content %}
 
-  <div class="container">
-    {% for entry in craft.entries.section('news').all() %}
-    <div class="section box">
-      <h1 class="title is-size-4">{{ entry.title }}</h1>
-      <p class="heading">{{ entry.date | date('M, d Y') }}</p>
-      <p>{{ entry.body }}</p>
+  <div class="uk-container">
+    <div uk-filter="target: .js-filter" uk-grid>
+      <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
+        <h1 class="uk-heading-medium">News</h1>
+      </div>
+      <div class="uk-width-3-4" uk-grid>
+        <div>
+          <div>
+            <p class"uk-text-large">
+              Category
+            </p>
+            <ul class="uk-subnav uk-subnav-pill">
+              <li class="active" uk-filter-control><a href="#">All</a></li>
+            {% for category in craft.categories.group('newsCategory') %}
+              <li uk-filter-control="[data-name='{{ category.title }}']"><a href="#">{{ category.title }}</a></li>
+            {% endfor %}
+            </ul>
+          </div> <!-- category list -->
 
-      <a class="button" href="{{ entry.url }}">Read More</a>
-    </div>
-    {% endfor %}
-  </div>
+          <div class="js-filter" uk-grid>
+            {% for entry in craft.entries.section('news').all() %}
+            <li data-name="{{ entry.newsCategory[0] }}">
+              <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                <div class="uk-card-media-left uk-cover-container">
+                  {% set image = entry.media %}
+                  {% if image is defined and image is not null %}
+                    {% set image = entry.media.one() %}
+                    {% if image is not null %}
+                      <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-cover>
+                      <canvas width="600" height="400"></canvas>
+                    {% else %}
+                      <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
+                      <canvas width="600" height="400"></canvas>
+                    {% endif %}
+                  {% endif %}
+                </div>
+                <div class="uk-card-body">
+                    <div class="uk-card-badge uk-label uk-margin-bottom">
+                      {{ entry.newsCategory[0] }}
+                    </div>
+                    <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
+                    <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
+                    <p>{{ entry.newsContent }}</p>
+                </div>
+              </div><!-- card div -->
+            </li>
+            {% endfor %}
+          </div> <!-- js filter div -->
+        </div><!-- cards grid div -->
+      </div> <!-- news feed -->
+
+      <div class="uk-width-1-4 " uk-grid> 
+        <div>
+          <p class="uk-text-large">
+            Search News
+          </p>
+            <form class="uk-search uk-search-default">
+            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+              <input class="uk-search-input" type="search" placeholder="Search for...">
+            </form>
+          <p class"uk-text-large">
+            Archive
+          </p>
+          <div>
+            <p class"uk-text-small">
+              View News From
+            </p>
+            <button class="uk-button uk-button-default" type="button">2020 
+              <span uk-icon="icon: triangle-down"></span>
+            </button>
+              <div uk-dropdown="mode: click">
+                  <ul class="uk-nav uk-dropdown-nav">
+                      <li class="uk-active"><a href="#">2020</a></li>
+                      <li><a href="#">2019</a></li>
+                      <li class="uk-nav-header">2018</li>
+                      <li><a href="#">Item</a></li>
+                      <li><a href="#">Item</a></li>
+                      <li class="uk-nav-divider"></li>
+                      <li><a href="#">Item</a></li>
+                  </ul>
+              </div>
+          </div>
+          </div>
+      </div> 
+
+    </div><!-- end of grid -->
+  </div> <!-- end container -->
 
 {% endblock %}

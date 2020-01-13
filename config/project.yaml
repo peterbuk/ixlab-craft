@@ -21,7 +21,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'research-lab/{slug}'
         template: ''
-dateModified: 1578619057
+dateModified: 1578946516
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -62,26 +62,22 @@ fields:
     contentColumnType: text
     fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
   033ff0b1-cae2-4a02-88e4-7599dfb73576:
-    name: body
-    handle: body
-    instructions: 'Body content for this news article'
+    name: 'News Content'
+    handle: newsContent
+    instructions: 'This is the main paragraph for the news entry'
     searchable: true
     translationMethod: none
     translationKeyFormat: null
-    type: craft\redactor\Field
+    type: craft\fields\PlainText
     settings:
-      redactorConfig: ''
-      purifierConfig: ''
-      cleanupHtml: true
-      removeInlineStyles: '1'
-      removeEmptyTags: '1'
-      removeNbsp: '1'
-      purifyHtml: '1'
+      placeholder: ''
+      code: ''
+      multiline: '1'
+      initialRows: '4'
+      charLimit: '280'
       columnType: text
-      availableVolumes: '*'
-      availableTransforms: '*'
     contentColumnType: text
-    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
+    fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
   0c8174e2-3f6b-43f6-9b8d-ac9644eb25a0:
     name: Website
     handle: website
@@ -403,6 +399,28 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: e4c216c7-b297-4772-98b5-7a7b8d5fcced
+  d88e96db-a28f-4c8d-bdb4-8e99476f19e6:
+    name: 'News Category'
+    handle: newsCategory
+    instructions: 'What category does this news post belong to?'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Categories
+    settings:
+      allowLimit: false
+      allowMultipleSources: false
+      branchLimit: '1'
+      sources: '*'
+      source: 'group:27784841-eb79-44b5-ac08-9d08f628e646'
+      targetSiteId: null
+      viewMode: null
+      limit: null
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: '1'
+    contentColumnType: string
+    fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
 plugins:
   redactor:
     edition: standard
@@ -631,11 +649,17 @@ sections:
                 sortOrder: 1
                 fields:
                   033ff0b1-cae2-4a02-88e4-7599dfb73576:
+                    required: true
+                    sortOrder: 3
+                  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
                     required: false
-                    sortOrder: 2
+                    sortOrder: 4
                   d5f28552-4c77-446b-8822-9510a5616ad0:
-                    required: false
+                    required: true
                     sortOrder: 1
+                  d88e96db-a28f-4c8d-bdb4-8e99476f19e6:
+                    required: true
+                    sortOrder: 2
   b4b3aa00-328d-44cd-b7ca-e93ad43d66b8:
     name: Courses
     handle: courses
