@@ -12,43 +12,6 @@
   <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
     <h1 class="uk-heading-medium">Selected Projects</h1>
   </div>
-  <div class="uk-child-width-1-2" uk-grid>
-    <div class="">
-      <div class="uk-background-muted uk-margin-bottom uk-padding-small">
-        <h1> Parmit's Group </h1>
-        <p>This research group focuses on designing social, usable, interactive technologies. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.</p>
-        <div class="uk-margin-top">
-          <button class="uk-button-primary uk-button-large">Visit the Lab</button>
-        </div>
-      </div><!-- Parmit's Lab Intro -->
-      <div>
-        {% set category = craft.categories.group('researchlab').first() %}
-          {% for project in craft.entries.section('research').limit(5).relatedTo(category) %}
-          <div class="uk-card uk-card-default uk-card-hover uk-margin-bottom">
-            <div class="uk-card-media-top">
-              {% set image = project.media.one() %}
-              {% if image %}
-               <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
-              {% endif %}
-            </div>
-            <div class="uk-card-header">
-              <div class="uk-margin-top">
-                <h1 class="uk-card-title">{{ project.title }}</h1>
-                <p>{{ project.authors }}</p>
-              </div>
-            </div>
-            <div class="uk-card-body">
-              <div class="content abstract">
-                {{ project.shortAbstract }}
-              </div>
-            </div>
-            <div class="uk-card-footer">
-              <a href="#" class="uk-button uk-button-default">Read more</a>
-            </div>
-          </div> <!-- end of card -->
-          {% endfor %}
-      </div> <!-- Parmit's Projects -->
-    </div> <!-- end of column 1 -->
 
     <div class="">
       <div class="uk-background-muted uk-margin-bottom uk-padding-small">
@@ -85,7 +48,46 @@
           </div> <!-- end of card -->
           {% endfor %}
       </div> <!-- Sheelagh's Projects -->
+    </div> <!-- end of column 1 -->
+
+      <div class="uk-child-width-1-2" uk-grid>
+    <div class="">
+      <div class="uk-background-muted uk-margin-bottom uk-padding-small">
+        <h1> Parmit's Group </h1>
+        <p>This research group focuses on designing social, usable, interactive technologies. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.</p>
+        <div class="uk-margin-top">
+          <button class="uk-button-primary uk-button-large">Visit the Lab</button>
+        </div>
+      </div><!-- Parmit's Lab Intro -->
+      <div>
+        {% set category = craft.categories.group('researchlab').first() %}
+          {% for project in craft.entries.section('research').limit(5).relatedTo(category) %}
+          <div class="uk-card uk-card-default uk-card-hover uk-margin-bottom">
+            <div class="uk-card-media-top">
+              {% set image = project.media.one() %}
+              {% if image %}
+               <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+              {% endif %}
+            </div>
+            <div class="uk-card-header">
+              <div class="uk-margin-top">
+                <h1 class="uk-card-title">{{ project.title }}</h1>
+                <p>{{ project.authors }}</p>
+              </div>
+            </div>
+            <div class="uk-card-body">
+              <div class="content abstract">
+                {{ project.shortAbstract }}
+              </div>
+            </div>
+            <div class="uk-card-footer">
+              <a href="#" class="uk-button uk-button-default">Read more</a>
+            </div>
+          </div> <!-- end of card -->
+          {% endfor %}
+      </div> <!-- Parmit's Projects -->
     </div> <!-- end of column 2 -->
+    
   </div> <!-- end of grid-->
 </div> <!-- end of container -->
 
