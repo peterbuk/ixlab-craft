@@ -5,25 +5,156 @@
 {% set body_class = 'page-people' %}
 {% set title = "People - ixLab" %}
 
+{% set postdoc = craft.categories.slug('postdoc').one() %}
+{% set phd = craft.categories.slug('phd').one() %}
+{% set masters = craft.categories.slug('masters').one() %}
+{% set undergrad = craft.categories.slug('undergrad').one() %}
+{% set ra = craft.categories.slug('research-assistant').one() %}
+
+
+{% macro pCard(name, role, bio, website, image) %}
+  <div class="uk-card uk-width-1-2">
+    <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+      {% if image %}
+        <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+      {% else %}
+        <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+      {% endif %}
+      <a href="{{ website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ name }}</h3></a>
+      <p class="uk-margin-remove-top">{{ role }}</p>
+    </div>
+    {# <p class="uk-margin-remove-top">{{ bio }}</p> #}
+  </div>
+{% endmacro %}
+
+
 {% block content %}
 
-  <div class="container">
-    <div class="columns">
-      {% for person in craft.entries.section('people').all() %}
-      <div class="column is-primary is-parent is-4">
-        <div class="box is-child is-centered">
-          
-          <a href="{{ person.website }}"><h2 class="title is-size-4 has-text-centered">{{ person.title }}</h2></a>
-          
-          <figure class="image is-128x128 is-centered">
-            <img class="is-rounded" src="{{ person.profileImage.one().getUrl() }}">
-          </figure>
+  <div class="uk-container">
 
-          <p>{{ person.bio }}</p>
+    <div class="uk-child-width-1-2" uk-grid> <!-- Professor grid -->
+
+      <div class="sheelaghCol uk-flex uk-flex-center"> <!-- Sheelagh Card -->
+        {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
+        <div class="uk-card uk-width-2-3">
+          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+            {% set image = sheelagh.profileImage.one() %}
+            {% if image %}
+              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+            {% else %}
+              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+            {% endif %}
+            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
+            <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+          </div>
+          <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
         </div>
       </div>
-      {% endfor %}
+
+      <div class="parmitCol uk-flex uk-flex-center"> <!-- Parmit Card -->
+        {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
+        <div class="uk-card uk-width-2-3">
+          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+            {% set image = parmit.profileImage.one() %}
+            {% if image %}
+              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+            {% else %}
+              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+            {% endif %}
+            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
+            <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+          </div>
+          <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
+        </div>
+      </div>
+
     </div>
+
+
+    <div class="uk-child-width-1-2" uk-grid> <!-- Student columns -->
+      <div><div uk-grid> <!-- Sheelagh Students -->
+        {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
+
+        <!-- postdoc -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: sheelaghGroup}, {element: postdoc}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+
+        <!-- phd -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: sheelaghGroup}, {element: phd}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+
+        <!-- masters -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: sheelaghGroup}, {element: masters}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
+        {% endfor %}
+
+        <!-- undergrad -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: sheelaghGroup}, {element: undergrad}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
+        {% endfor %}
+
+        <!-- research assistant -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: sheelaghGroup}, {element: ra}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+        
+      </div></div>
+
+
+      <div><div uk-grid> <!-- Parmit Students -->
+        {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
+
+        <!-- postdoc -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: parmitGroup}, {element: postdoc}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
+        {% endfor %}
+
+        <!-- phd -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: parmitGroup}, {element: phd}]).all() %}
+        {% for student in students %}
+         {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+
+        <!-- masters -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: parmitGroup}, {element: masters}]).all() %}
+        {% for student in students %}
+         {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+
+        <!-- undergrad -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: parmitGroup}, {element: undergrad}]).all() %}
+        {% for student in students %}
+         {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+        {% endfor %}
+
+        <!-- research assistant -->
+        {% set students = craft.entries.section('people').relatedTo(['and',
+          {element: parmitGroup}, {element: ra}]).all() %}
+        {% for student in students %}
+          {{ _self.pCard(student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
+        {% endfor %}
+
+
+      </div></div>
+    </div>
+
   </div>
 
 {% endblock %}
