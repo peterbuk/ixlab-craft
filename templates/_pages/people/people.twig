@@ -11,9 +11,20 @@
 {% set undergrad = craft.categories.slug('undergrad').one() %}
 {% set ra = craft.categories.slug('research-assistant').one() %}
 
+
+{# <!-- Create cards for each group/role combination --> #}
+{% macro createCards(group, role) %}
+  {% set students = craft.entries.section('people').relatedTo(['and',
+  {element: group}, {element: role}]).all() %}
+  {% for student in students %}
+  {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
+  {% endfor %}
+{% endmacro %}
+
+
 {# <!-- Card template for each person --> #}
 {% macro pCard(slug, name, role, bio, website, image) %}
-  <div class="uk-card uk-width-1-2"><a href="#{{slug}}-modal" class="uk-link-reset" uk-toggle>
+  <div class="uk-card uk-width-1-2" data-role="{{role}}"><a href="#{{slug}}-modal" class="uk-link-reset" uk-toggle>
     <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
       {% if image %}
         <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
@@ -37,6 +48,7 @@
             <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
           {% endif %}
         </div>
+
         <div class="uk-width-2-3">
           <h3 class="uk-margin-remove uk-text-bold">{{ name }}</h3>
           <p class="uk-margin-remove-top">{{ role }}</p>
@@ -46,23 +58,37 @@
           {% endif %}
         </div>
       </div>
-
-
-      
       <button class="uk-modal-close-default" type="button" uk-close></button>  
     </div>
   </div>
 {% endmacro %}
 
 
+
 {% block content %}
 
   <div class="uk-container">
+  <!-- triple div filter workaround: https://github.com/uikit/uikit/issues/3416 -->
+  <div uk-filter=".js-filter1"><div uk-filter=".js-filter2"><div uk-filter=".js-filter3">
+
+    <!--role filter controls-->
+    <div class="uk-flex uk-flex-center">
+      <ul class="uk-subnav uk-subnav-pill">
+        <li class="uk-active" uk-filter-control><a href="#">All</a></li>
+        <li uk-filter-control="[data-role='Prof']"><a href="#">Professor</a></li>
+        <li uk-filter-control="[data-role='Postdoc']"><a href="#">Postdoc</a></li>
+        <li uk-filter-control="[data-role='PhD']"><a href="#">PhD</a></li>
+        <li uk-filter-control="[data-role='Masters']"><a href="#">Masters</a></li>
+        <li uk-filter-control="[data-role='Undergrad']"><a href="#">Undergrad</a></li>
+        <li uk-filter-control="[data-role='Research Assistant']"><a href="#">Research Assistant</a></li>
+        <li><a href="#">Alumni</a></li>
+      </ul>
+    </div>
 
     <!-- Professor grid -->
-    <div class="uk-child-width-1-2" uk-grid>
+    <div class="uk-child-width-1-2 js-filter3" uk-grid>
 
-      <div class="sheelaghCol uk-flex uk-flex-center"> <!-- Sheelagh Card -->
+      <div class="uk-flex uk-flex-center" data-role="Prof"> <!-- Sheelagh Card -->
         {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
         <div class="uk-card uk-width-2-3">
           <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
@@ -79,7 +105,7 @@
         </div>
       </div>
 
-      <div class="parmitCol uk-flex uk-flex-center"> <!-- Parmit Card -->
+      <div class="parmitCol uk-flex uk-flex-center" data-role="Prof"> <!-- Parmit Card -->
         {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
         <div class="uk-card uk-width-2-3">
           <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
@@ -101,87 +127,47 @@
     <!-- Student grid -->
     <div class="uk-child-width-1-2" uk-grid>
       <!-- Sheelagh Students -->
-      <div><div uk-grid>
+      <div><div class="js-filter1" uk-grid>
         {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
 
         <!-- postdoc -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: sheelaghGroup}, {element: postdoc}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(sheelaghGroup, postdoc) }}
 
         <!-- phd -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: sheelaghGroup}, {element: phd}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(sheelaghGroup, phd) }}
 
         <!-- masters -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: sheelaghGroup}, {element: masters}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
-        {% endfor %}
+        {{ _self.createCards(sheelaghGroup, masters) }}
 
         <!-- undergrad -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: sheelaghGroup}, {element: undergrad}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
-        {% endfor %}
+        {{ _self.createCards(sheelaghGroup, undergrad) }}
 
         <!-- research assistant -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: sheelaghGroup}, {element: ra}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(sheelaghGroup, ra) }}
       </div></div>
 
       <!-- Parmit Students -->
-      <div><div uk-grid> 
+      <div><div class="js-filter2" uk-grid> 
         {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
 
         <!-- postdoc -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: parmitGroup}, {element: postdoc}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
-        {% endfor %}
+        {{ _self.createCards(parmitGroup, postdoc) }}
 
         <!-- phd -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: parmitGroup}, {element: phd}]).all() %}
-        {% for student in students %}
-         {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(parmitGroup, phd) }}
 
         <!-- masters -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: parmitGroup}, {element: masters}]).all() %}
-        {% for student in students %}
-         {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(parmitGroup, masters) }}
 
         <!-- undergrad -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: parmitGroup}, {element: undergrad}]).all() %}
-        {% for student in students %}
-         {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
-        {% endfor %}
+        {{ _self.createCards(parmitGroup, undergrad) }}
 
         <!-- research assistant -->
-        {% set students = craft.entries.section('people').relatedTo(['and',
-          {element: parmitGroup}, {element: ra}]).all() %}
-        {% for student in students %}
-          {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }} 
-        {% endfor %}
+        {{ _self.createCards(parmitGroup, ra) }}
       </div></div>
 
     </div><!--end student grid-->
-
+  </div></div></div>
   </div>
 
 {% endblock %}
