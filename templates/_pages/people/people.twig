@@ -11,7 +11,7 @@
 {% set undergrad = craft.categories.slug('undergrad').one() %}
 {% set ra = craft.categories.slug('research-assistant').one() %}
 
-<!-- Card template for each person -->
+{# <!-- Card template for each person --> #}
 {% macro pCard(slug, name, role, bio, website, image) %}
   <div class="uk-card uk-width-1-2"><a href="#{{slug}}-modal" class="uk-link-reset" uk-toggle>
     <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
