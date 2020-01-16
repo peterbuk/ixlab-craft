@@ -54,7 +54,7 @@
           <p class="uk-margin-remove-top">{{ role }}</p>
           <p>{{ bio }}</p>
           {% if website %}
-            <a href="{{ website }}">WEBSITE</a>
+            <a href="{{ website }}" target="_blank">WEBSITE</a>
           {% endif %}
         </div>
       </div>
@@ -81,7 +81,15 @@
         <li uk-filter-control="[data-role='Masters']"><a href="#">Masters</a></li>
         <li uk-filter-control="[data-role='Undergrad']"><a href="#">Undergrad</a></li>
         <li uk-filter-control="[data-role='Research Assistant']"><a href="#">Research Assistant</a></li>
-        <li><a href="#">Alumni</a></li>
+        <li class="uk-inline"><a href="#">Alumni</a>
+          <div uk-dropdown="mode: click">
+            <ul class="uk-list  uk-margin-remove-bottom">
+              <li><a class="uk-link-muted" href="http://sheelaghcarpendale.ca/People/PreviousPeople" target="_blank">Sheelagh's Students</a></li>
+              <li><a class="uk-link-muted" href="http://hci.cs.sfu.ca/people.html" target="_blank">Parmit's Students</a></li>
+            </ul>
+            
+          </div>
+        </li>
       </ul>
     </div>
 
