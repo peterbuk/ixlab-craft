@@ -14,18 +14,6 @@
       </div>
       <div class="uk-width-3-4" uk-grid>
         <div>
-          <div>
-            <p class"uk-text-large">
-              Category
-            </p>
-            <ul class="uk-subnav uk-subnav-pill">
-              <li class="active" uk-filter-control><a href="#">All</a></li>
-            {% for category in craft.categories.group('newsCategory') %}
-              <li uk-filter-control="[data-name='{{ category.title }}']"><a href="#">{{ category.title }}</a></li>
-            {% endfor %}
-            </ul>
-          </div> <!-- category list -->
-
           <div class="js-filter" uk-grid>
             {% for entry in craft.entries.section('news').all() %}
             <li data-name="{{ entry.newsCategory[0] }}">
@@ -60,20 +48,33 @@
 
       <div class="uk-width-1-4 " uk-grid> 
         <div>
-          <p class="uk-text-large">
+          <h2 class="uk-text-large">
             Search News
-          </p>
+          </h2>
             <form class="uk-search uk-search-default">
             <a href="" class="uk-search-icon-flip" uk-search-icon></a>
               <input class="uk-search-input" type="search" placeholder="Search for...">
             </form>
-          <p class"uk-text-large">
+          
+          <div class="uk-margin-medium-top">
+            <h3 class"uk-text-large">
+              See News Category
+            </h3>
+            <ul class="uk-subnav uk-subnav-pill">
+              <li class="active" uk-filter-control><a href="#">All</a></li>
+            {% for category in craft.categories.group('newsCategory') %}
+              <!-- only display cateogies that have entries -->
+              {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
+                <li uk-filter-control="[data-name='{{ category.title }}']"><a href="#">{{ category.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </div> <!-- category list -->
+
+          <h3 class"uk-text-large">
             Archive
-          </p>
+          </h3>
           <div>
-            <p class"uk-text-small">
-              View News From
-            </p>
             <button class="uk-button uk-button-default" type="button">2020 
               <span uk-icon="icon: triangle-down"></span>
             </button>
