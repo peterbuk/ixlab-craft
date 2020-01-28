@@ -15,7 +15,9 @@
       <div class="uk-width-3-4" uk-grid>
         <div>
           <div class="js-filter" uk-grid>
-            {% for entry in craft.entries.section('news').all() %}
+            {% set query = craft.entries.section('news').limit(5) %}
+            {% paginate query as pageInfo, pageEntries %}
+            {% for entry in pageEntries %}
             <li data-name="{{ entry.newsCategory[0] }}">
               <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
                 <div class="uk-card-media-left uk-cover-container">
@@ -42,8 +44,44 @@
               </div><!-- card div -->
             </li>
             {% endfor %}
+
           </div> <!-- js filter div -->
         </div><!-- cards grid div -->
+
+        <div class="uk-flex uk-flex-center"> <!-- pagination -->
+          <ul class="uk-pagination uk-flex-center" uk-margin>
+                {% if pageInfo.firstUrl %}
+                  <li><a href="{{ pageInfo.firstUrl }}">First Page</a></li>
+                {% endif %}
+
+                {% if pageInfo.prevUrl %}
+                  <li>
+                    <a href="{{ pageInfo.prevUrl }}">
+                    <span class="uk-margin-small-right" uk-pagination-previous></span>
+                    </a>
+                  </li>
+                {% endif %}
+
+                {% for page, url in pageInfo.getPrevUrls(2) %}
+                  <li><a href="{{ url }}">{{ page }}</a></li>
+                {% endfor %}
+
+                <li class="uk-active">{{ pageInfo.currentPage }}</li>
+
+                {% for page, url in pageInfo.getNextUrls(2) %}
+                  <li><a href="{{ url }}">{{ page }}</a></li>
+                {% endfor %}
+
+                {% if pageInfo.nextUrl %}
+                  <li>
+                    <a href="{{ pageInfo.nextUrl }}"><span class="uk-margin-small-left" uk-pagination-next></span></a>
+                  </li>
+                {% endif %}
+
+                <li><a href="{{ pageInfo.lastUrl }}">Last Page</a></li>
+          </ul>
+        </div> <!-- pagination -->
+
       </div> <!-- news feed -->
 
       <div class="uk-width-1-4 " uk-grid> 
