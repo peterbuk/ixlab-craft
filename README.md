@@ -75,6 +75,9 @@ When Craft detects that project.yaml has changed, it will ensure that the versio
 composer install
 
 ```
+
+After calling composer, open up the admin panel for the website and sync the project.yaml changes. 
+
 # Local Database Instance
 In case you have to use a local instance of the database. There should be a sql file with the latest database changes in the repo. Create a database with the following details and import the file into the database.
 
@@ -86,3 +89,19 @@ Default Collation: utf8_unicode_ci
 ```
 
 The project.yaml file should help sync up the rest of the updates if the file is out of date.
+
+# Working with SCSS files
+The main.scss file is where all of the scss files are connected. If you made a new scss file, you should import the css file for your template in this file. 
+
+The _classes.scss is where all the global styles and elements are stored.
+
+_variables.scss this is where you want to change the variables. 
+
+# Issues
+## Error 503
+If you get a 503 error, it means there is an issue with connecting with the database. Here are some things that could have caused the error. 
+
+* Ensure that your credentials is correct in the .env file. 
+* Check if your database is still connected. Sometimes MAMP/WAMP disconnects with the php server. When this happens restart your computer. 
+* Changes in with project.yaml needs to be synced up. For this, visit the admin panel to sync the changes. 
+
