@@ -18,7 +18,7 @@
             {% set query = craft.entries.section('news').limit(5) %}
             {% paginate query as pageInfo, pageEntries %}
             {% for entry in pageEntries %}
-            <li data-name="{{ entry.newsCategory[0] }}">
+            <li data-name="{{ entry.newsCategory.one() }}">
               <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
                 <div class="uk-card-media-left uk-cover-container">
                   {% set image = entry.media %}
@@ -35,7 +35,7 @@
                 </div>
                 <div class="uk-card-body">
                     <div class="uk-card-badge uk-label uk-margin-bottom">
-                      {{ entry.newsCategory[0] }}
+                      {{ entry.newsCategory.one() }}
                     </div>
                     <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
                     <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
@@ -99,7 +99,7 @@
               See News Category
             </h3>
             <ul class="uk-subnav uk-subnav-pill">
-              <li class="active" uk-filter-control><a href="#">All</a></li>
+              <li uk-filter-control><a href="#">All</a></li>
             {% for category in craft.categories.group('newsCategory') %}
               <!-- only display cateogies that have entries -->
               {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
