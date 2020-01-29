@@ -39,7 +39,7 @@
     <h1 class="section-header uk-flex uk-flex-center">News</h1>
 
     <div class="uk-child-width-1-3 uk-grid-divider" uk-grid>
-      {% for entry in craft.entries.section('news').limit(3) %}
+      {% for entry in craft.entries.section('news').orderBy('date desc').limit(3) %}
       <div>
         <div class="uk-card uk-card-small uk-card-body">
           <h3 class="uk-card-title">{{ entry.title }}</h3>
@@ -59,7 +59,7 @@
 
 <!-- research section -->
   <section class="uk-margin-large-top">
-    <h1 class="section-header uk-flex uk-flex-center">Our Research</h1>
+    <h1 class="section-header uk-flex uk-flex-center">Selected Research</h1>
 
     <div class="uk-grid-match" uk-grid>
       {% for entry in craft.entries.section('research').limit(3) %}
@@ -68,9 +68,9 @@
           <div class="uk-card-media-top">
             {% set image = entry.media.one() %}
             {% if image %}
-              <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+              <img data-src="{{ image.getUrl('thumbWide') }}" alt="Project image" width="{{ image.getWidth('thumbWide') }}" height="{{ image.getHeight('thumbWide') }}" uk-img>
             {% else %}
-              <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder">
+              <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder">
             {% endif %}
           </div>
           <div class="uk-card-body">

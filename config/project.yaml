@@ -21,7 +21,18 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'research-lab/{slug}'
         template: ''
-dateModified: 1578946516
+  d57696b2-af75-4083-86c9-67cb4e77bac8:
+    name: Role
+    handle: role
+    structure:
+      uid: fa6d0a46-6db6-465c-96c8-0c56a59cca9c
+      maxLevels: null
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        hasUrls: true
+        uriFormat: 'title/{slug}'
+        template: ''
+dateModified: 1578959729
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -325,6 +336,28 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  b9f671aa-f97e-4438-9060-13cac21d69a7:
+    name: Role
+    handle: role
+    instructions: 'Role of this person (PhD, Msc, Undergrad, etc)'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Categories
+    settings:
+      allowLimit: false
+      allowMultipleSources: false
+      branchLimit: '1'
+      sources: '*'
+      source: 'group:d57696b2-af75-4083-86c9-67cb4e77bac8'
+      targetSiteId: null
+      viewMode: null
+      limit: null
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
   be4e22bd-bb90-486f-be6e-d09ea811cb2d:
     name: 'Short Abstract'
     handle: shortAbstract
@@ -343,9 +376,9 @@ fields:
     contentColumnType: text
     fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
   d3d5dfac-7770-4737-bb3a-0fd910cbfeef:
-    name: researchLab
-    handle: researchlab
-    instructions: 'Which research lab does this belong to?'
+    name: 'People Lab'
+    handle: peopleLab
+    instructions: 'Which research lab does this person belong to? (Note: Leave blank for professors)'
     searchable: true
     translationMethod: site
     translationKeyFormat: null
@@ -363,7 +396,7 @@ fields:
       localizeRelations: false
       validateRelatedElements: ''
     contentColumnType: string
-    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
+    fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
   d5f28552-4c77-446b-8822-9510a5616ad0:
     name: Date
     handle: date
@@ -421,6 +454,27 @@ fields:
       validateRelatedElements: '1'
     contentColumnType: string
     fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
+imageTransforms:
+  3832c9e1-0616-486e-a01d-933a7963030c:
+    format: null
+    handle: thumbWide
+    height: 320
+    interlace: none
+    mode: crop
+    name: 'Thumbnail 580x320'
+    position: center-center
+    quality: null
+    width: 580
+  9254bf0a-8889-488b-8d4b-25441b87ba03:
+    format: null
+    handle: thumbSquare
+    height: 200
+    interlace: none
+    mode: crop
+    name: 'Thumbnail Square'
+    position: center-center
+    quality: null
+    width: 200
 plugins:
   redactor:
     edition: standard
@@ -560,7 +614,7 @@ sections:
     entryTypes:
       2eb3b0ee-57d0-43db-84d4-20572be068fc:
         name: People
-        handle: people
+        handle: personName
         hasTitleField: true
         titleLabel: Name
         titleFormat: ''
@@ -574,13 +628,19 @@ sections:
                 fields:
                   0c8174e2-3f6b-43f6-9b8d-ac9644eb25a0:
                     required: false
-                    sortOrder: 3
+                    sortOrder: 5
                   0d61c45f-abc7-43c0-9271-d2db00f2ac4d:
                     required: false
-                    sortOrder: 2
+                    sortOrder: 4
                   7166459b-4a18-41d3-81c2-4d775c2a7024:
                     required: false
+                    sortOrder: 3
+                  b9f671aa-f97e-4438-9060-13cac21d69a7:
+                    required: false
                     sortOrder: 1
+                  d3d5dfac-7770-4737-bb3a-0fd910cbfeef:
+                    required: false
+                    sortOrder: 2
   a21fe2e1-43d4-4493-a462-96d779a08978:
     name: 'People Index'
     handle: peopleIndex
