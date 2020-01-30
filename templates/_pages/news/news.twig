@@ -21,9 +21,9 @@
             <li data-name="{{ entry.newsCategory.one() }}">
               <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
                 <div class="uk-card-media-left uk-cover-container">
-                  {% set image = entry.media %}
+                  {% set image = entry.featureImage %}
                   {% if image is defined and image is not null %}
-                    {% set image = entry.media.one() %}
+                    {% set image = entry.featureImage.one() %}
                     {% if image is not null %}
                       <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-cover>
                       <canvas width="600" height="400"></canvas>
