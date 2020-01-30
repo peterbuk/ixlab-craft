@@ -7,8 +7,28 @@
 
 {% block content %}
 
-<div class="container">
-  course index page
+<div class="uk-container">
+  <div uk-grid>
+    <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
+      <h1 class="uk-heading-medium">Recommended Courses</h1>
+    </div>
+    <div class="uk-width-3-4" uk-grid>
+    
+    </div><!-- courses list -->
+
+    <div class="uk-width-1-4" uk-grid>
+      <div>
+        <h2 class="uk-text-large">
+            Search Courses
+          </h2>
+            <form class="uk-search uk-search-default">
+            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+              <input class="uk-search-input" type="search" placeholder="Search for...">
+            </form>
+      </div>
+    
+    </div><!-- sidebar -->
+  </div>
 </div>
 
 {% endblock %}
