@@ -98,36 +98,40 @@
 
       <div class="uk-flex uk-flex-center" data-role="Prof"> <!-- Sheelagh Card -->
         {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
-        <div class="uk-card uk-width-2-3">
-          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-            {% set image = sheelagh.profileImage.one() %}
-            {% if image %}
-              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-            {% else %}
-              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-            {% endif %}
-            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
-            <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+        {% if sheelagh %}
+          <div class="uk-card uk-width-2-3">
+            <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+              {% set image = sheelagh.profileImage.one() %}
+              {% if image %}
+                <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+              {% else %}
+                <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+              {% endif %}
+              <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
+              <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+            </div>
+            <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
           </div>
-          <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
-        </div>
+        {% endif %}
       </div>
 
       <div class="parmitCol uk-flex uk-flex-center" data-role="Prof"> <!-- Parmit Card -->
         {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
-        <div class="uk-card uk-width-2-3">
-          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-            {% set image = parmit.profileImage.one() %}
-            {% if image %}
-              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-            {% else %}
-              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-            {% endif %}
-            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
-            <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+        {% if parmit %}
+          <div class="uk-card uk-width-2-3">
+            <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+              {% set image = parmit.profileImage.one() %}
+              {% if image %}
+                <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+              {% else %}
+                <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+              {% endif %}
+              <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
+              <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+            </div>
+            <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
           </div>
-          <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
-        </div>
+        {% endif %}
       </div>
 
     </div><!--end prof grid-->
