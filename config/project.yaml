@@ -32,7 +32,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'title/{slug}'
         template: ''
-dateModified: 1580414890
+dateModified: 1580417904
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -538,6 +538,26 @@ sections:
                   3a6e4c8c-95a2-49b8-b270-025a167fc168:
                     required: false
                     sortOrder: 1
+  311b8f68-cc9f-495b-8be8-2eda27974aeb:
+    name: Publications
+    handle: publications
+    type: single
+    enableVersioning: true
+    propagationMethod: all
+    siteSettings:
+      d4d97380-b07f-42e2-be39-f820292a8d6f:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: publications
+        template: _pages/publications/publications.twig
+    entryTypes:
+      37de83a7-7e0c-41b6-ae99-8821637ad5d6:
+        name: Publications
+        handle: publications
+        hasTitleField: false
+        titleLabel: null
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
   3846705d-50f3-453d-ba99-a6e3cca49b2d:
     name: Research
     handle: research
