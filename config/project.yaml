@@ -32,7 +32,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'title/{slug}'
         template: ''
-dateModified: 1578959729
+dateModified: 1580414890
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -44,6 +44,8 @@ fieldGroups:
     name: Research
   0f7f27e8-d76c-452c-a2ee-0d0656e5337a:
     name: People
+  3fb9fb67-ce6a-4ec3-aaa3-5af8aa651f24:
+    name: Affiliations
   87a50924-5642-49a0-a844-bc8254ad0ebc:
     name: Common
   a6284d4e-20d6-47b6-a67e-84d8a89e9313:
@@ -166,6 +168,27 @@ fields:
       availableTransforms: '*'
     contentColumnType: text
     fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
+  3a6e4c8c-95a2-49b8-b270-025a167fc168:
+    name: Body
+    handle: affilBody
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: ''
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: 3fb9fb67-ce6a-4ec3-aaa3-5af8aa651f24
   3f98a065-d118-4627-94ea-9e0adc9cafce:
     name: About
     handle: about
@@ -512,7 +535,7 @@ sections:
                 name: Content
                 sortOrder: 1
                 fields:
-                  033ff0b1-cae2-4a02-88e4-7599dfb73576:
+                  3a6e4c8c-95a2-49b8-b270-025a167fc168:
                     required: false
                     sortOrder: 1
   3846705d-50f3-453d-ba99-a6e3cca49b2d:
