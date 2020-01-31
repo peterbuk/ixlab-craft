@@ -32,7 +32,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'title/{slug}'
         template: ''
-dateModified: 1580430317
+dateModified: 1580426863
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -128,21 +128,6 @@ fields:
       validateRelatedElements: ''
     contentColumnType: string
     fieldGroup: 0f7f27e8-d76c-452c-a2ee-0d0656e5337a
-  1e5b586c-9546-491b-bf73-1060f5659976:
-    name: 'Matrix Details'
-    handle: matrixDetails
-    instructions: 'This block allows you to create custom content in a dynamic way. '
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Matrix
-    settings:
-      minBlocks: ''
-      maxBlocks: ''
-      contentTable: '{{%matrixcontent_matrixdetails}}'
-      propagationMethod: all
-    contentColumnType: string
-    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
   2841a200-68ce-4e7a-b1bd-06d929cceba7:
     name: 'Recruitment Header'
     handle: recruitmentHeader
@@ -465,159 +450,6 @@ imageTransforms:
     position: center-center
     quality: null
     width: 200
-matrixBlockTypes:
-  2c164aa4-5951-4672-bb4a-14bf8ba5093e:
-    field: 1e5b586c-9546-491b-bf73-1060f5659976
-    name: Text
-    handle: text
-    sortOrder: 3
-    fields:
-      d79ad973-7915-455c-ab23-00d769f79b52:
-        name: TextBlock
-        handle: textblock
-        instructions: ''
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\PlainText
-        settings:
-          placeholder: ''
-          code: ''
-          multiline: ''
-          initialRows: '4'
-          charLimit: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-    fieldLayouts:
-      0c493a04-0f1f-47fb-b469-da90f946f9f7:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              d79ad973-7915-455c-ab23-00d769f79b52:
-                required: false
-                sortOrder: 1
-  4f19ebc4-8e80-4117-8185-310eafa4251f:
-    field: 1e5b586c-9546-491b-bf73-1060f5659976
-    name: Heading
-    handle: heading
-    sortOrder: 1
-    fields:
-      1922dd1f-5192-459c-bd33-83f9602a094d:
-        name: 'Section Heading'
-        handle: sectionHeading
-        instructions: 'This is used for creating section headers'
-        searchable: true
-        translationMethod: none
-        translationKeyFormat: null
-        type: craft\fields\PlainText
-        settings:
-          placeholder: ''
-          code: ''
-          multiline: ''
-          initialRows: '4'
-          charLimit: ''
-          columnType: text
-        contentColumnType: text
-        fieldGroup: null
-    fieldLayouts:
-      5e7a412f-999a-4348-97a4-7430d16451fb:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              1922dd1f-5192-459c-bd33-83f9602a094d:
-                required: false
-                sortOrder: 1
-  5cd509f5-45b9-4420-9ae6-edbb0a1e34b7:
-    field: 1e5b586c-9546-491b-bf73-1060f5659976
-    name: Video
-    handle: video
-    sortOrder: 4
-    fields:
-      238d69c8-aae8-4520-bc96-14744b03906f:
-        name: Video
-        handle: video
-        instructions: ''
-        searchable: true
-        translationMethod: site
-        translationKeyFormat: null
-        type: craft\fields\Assets
-        settings:
-          useSingleFolder: ''
-          defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-          defaultUploadLocationSubpath: ''
-          singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-          singleUploadLocationSubpath: ''
-          restrictFiles: '1'
-          allowedKinds:
-            - video
-          sources: '*'
-          source: null
-          targetSiteId: null
-          viewMode: large
-          limit: '1'
-          selectionLabel: ''
-          localizeRelations: false
-          validateRelatedElements: ''
-        contentColumnType: string
-        fieldGroup: null
-    fieldLayouts:
-      8177c186-0d58-495e-baff-98382f8845fa:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              238d69c8-aae8-4520-bc96-14744b03906f:
-                required: false
-                sortOrder: 1
-  c1b7b444-0113-4059-adbc-708db95dba6a:
-    field: 1e5b586c-9546-491b-bf73-1060f5659976
-    name: 'Image Gallery'
-    handle: imageGallery
-    sortOrder: 2
-    fields:
-      41ed97cd-d4c8-4c51-9a2a-f36a83e03a2a:
-        name: image
-        handle: image
-        instructions: 'You can add up to 3 images to the image gallery. Images will have equal widths. '
-        searchable: true
-        translationMethod: site
-        translationKeyFormat: null
-        type: craft\fields\Assets
-        settings:
-          useSingleFolder: ''
-          defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-          defaultUploadLocationSubpath: ''
-          singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-          singleUploadLocationSubpath: ''
-          restrictFiles: '1'
-          allowedKinds:
-            - image
-          sources: '*'
-          source: null
-          targetSiteId: null
-          viewMode: large
-          limit: '3'
-          selectionLabel: ''
-          localizeRelations: false
-          validateRelatedElements: ''
-        contentColumnType: string
-        fieldGroup: null
-    fieldLayouts:
-      50db886f-e9df-4b2c-aed4-315c78b9407d:
-        tabs:
-          -
-            name: Content
-            sortOrder: 1
-            fields:
-              41ed97cd-d4c8-4c51-9a2a-f36a83e03a2a:
-                required: false
-                sortOrder: 1
 plugins:
   redactor:
     edition: standard
