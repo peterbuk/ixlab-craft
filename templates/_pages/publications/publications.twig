@@ -1,0 +1,33 @@
+{% extends '_layouts/layout_main' %}
+
+{% set body_class = 'page-publications' %}
+{% set title = "Publications - ixLab" %}
+
+{% block content %}
+
+<div class="fw-header uk-padding uk-margin-large">
+  <div class="uk-container">
+    <h2 class="uk-text-center">Selected Publications</h2>
+  </div>
+</div>
+
+<div class="uk-container">
+  <div class="uk-margin-large-bottom">{{ entry.publicationText }}</div>
+
+  <div class="uk-child-width-1-2 " uk-grid>
+    <div> <!-- Sheelagh Side -->
+      <h3>Publications Under Sheelagh</h3>
+      <p>{{ entry.sheelaghPublications }}</p>
+      <a class="uk-button uk-button-primary" href="http://sheelaghcarpendale.ca/Publications/Publications">Full Publications</a>
+    </div>
+
+    <div> <!-- Parmit Side -->
+      <h3>Publications Under Parmit</h3>
+      <p>{{ entry.parmitPublications }}</p>
+      <a class="uk-button uk-button-primary" href="http://hci.cs.sfu.ca/publications.html">Full Publications</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

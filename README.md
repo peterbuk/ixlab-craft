@@ -105,3 +105,7 @@ If you get a 503 error, it means there is an issue with connecting with the data
 * Check if your database is still connected. Sometimes MAMP/WAMP disconnects with the php server. When this happens restart your computer. 
 * Changes in with project.yaml needs to be synced up. For this, visit the admin panel to sync the changes. 
 
+## Not site settings errors inside Admin Panel
+
+* Try running ./craft project-config/rebuild inside the project directory.
+* See https://github.com/craftcms/cms/issues/3643
