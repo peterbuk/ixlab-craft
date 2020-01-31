@@ -7,8 +7,51 @@
 
 {% block content %}
 
-<div class="container">
-  course index page
+<div class="uk-container">
+  <div uk-grid>
+    <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
+      <h1 class="uk-heading-medium">Recommended Courses</h1>
+    </div>
+    <div class="uk-width-3-4" uk-grid>
+      {% for entry in craft.entries.section('courses') %}
+        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+          <div class="uk-card-media-left uk-cover-container">
+            {% set image = entry.featureImage %}
+            {% if image is defined and image is not null %}
+            {% set image = entry.featureImage.one() %}
+            {% if image is not null %}
+              <img data-src="{{ image.getUrl() }}" alt="Course image" width=data-width height=data-height uk-cover>
+              <canvas width="600" height="400"></canvas>
+            {% else %}
+              <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
+              <canvas width="600" height="400"></canvas>
+            {% endif %}
+            {% endif %}
+          </div>
+          <div class="uk-card-body">
+            <div class="uk-card-badge uk-label uk-margin-bottom">
+              {{ entry.courseCode }}
+            </div>
+            <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
+            <p>{{ entry.description }} </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div><!-- courses list -->
+
+    <div class="uk-width-1-4" uk-grid>
+      <div>
+        <h2 class="uk-text-large">
+            Search Courses
+          </h2>
+            <form class="uk-search uk-search-default">
+            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+              <input class="uk-search-input" type="search" placeholder="Search for...">
+            </form>
+      </div>
+    
+    </div><!-- sidebar -->
+  </div>
 </div>
 
 {% endblock %}
