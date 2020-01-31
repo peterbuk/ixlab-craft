@@ -20,7 +20,8 @@
             {% if image is defined and image is not null %}
             {% set image = entry.featureImage.one() %}
             {% if image is not null %}
-              <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-cover>
+              <img data-src="{{ image.getUrl() }}" alt="Course image" width=data-width height=data-height uk-cover>
+              <canvas width="600" height="400"></canvas>
             {% else %}
               <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
               <canvas width="600" height="400"></canvas>

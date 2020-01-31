@@ -9,9 +9,11 @@
 {% macro createResearchCards(project) %}
   <div class="uk-card uk-card-default uk-card-hover uk-margin-bottom">
     <div class="uk-card-media-top">
-      {% set image = project.media.one() %}
+      {% set image = project.featureImage.one() %}
       {% if image %}
-      <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+        <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+      {% else %}
+        <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
       {% endif %}
     </div>
     <div class="uk-card-header">
@@ -39,7 +41,7 @@
   </div> <!-- page heading -->
 
   <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
-    <div class="uk-align-left">
+    <div class="uk-align-center">
       <div class="uk-background-muted uk-margin-bottom uk-padding-large">
         <h1> Sheelagh's Group </h1>
         <p>This research group focuses on designing innovative, compelling, and engaging visuals. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.</p>
