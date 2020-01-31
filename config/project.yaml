@@ -32,7 +32,7 @@ categoryGroups:
         hasUrls: true
         uriFormat: 'title/{slug}'
         template: ''
-dateModified: 1580417904
+dateModified: 1580426863
 email:
   fromEmail: peter_buk@sfu.ca
   fromName: ixlab
@@ -248,58 +248,6 @@ fields:
       columnType: text
     contentColumnType: text
     fieldGroup: 00648b08-5880-47d5-ab41-599ad38f5fd0
-  599a7231-c33d-4da1-8ba6-a8aacbb01c86:
-    name: Image
-    handle: image
-    instructions: 'Any images with the courses'
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Assets
-    settings:
-      useSingleFolder: ''
-      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-      defaultUploadLocationSubpath: 'courses/{slug}/'
-      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-      singleUploadLocationSubpath: ''
-      restrictFiles: ''
-      allowedKinds: null
-      sources: '*'
-      source: null
-      targetSiteId: null
-      viewMode: list
-      limit: ''
-      selectionLabel: ''
-      localizeRelations: false
-      validateRelatedElements: ''
-    contentColumnType: string
-    fieldGroup: 00648b08-5880-47d5-ab41-599ad38f5fd0
-  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
-    name: Media
-    handle: media
-    instructions: 'Any associate media files with the project'
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Assets
-    settings:
-      useSingleFolder: '1'
-      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-      defaultUploadLocationSubpath: '/research/{slug}/'
-      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
-      singleUploadLocationSubpath: '/research/{slug}/'
-      restrictFiles: ''
-      allowedKinds: null
-      sources: '*'
-      source: null
-      targetSiteId: null
-      viewMode: large
-      limit: ''
-      selectionLabel: ''
-      localizeRelations: false
-      validateRelatedElements: ''
-    contentColumnType: string
-    fieldGroup: 0391abea-adb9-420d-befa-b8a798995a31
   6fae3e75-7045-4b68-9634-7467d086fa82:
     name: Description
     handle: description
@@ -477,6 +425,33 @@ fields:
       validateRelatedElements: '1'
     contentColumnType: string
     fieldGroup: a6284d4e-20d6-47b6-a67e-84d8a89e9313
+  ed283575-6d68-47b3-804d-1666dc0e8d3a:
+    name: 'Feature Image'
+    handle: featureImage
+    instructions: 'Feature image that will be displayed on the card.'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: ''
+      defaultUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:a35e2a3c-cf4f-422c-af9b-2c59e7d86bfc'
+      singleUploadLocationSubpath: ''
+      restrictFiles: '1'
+      allowedKinds:
+        - image
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+      validateRelatedElements: ''
+    contentColumnType: string
+    fieldGroup: 87a50924-5642-49a0-a844-bc8254ad0ebc
 imageTransforms:
   3832c9e1-0616-486e-a01d-933a7963030c:
     format: null
@@ -590,19 +565,19 @@ sections:
                     sortOrder: 6
                   30ecede2-23c8-4d30-a51e-9498647db8f9:
                     required: false
-                    sortOrder: 4
-                  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
-                    required: false
                     sortOrder: 5
                   8fcd5a2d-5e1f-43cb-b2f0-b83b54d46aa6:
-                    required: false
+                    required: true
                     sortOrder: 2
                   be4e22bd-bb90-486f-be6e-d09ea811cb2d:
-                    required: false
+                    required: true
                     sortOrder: 3
                   d3d5dfac-7770-4737-bb3a-0fd910cbfeef:
-                    required: false
+                    required: true
                     sortOrder: 1
+                  ed283575-6d68-47b3-804d-1666dc0e8d3a:
+                    required: false
+                    sortOrder: 4
   6311178c-704d-480d-97d1-37f17b3cc48b:
     name: Homepage
     handle: home
@@ -754,15 +729,15 @@ sections:
                   033ff0b1-cae2-4a02-88e4-7599dfb73576:
                     required: true
                     sortOrder: 3
-                  5ddd31db-efcc-450c-a1e3-1f1f698b8fd1:
-                    required: false
-                    sortOrder: 4
                   d5f28552-4c77-446b-8822-9510a5616ad0:
                     required: true
                     sortOrder: 1
                   d88e96db-a28f-4c8d-bdb4-8e99476f19e6:
                     required: true
                     sortOrder: 2
+                  ed283575-6d68-47b3-804d-1666dc0e8d3a:
+                    required: false
+                    sortOrder: 4
   b4b3aa00-328d-44cd-b7ca-e93ad43d66b8:
     name: Courses
     handle: courses
@@ -781,8 +756,24 @@ sections:
         handle: courses
         hasTitleField: true
         titleLabel: Title
-        titleFormat: null
+        titleFormat: ''
         sortOrder: 1
+        fieldLayouts:
+          a1202d83-06fa-4e2f-ab00-c604f059fc18:
+            tabs:
+              -
+                name: Course
+                sortOrder: 1
+                fields:
+                  4aa60cf6-5dc4-4012-9dba-be5823ae0fc3:
+                    required: false
+                    sortOrder: 1
+                  6fae3e75-7045-4b68-9634-7467d086fa82:
+                    required: true
+                    sortOrder: 2
+                  ed283575-6d68-47b3-804d-1666dc0e8d3a:
+                    required: false
+                    sortOrder: 3
   c3a36ce8-b283-4b75-8f94-302209f9ce94:
     name: 'News Index'
     handle: newsIndex
