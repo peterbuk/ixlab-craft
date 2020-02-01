@@ -29,5 +29,11 @@
 /* FOOTER */
 
 footer {
-  background-color: #d5d5d5;
+  background-color: $offset_color;
+}
+
+/* full width header */
+
+.fw-header {
+  background-color: $offset_color;
 }
