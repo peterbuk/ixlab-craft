@@ -9,11 +9,11 @@
 {% macro createResearchCards(project) %}
   <div class="uk-card uk-card-default uk-card-hover uk-margin-bottom">
     <div class="uk-card-media-top">
-      {% set image = project.featureImage.one() %}
+      {% set image = project.researchFeatureImage.one() %}
       {% if image %}
-        <img data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+        <img class="uk-align-center" data-src="{{ image.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
       {% else %}
-        <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
+        <img class="uk-align-center" src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
       {% endif %}
     </div>
     <div class="uk-card-header">
@@ -28,18 +28,20 @@
       </div>
     </div>
     <div class="uk-card-footer">
-      <a href="#" class="uk-button uk-button-default">Read more</a>
+      <a href=" {{ project.url }}" class="uk-button uk-button-default">Read more</a>
     </div>
   </div> <!-- end of card -->
 {% endmacro %}
 
 {% block content %}
 
-<div class="uk-container">
-  <div class="uk-width-1-1" uk-grid>
-    <h1 class="uk-heading-medium uk-margin-medium-top">Selected Projects</h1>
+<div class="uk-background-primary uk-width-1-1">
+  <div class="uk-margin-large-left" uk-grid>
+    <h1 class="uk-heading-medium uk-margin-medium-top uk-margin-medium-bottom">Selected Projects</h1>
   </div> <!-- page heading -->
+</div>
 
+<div class="uk-container">
   <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
     <div class="uk-align-center">
       <div class="uk-background-muted uk-margin-bottom uk-padding-large">
@@ -67,7 +69,7 @@
           </div>
         </div><!-- Parmit's Lab Intro -->
         <div>
-          {% set category = craft.categories.group('researchlab').first() %}
+          {% set category = craft.categories.group('researchlab').one() %}
             {% for project in craft.entries.section('research').limit(5).relatedTo(category) %}
               {{ _self.createResearchCards(project) }}
             {% endfor %}
