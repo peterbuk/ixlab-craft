@@ -128,7 +128,7 @@
 {# add active class to navbar item #}
 {# https://craftcms.stackexchange.com/a/575 #}
 {% macro is_active(segment) %}
-{% if craft.request.firstSegment == segment %}
+{% if craft.request.segments|first == segment %}
 	uk-active
 {% endif %}
 {% endmacro %}
