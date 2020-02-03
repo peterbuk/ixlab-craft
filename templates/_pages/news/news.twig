@@ -21,11 +21,11 @@
             <li data-name="{{ entry.newsCategory.one() }}">
               <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
                 <div class="uk-card-media-left uk-cover-container">
-                  {% set image = entry.featureImage %}
+                  {% set image = entry.newsFeatureImage %}
                   {% if image is defined and image is not null %}
-                    {% set image = entry.featureImage.one() %}
+                    {% set image = entry.newsFeatureImage.one() %}
                     {% if image is not null %}
-                      <img data-src="{{ image.getUrl() }}" alt="News image" width=data-width height=data-height uk-cover>
+                      <img data-src="{{ image.getUrl() }}" alt="News image" width=data-width height=data-height uk-cover uk-img>
                       <canvas width="600" height="400"></canvas>
                     {% else %}
                       <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>

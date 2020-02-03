@@ -3,23 +3,54 @@
 {% block content %}
 
 
-<div class="container">
-  <h1 class="title">
-    {{ entry.title }}
-  </h1>
+<div class="uk-container">
+  <div class="uk-width-1-1 uk-align-center uk-background-muted" uk-grid>
+    {% set featureImage = entry.researchFeatureImage.one() %}
+    {% if featureImage %}
+      <img class="uk-align-center" data-src="{{ featureImage.getUrl() }}" alt="Project image" width=data-width height=data-height uk-img>
+    {% else %}
+      <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
+    {% endif %}
 
-  <h3 class="heading">Authors</h3>
-  <p>{{ entry.authors }}</p>
-  
-  <h3 class="heading">Abstract</h3>
-  <p>{{ entry.abstract }}</p>
+    <div class="" uk-grid>
+      <h1 class="uk-heading-medium uk-margin-medium-top uk-margin-medium-bottom"> {{ entry.title }}</h1>
+    </div> <!-- page heading -->
+  </div>
 
-  <h3 class="heading">Images</h3>
-  {# {% set item = entry.media.one() %} #}
-  {# {% set itemUrl = item.getUrl() %} #}
-  <img src="../{{ entry.media.one().getUrl() }}">
-  {# need to get multiple images #}
-  
+  <div class="uk-margin-medium-left content">
+    <h3 class=" heading">Authors</h3>
+    <p>{{ entry.authors }}</p>
+    
+    <h3 class="heading">Abstract</h3>
+    <p>{{ entry.shortAbstract }}</p>
+    
+    <div uk-grid>
+      {% for block in entry.moreDetails.all() %}
+        {% if block.type == "heading" %}
+
+            <h1 class="uk-heading-medium">{{ block.sectionHeading }}</h1>
+
+        {% elseif block.type == "text" %}
+
+            {{ block.textblock|markdown }}
+
+        {% elseif block.type == "imageGallery" %}
+          <div class="uk-width-1-1 uk-child-width-1-4" uk-lightbox uk-grid>
+            {% set images = block.image.all() %}
+            {% for image in images %}
+              <div>
+                <a class="uk-inline" href="../{{image.getUrl()}}">
+                  <img src="../{{image.getUrl('thumbSquare')}}">
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      
+      {% endfor %}
+    </div>
+
+  </div>
 </div>
 
 {% endblock %}
