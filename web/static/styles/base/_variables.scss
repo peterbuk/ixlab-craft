@@ -11,7 +11,8 @@ $main_background: white;
 /* for reference: https://github.com/uikit/uikit/blob/develop/src/scss/variables.scss */
 
 // typography
-// $family-sans-serif: "Arial", sans-serif;
+$global-font-family: "Noto Sans", sans-serif;
+$base-heading-font-family: "Barlow Condensed", serif;
 
 // colors
 $global_primary_background: #FF9955;

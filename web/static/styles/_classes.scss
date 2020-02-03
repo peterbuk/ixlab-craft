@@ -11,11 +11,20 @@
 
 /* NAVBAR */
 
-.uk-active {
+.uk-navbar {
+  padding: 25px 0;
+}
+
+.uk-navbar-nav .uk-active {
   font-weight: 700;
+  background-color: $offset_color;
 }
 .uk-navbar-nav li a{
   font-size: 1rem;
+  min-height: 50px;
+}
+.uk-navbar-nav li:hover{
+  background-color: $offset_color;
 }
 
 @media (min-width: 960px) {

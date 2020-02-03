@@ -9,7 +9,8 @@
 	<header>
 		<div class="uk-container">
 			<div class="uk-flex uk-flex-center uk-margin-top">
-				<a href="{{ siteUrl }}"><img src="{{ alias('@assetUrl/img/siteAssets/ixlab.svg') }}" width="300" height="125" alt="ixLab"></a>
+				{# <a href="{{ siteUrl }}"><img src="{{ alias('@assetUrl/img/siteAssets/ixlab.svg') }}" width="300" height="125" alt="ixLab"></a> #}
+				<a href="{{ siteUrl }}"><img src="{{ siteLogo.siteLogo.one().getUrl() }}" width="300" height="125" alt="ixLab"></a>
 			</div>
 			
 			<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
