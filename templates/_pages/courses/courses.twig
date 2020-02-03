@@ -18,7 +18,7 @@
           <div class="uk-card-media-left uk-cover-container">
             {% set image = entry.courseFeatureImage %}
             {% if image is defined and image is not null %}
-            {% set image = entry.featureImage.one() %}
+            {% set image = entry.courseFeatureImage.one() %}
             {% if image is not null %}
               <img data-src="{{ image.getUrl() }}" alt="Course image" width=data-width height=data-height uk-cover uk-img>
               <canvas width="600" height="400"></canvas>
