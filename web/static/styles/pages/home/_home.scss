@@ -3,7 +3,8 @@
 
 #heroImage {
   height: 60vh;
-  background: url(./img/siteAssets/banner.jpg) no-repeat center center;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
 }
 
