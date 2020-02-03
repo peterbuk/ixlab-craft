@@ -62,6 +62,12 @@
       {% endfor %}
     </div>
 
+    {% set publication = entry.publication %}
+    {% if publication is defined and publication is not null %}
+      <h2> Publication </h2>
+      <p> {{ entry.publication }} </p>
+    {% endif %}
+
   </div>
 </div>
 

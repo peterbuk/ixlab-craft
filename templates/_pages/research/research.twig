@@ -33,11 +33,15 @@
   </div> <!-- end of card -->
 {% endmacro %}
 
+
 {% block content %}
 
 <div class="uk-background-primary uk-width-1-1">
+  {% set research = craft.entries.section('researchIndex').one() %}
   <div class="uk-margin-large-left" uk-grid>
-    <h1 class="uk-heading-medium uk-margin-medium-top uk-margin-medium-bottom">Selected Projects</h1>
+    <h1 class="uk-heading-medium uk-margin-medium-top uk-margin-medium-bottom">
+    {{ research.researchPageHeader }}
+    </h1>
   </div> <!-- page heading -->
 </div>
 
@@ -45,10 +49,9 @@
   <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
     <div class="uk-align-center">
       <div class="uk-background-muted uk-margin-bottom uk-padding-large">
-        <h1> Sheelagh's Group </h1>
-        <p>This research group focuses on designing innovative, compelling, and engaging visuals. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.</p>
+        <p>{{ research.researchLabLeft }} </p>
         <div class="uk-margin-top">
-          <button class="uk-button-primary uk-button-large">Visit the Lab</button>
+          <a class="uk-button uk-button-primary uk-button-large" href="{{ research.researchLabLeftUrl }}"> Visit the Lab</a>
         </div>
       </div> <!-- Sheelagh's Group Intro -->
       <div>
@@ -62,10 +65,9 @@
     <div class="" uk-grid>
       <div class="">
         <div class="uk-background-muted uk-margin-bottom uk-padding-large">
-          <h1> Parmit's Group </h1>
-          <p>This research group focuses on designing social, usable, interactive technologies. We draw upon a variety of research methods and techniques - from designing and building interactive systems to using qualitative and quantitative methods to investigate user needs, organizational processes, and tool adoption. We are currently funded by NSERC and Canada's GRAND network.</p>
+          <p> {{ research.researchLabRight }}</p>
           <div class="uk-margin-top">
-            <button class="uk-button-primary uk-button-large">Visit the Lab</button>
+            <a class="uk-button uk-button-primary uk-button-large" href="{{ research.researchLabRightUrl }}">Visit the Lab</a>
           </div>
         </div><!-- Parmit's Lab Intro -->
         <div>
