@@ -45,6 +45,26 @@
   }
 }
 
+/* SUBNAV */
+.uk-subnav{
+  font-family: "Nunito";
+}
+
+.uk-subnav .uk-active {
+  font-weight: 700;
+}
+
+/* BUTTON */
+.uk-button{
+  font-family: "Nunito";
+  font-weight: bold;
+  letter-spacing: .2em;
+}
+
+/* NEWS DROPDOWN */
+.uk-dropdown{
+  background-color: $global-secondary-background;
+}
 
 
 /* FOOTER */

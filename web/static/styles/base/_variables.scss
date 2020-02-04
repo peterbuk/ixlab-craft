@@ -1,6 +1,7 @@
 // widths
 $external_container_width: 2100px;
 $mobile_container: 600px;
+$breakpoint-small: 700px;
 
 // colors
 $external_container_background: white;
@@ -12,11 +13,31 @@ $main_background: white;
 
 // typography
 $global-font-family: "Noto Sans", sans-serif;
-$base-heading-font-family: "Barlow Condensed", serif;
+$base-heading-font-family: "Nunito", sans-serif;
+$base-heading-font-weight: "Bold";
 
 // colors
-$global_primary_background: #FF9955;
+$global-color: #666;
+$global-primary-background: #FF9955;
+$global-secondary-background: #FFCCA0;
+$global-muted-background: #FFE4CC;
+$black: #000;
 $bright_grey: rgb(242, 241, 241);
-$offset_color: rgb(255, 228, 204);
+$offset_color: rgb(255, 204, 160);
 
-$breakpoint-small: 700px;
+//NavBar
+$navbar-nav-item-font-family: $base-heading-font-family;
+
+//Buttons
+$button-default-background: $global-secondary-background;
+$button-default-hover-background: $global-primary-background;
+
+$button-primary-color: $black;
+
+//Cards
+$card-default-background: #FFF9F2;
+
+//Pills
+$subnav-pill-item-active-color: $black;
+$subnav-pill-item-active-background: $global-secondary-background;
+
