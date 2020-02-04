@@ -15,7 +15,7 @@
 {# <!-- Create cards for each group/role combination --> #}
 {% macro createCards(group, role) %}
   {% set students = craft.entries.section('people').relatedTo(['and',
-  {element: group}, {element: role}]).all() %}
+  {element: group}, {element: role}]).orderBy('lastName asc').all() %}
   {% for student in students %}
   {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
   {% endfor %}
