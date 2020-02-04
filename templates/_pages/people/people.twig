@@ -15,7 +15,7 @@
 {# <!-- Create cards for each group/role combination --> #}
 {% macro createCards(group, role) %}
   {% set students = craft.entries.section('people').relatedTo(['and',
-  {element: group}, {element: role}]).all() %}
+  {element: group}, {element: role}]).orderBy('lastName asc').all() %}
   {% for student in students %}
   {{ _self.pCard(student.slug, student.title, student.role.one().title, student.bio, student.website, student.profileImage.one()) }}
   {% endfor %}
@@ -68,8 +68,8 @@
 {% block content %}
 
   <div class="uk-container">
-  <!-- triple div filter workaround: https://github.com/uikit/uikit/issues/3416 -->
-  <div uk-filter=".js-filter1"><div uk-filter=".js-filter2"><div uk-filter=".js-filter3">
+  <!-- double div filter workaround: https://github.com/uikit/uikit/issues/3416 -->
+  <div uk-filter=".js-filter1"><div uk-filter=".js-filter2">
 
     <!--role filter controls-->
     <div class="uk-flex uk-flex-center">
@@ -81,66 +81,44 @@
         <li uk-filter-control="[data-role='Masters']"><a href="#">Masters</a></li>
         <li uk-filter-control="[data-role='Undergrad']"><a href="#">Undergrad</a></li>
         <li uk-filter-control="[data-role='Research Assistant']"><a href="#">Research Assistant</a></li>
-        <li class="uk-inline"><a href="#">Alumni</a>
+        <li class="uk-inline"><a href="#">Alumni <span uk-icon="icon: chevron-down"></span></a>
           <div uk-dropdown="mode: click">
             <ul class="uk-list  uk-margin-remove-bottom">
               <li><a class="uk-link-muted" href="http://sheelaghcarpendale.ca/People/PreviousPeople" target="_blank">Sheelagh's Students</a></li>
               <li><a class="uk-link-muted" href="http://hci.cs.sfu.ca/people.html" target="_blank">Parmit's Students</a></li>
             </ul>
-            
           </div>
         </li>
       </ul>
     </div>
 
-    <!-- Professor grid -->
-    <div class="uk-child-width-1-2 js-filter3" uk-grid>
 
-      <div class="uk-flex uk-flex-center" data-role="Prof"> <!-- Sheelagh Card -->
-        {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
-        {% if sheelagh %}
-          <div class="uk-card uk-width-2-3">
-            <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-              {% set image = sheelagh.profileImage.one() %}
-              {% if image %}
-                <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-              {% else %}
-                <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-              {% endif %}
-              <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
-              <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
-            </div>
-            <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
-          </div>
-        {% endif %}
-      </div>
+    <!-- People Grid -->
+    <div class="uk-child-width-1-2@m" uk-grid>
 
-      <div class="parmitCol uk-flex uk-flex-center" data-role="Prof"> <!-- Parmit Card -->
-        {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
-        {% if parmit %}
-          <div class="uk-card uk-width-2-3">
-            <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-              {% set image = parmit.profileImage.one() %}
-              {% if image %}
-                <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-              {% else %}
-                <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-              {% endif %}
-              <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
-              <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
-            </div>
-            <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
-          </div>
-        {% endif %}
-      </div>
-
-    </div><!--end prof grid-->
-
-    <!-- Student grid -->
-    <div class="uk-child-width-1-2" uk-grid>
-      <!-- Sheelagh Students -->
+      <!-- Sheelagh Side -->
       <div><div class="js-filter1" uk-grid>
         {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
+
+         <!-- Sheelagh Card -->
+        <div class="uk-flex uk-flex-center" data-role="Prof">
+          {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
+          {% if sheelagh %}
+            <div class="uk-card uk-width-2-3">
+              <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+                {% set image = sheelagh.profileImage.one() %}
+                {% if image %}
+                  <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+                {% else %}
+                  <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+                {% endif %}
+                <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
+                <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+              </div>
+              <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
+            </div>
+          {% endif %}
+        </div>
 
         <!-- postdoc -->
         {{ _self.createCards(sheelaghGroup, postdoc) }}
@@ -158,9 +136,29 @@
         {{ _self.createCards(sheelaghGroup, ra) }}
       </div></div>
 
-      <!-- Parmit Students -->
+      <!-- Parmit Side -->
       <div><div class="js-filter2" uk-grid> 
         {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
+
+        <!-- Parmit Card -->
+        <div class="uk-flex uk-flex-center" data-role="Prof"> 
+          {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
+          {% if parmit %}
+            <div class="uk-card uk-width-2-3">
+              <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+                {% set image = parmit.profileImage.one() %}
+                {% if image %}
+                  <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+                {% else %}
+                  <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+                {% endif %}
+                <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
+                <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+              </div>
+              <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
+            </div>
+          {% endif %}
+        </div>
 
         <!-- postdoc -->
         {{ _self.createCards(parmitGroup, postdoc) }}
@@ -178,8 +176,8 @@
         {{ _self.createCards(parmitGroup, ra) }}
       </div></div>
 
-    </div><!--end student grid-->
-  </div></div></div>
+    </div><!--end people grid-->
+  </div></div>
   </div>
 
 {% endblock %}
