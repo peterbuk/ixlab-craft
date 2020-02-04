@@ -15,7 +15,24 @@
 			
 			<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
 				<div class="uk-navbar-center">
-					<ul class="uk-navbar-nav">
+					<ul class="uk-navbar-nav uk-visible@s">
+						<li class="{{ siteMacros.is_active('') }}"><a href="{{ siteUrl }}">Home</a></li>
+						<li class="{{ siteMacros.is_active('people') }}"><a href="{{ siteUrl }}./people">People</a></li>
+						<li class="{{ siteMacros.is_active('research') }}"><a href="{{ siteUrl }}./research">Research</a></li>
+						<li class="{{ siteMacros.is_active('publications') }}"><a href="{{ siteUrl }}./publications">Publications</a></li>
+						<li class="{{ siteMacros.is_active('courses') }}"><a href="{{ siteUrl }}./courses">Courses</a></li>
+						<li class="{{ siteMacros.is_active('news') }}"><a href="{{ siteUrl }}./news">News</a></li>
+						<li class="{{ siteMacros.is_active('affiliations') }}"><a href="{{ siteUrl }}./affiliations">Affiliations</a></li>
+					</ul>
+					<a href="#" class="uk-navbar-toggle uk-hidden@s" uk-toggle="target: #sidenav">
+						<span uk-navbar-toggle-icon></span><span class="uk-margin-small-left">MENU</span>
+					</a>
+				</div>
+			</nav>
+
+			<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+				<div class="uk-offcanvas-bar">
+						<ul class="uk-nav">
 							<li class="{{ siteMacros.is_active('') }}"><a href="{{ siteUrl }}">Home</a></li>
 							<li class="{{ siteMacros.is_active('people') }}"><a href="{{ siteUrl }}./people">People</a></li>
 							<li class="{{ siteMacros.is_active('research') }}"><a href="{{ siteUrl }}./research">Research</a></li>
@@ -23,9 +40,9 @@
 							<li class="{{ siteMacros.is_active('courses') }}"><a href="{{ siteUrl }}./courses">Courses</a></li>
 							<li class="{{ siteMacros.is_active('news') }}"><a href="{{ siteUrl }}./news">News</a></li>
 							<li class="{{ siteMacros.is_active('affiliations') }}"><a href="{{ siteUrl }}./affiliations">Affiliations</a></li>
-					</ul>
+						</ul>
 				</div>
-			</nav>
+		</div>
 		</div>
 	</header>
 
