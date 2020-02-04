@@ -27,7 +27,19 @@
   background-color: $offset_color;
 }
 
+@media (max-width: 760px) {
+  .uk-navbar-nav li a{
+    padding: 0 10px;
+  }
+}
+
 @media (min-width: 960px) {
+  .uk-navbar-nav li {
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1200px) {
   .uk-navbar-nav li {
     padding: 0 20px;
   }
