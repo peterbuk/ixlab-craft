@@ -48,5 +48,7 @@ return [
             '@assetUrl' => getenv('ASSET_BASE_URL'),
         ],
 
+        'maxUploadFileSize' => 16777216,
+
     ],
 ];

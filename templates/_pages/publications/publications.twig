@@ -1,3 +1,5 @@
+{# This is the "Publication Index" page, a 'single' page that loads the publications from the Publication 'channel' #}
+
 {% extends '_layouts/layout_main' %}
 
 {% set body_class = 'page-publications' %}
@@ -6,21 +8,61 @@
 {% block content %}
 
 
-<div class="uk-container">
-  <h1 class="uk-text-center">Selected Publications</h1>
-  <div class="uk-margin-large-bottom">{{ entry.publicationText }}</div>
+{# Macro to create a div for a publication #}
+{% macro createPublication(pub) %}
+<div class="uk-grid-small uk-margin-medium" uk-grid>
+  <div class="uk-width-1-4">
+    {% set image = pub.thumbnailImage.one() %}
+    {% if image %}
+      <img class="thumbnailImage" src="{{ image.getUrl('thumbSquare') }}" alt="{{pub.title}}">
+    {% else %}
+      <img src="{{alias('@assetUrl/img/siteAssets/globalAssets/placeholderPublication.svg')}}" alt="No project image" width="100%">
+    {% endif %}
+    <a type="button" onclick="$('#bibtex-{{pub.slug}}').toggle()">[BixTex]</a>
+    <a href="{{ pub.pdf.one().getUrl() }}" target="_blank">[PDF]</a>
+  </div>
 
-  <div class="uk-child-width-1-2 " uk-grid>
+  <div class="uk-width-3-4">
+    {% if pub.publicationLink %}
+      <a href="{{ pub.publicationLink }}"><h5>{{ pub.title }}</h5></a>
+    {% else %}
+      <h5>{{ pub.title }}</h5>
+    {% endif %}
+    
+    <p>{{ pub.shortCitation }}</p>
+  </div>
+
+  <!-- Hidden bibtex block until the link is clicked -->
+  <div id="bibtex-{{pub.slug}}" class="bibtex">
+    <pre>{{pub.bibtex}}</pre>
+  </div>
+</div>
+{% endmacro %}
+
+
+<div class="uk-container">
+  <h1 class="uk-text-center">{{entry.publicationPageHeader}}</h1>
+  <div class="uk-margin-large-bottom">{{ entry.publicationPageHeaderContent }}</div>
+
+  <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
       <h3>Publications Under Sheelagh</h3>
-      <p>{{ entry.sheelaghPublications }}</p>
-      <a class="uk-button uk-button-primary" href="http://sheelaghcarpendale.ca/Publications/Publications">Full Publications</a>
+      <a class="uk-button uk-button-primary" href="{{ entry.publicationPageSheelaghLink }}">Full Publications</a>
+      {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
+      {% set pubs = craft.entries.section('publications').relatedTo(sheelaghGroup).all() %}
+      {% for pub in pubs %}
+        {{ _self.createPublication(pub) }}
+      {% endfor %}
     </div>
 
     <div> <!-- Parmit Side -->
       <h3>Publications Under Parmit</h3>
-      <p>{{ entry.parmitPublications }}</p>
-      <a class="uk-button uk-button-primary" href="http://hci.cs.sfu.ca/publications.html">Full Publications</a>
+      <a class="uk-button uk-button-primary" href="{{ entry.publicationPageParmitLink }}">Full Publications</a>
+      {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
+      {% set pubs = craft.entries.section('publications').relatedTo(parmitGroup).all() %}
+      {% for pub in pubs %}
+        {{ _self.createPublication(pub) }}
+      {% endfor %}
     </div>
 
   </div>

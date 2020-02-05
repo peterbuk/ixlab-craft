@@ -27,6 +27,12 @@
   background-color: $offset_color;
 }
 
+@media (max-width: $breakpoint-small) {
+  .uk-navbar {
+    padding: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .uk-navbar-nav li a{
     padding: 0 10px;
