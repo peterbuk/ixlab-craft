@@ -13,39 +13,34 @@
         <h1 class="uk-heading-medium">News</h1>
       </div>
       <div class="uk-width-3-4" uk-grid>
-        <div>
-          <div class="js-filter" uk-grid>
+        <div class="uk-width-1-1" uk-grid>
+          <ul class="uk-list">
             {% set query = craft.entries.section('news').limit(5) %}
             {% paginate query as pageInfo, pageEntries %}
             {% for entry in pageEntries %}
-            <li data-name="{{ entry.newsCategory.one() }}">
-              <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-                <div class="uk-card-media-left uk-cover-container">
-                  {% set image = entry.newsFeatureImage %}
-                  {% if image is defined and image is not null %}
-                    {% set image = entry.newsFeatureImage.one() %}
-                    {% if image is not null %}
-                      <img data-src="{{ image.getUrl() }}" alt="News image" width=data-width height=data-height uk-cover uk-img>
-                      <canvas width="600" height="400"></canvas>
-                    {% else %}
-                      <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
-                      <canvas width="600" height="400"></canvas>
-                    {% endif %}
+            <li>
+              <div class="news-entry" uk-lightbox="animation: slide"> 
+                <p class="uk-margin-remove uk-text-uppercase uk-text-small"> {{ entry.newsCategory.one() }}</p>
+                <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
+                <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
+                <div>
+                {% set image = entry.newsFeatureImage %}
+                {% if image is defined and image is not null %}
+                  {% set image = entry.newsFeatureImage.one() %}
+                  {% if image is not null %}
+                    <a class="uk-inline" href="{{ image.getUrl() }}">
+                      <img class="uk-align-center" data-src="{{ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
+                    </a>
                   {% endif %}
+                {% endif %}
                 </div>
-                <div class="uk-card-body">
-                    <div class="uk-card-badge uk-label uk-margin-bottom">
-                      {{ entry.newsCategory.one() }}
-                    </div>
-                    <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
-                    <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
-                    <p>{{ entry.newsContent }}</p>
-                </div>
-              </div><!-- card div -->
+                <p>{{ entry.newsContent }}</p>
+                <hr class="uk-divider-icon uk-margin-large-top">
+              </div>
             </li>
             {% endfor %}
 
-          </div> <!-- js filter div -->
+          </ul> <!-- js filter div -->
         </div><!-- cards grid div -->
 
         <div class="uk-flex uk-flex-center"> <!-- pagination -->
@@ -99,11 +94,11 @@
               See News Category
             </h3>
             <ul class="uk-subnav uk-subnav-pill">
-              <li uk-filter-control><a href="#">All</a></li>
+              <li class="uk-active"><a href="{{ siteUrl }}./news">All</a></li>
             {% for category in craft.categories.group('newsCategory') %}
               <!-- only display cateogies that have entries -->
               {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
-                <li uk-filter-control="[data-name='{{ category.title }}']"><a href="#">{{ category.title }}</a></li>
+                <li><a href="{{ category.url }}">{{ category.title }}</a></li>
               {% endif %}
             {% endfor %}
             </ul>
