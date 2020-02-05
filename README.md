@@ -1,18 +1,26 @@
-# Craft CMS 3 Starter theme
+# ixLab Website
 
-This is a starter theme for Craft CMS - it can be used as scaffolding for any project. It consists of:
+The ixLab website runs on the Craft CMS platform. Craft is a customizable CMS (similar to Wordpress), but runs off templates instead of themes. 
 
-* Boilerplate Twig files
-* Base CSS code with Bulma framework included. Can be pretty opinionated.
-* Gulp config for compiling JS and CSS assets and running browsersync
-* Few useful Craft config settings
+https://craftcms.com/
+
+> We built off a Craft starter theme, more documentation can be found on [http://craftsnippets.com/starter-theme-for-craft-cms](http://craftsnippets.com/starter-theme-for-craft-cms).
+
+We used UIkit as the CSS framework instead of Bulma.
+
+https://getuikit.com/
+
+
 
 -------------------------
 
-**Documentation can be found on [http://craftsnippets.com/starter-theme-for-craft-cms](http://craftsnippets.com/starter-theme-for-craft-cms).**
+
 
 # Getting Set Up
-The ixlab website uses Craft CMS as a foundation. Bulma is the visual framework of the website. Bulma is included in the files of this repo, however, there's a few other things you'll need to install in order to get up and ready for developing for the website.
+
+>todo: eventually try setting up a fresh dev env to document process
+
+The ixlab website uses Craft CMS as a foundation. There's a few other things you'll need to install in order to get up and ready for developing for the website.
 
 You'll need:
 * Composer
