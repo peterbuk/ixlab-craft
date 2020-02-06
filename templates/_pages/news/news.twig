@@ -8,11 +8,11 @@
 {% block content %}
 
   <div class="uk-container">
-    <div uk-filter="target: .js-filter" uk-grid>
+    <div uk-grid>
       <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
         <h1 class="uk-heading-medium">News</h1>
       </div>
-      <div class="uk-width-3-4" uk-grid>
+      <div class="uk-width-3-4@m uk-padding-small" uk-grid>
         <div class="uk-width-1-1" uk-grid>
           <ul class="uk-list">
             {% set query = craft.entries.section('news').limit(5) %}
@@ -34,7 +34,20 @@
                   {% endif %}
                 {% endif %}
                 </div>
-                <p>{{ entry.newsContent }}</p>
+                {% if entry.newsContent|length > 400 %}
+                  {% set lastIndex = entry.newsContent|length %}
+                  {% set firstParagraph = entry.newsContent|slice(0, 400) %}
+                  {% set restofText = entry.newsContent|slice(400, lastIndex) %}
+                  <div id="read-more">
+                    <p>{{ firstParagraph|raw }}...</p>
+                  </div>
+                  <div id="read-more" hidden>
+                    <p>{{ entry.newsContent|raw }}</p>
+                  </div>
+                  <button id="{{ entry.slug }}-read-more-btn" class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: #read-more">Read More</button>
+                {% else %}
+                  <p> {{ entry.newsContent }} </p>
+                {% endif %}
                 <hr class="uk-divider-icon uk-margin-large-top">
               </div>
             </li>
@@ -79,16 +92,15 @@
 
       </div> <!-- news feed -->
 
-      <div class="uk-width-1-4 " uk-grid> 
+      <div class="uk-width-1-4@m" uk-grid> 
         <div>
           <h2 class="uk-text-large">
             Search News
           </h2>
-            <form class="uk-search uk-search-default">
-            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-              <input class="uk-search-input" type="search" placeholder="Search for...">
-            </form>
-          
+          <form class="uk-search uk-search-default">
+          <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+            <input class="uk-search-input" type="search" placeholder="Search for...">
+          </form>
           <div class="uk-margin-medium-top">
             <h3 class"uk-text-large">
               See News Category
@@ -103,29 +115,7 @@
             {% endfor %}
             </ul>
           </div> <!-- category list -->
-
-          <h3 class"uk-text-large">
-            Archive
-          </h3>
-          <div>
-            <button class="uk-button uk-button-default" type="button">2020 
-              <span uk-icon="icon: triangle-down"></span>
-            </button>
-              <div uk-dropdown="mode: click">
-                  <ul class="uk-nav uk-dropdown-nav">
-                      <li class="uk-active"><a href="#">2020</a></li>
-                      <li><a href="#">2019</a></li>
-                      <li class="uk-nav-header">2018</li>
-                      <li><a href="#">Item</a></li>
-                      <li><a href="#">Item</a></li>
-                      <li class="uk-nav-divider"></li>
-                      <li><a href="#">Item</a></li>
-                  </ul>
-              </div>
-          </div>
-          </div>
-      </div> 
-
+        </div> 
     </div><!-- end of grid -->
   </div> <!-- end container -->
 
