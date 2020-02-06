@@ -1,10 +1,11 @@
-$card-background-color: #FBF6E8;
-
-.column .abstract{
-  height: 300px;
-  text-overflow: ellipsis;
+.research-group-intro-box h2 {
+  margin-top: 0;
 }
 
-$card-header-padding{
-  0.75rem 1rem;
+.research-entry h2 {
+  margin-bottom: 8px;
+}
+
+.research-entry p {
+  margin-top: 0;
 }
