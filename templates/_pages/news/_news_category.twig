@@ -9,7 +9,7 @@
         <div class="uk-width-3-4" uk-grid>
             <div class="uk-width-1-1" uk-grid>
                 <ul class="uk-list">
-                    {% set query = craft.entries.section('news').relatedTo(category).limit(5) %}
+                    {% set query = craft.entries.section('news').relatedTo(category).limit(10) %}
                     {% paginate query as pageInfo, pageEntries %}
                     {% for entry in pageEntries %}
                     <li>
