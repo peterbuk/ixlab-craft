@@ -12,18 +12,18 @@
       <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
         <h1 class="uk-heading-medium">News</h1>
       </div>
-      <div class="uk-width-3-4@m uk-padding-small" uk-grid>
+      <div class="uk-width-3-4@m" uk-grid>
         <div class="uk-width-1-1" uk-grid>
           <ul class="uk-list">
             {% set query = craft.entries.section('news').limit(5) %}
             {% paginate query as pageInfo, pageEntries %}
             {% for entry in pageEntries %}
             <li>
-              <div class="news-entry" uk-lightbox="animation: slide"> 
-                <p class="uk-margin-remove uk-text-uppercase uk-text-small"> {{ entry.newsCategory.one() }}</p>
+              <div class="news-entry"> 
+                <p class="uk-margin-remove uk-text-uppercase uk-text-small"> <a href="{{ entry.newsCategory.one().url }}" class="uk-text-muted">{{ entry.newsCategory.one() }}</a></p>
                 <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
                 <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
-                <div>
+                <div uk-lightbox="animation: slide">
                 {% set image = entry.newsFeatureImage %}
                 {% if image is defined and image is not null %}
                   {% set image = entry.newsFeatureImage.one() %}

@@ -13,11 +13,11 @@
                     {% paginate query as pageInfo, pageEntries %}
                     {% for entry in pageEntries %}
                     <li>
-                        <div class="news-entry" uk-lightbox="animation: slide"> 
-                            <p class="uk-margin-remove uk-text-uppercase uk-text-small"> {{ entry.newsCategory.one() }}</p>
+                        <div class="news-entry"> 
+                            <p class="uk-margin-remove uk-text-uppercase uk-text-small"> <a href="{{ entry.newsCategory.one().url }}" class="uk-text-muted">{{ entry.newsCategory.one() }}</a></p>
                             <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
                             <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
-                            <div>
+                            <div uk-lightbox="animation: slide">
                             {% set image = entry.newsFeatureImage %}
                             {% if image is defined and image is not null %}
                             {% set image = entry.newsFeatureImage.one() %}
