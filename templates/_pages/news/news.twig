@@ -35,9 +35,7 @@
                 {% endif %}
                 </div>
                 {% if entry.newsContent|length > 400 %}
-                  {% set lastIndex = entry.newsContent|length %}
                   {% set firstParagraph = entry.newsContent|slice(0, 400) %}
-                  {% set restofText = entry.newsContent|slice(400, lastIndex) %}
                   <div id="read-more">
                     <p>{{ firstParagraph|raw }}...</p>
                   </div>
