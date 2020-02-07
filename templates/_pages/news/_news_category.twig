@@ -32,13 +32,13 @@
                             {% set lastIndex = entry.newsContent|length %}
                             {% set firstParagraph = entry.newsContent|slice(0, 400) %}
                             {% set restofText = entry.newsContent|slice(400, lastIndex) %}
-                            <div id="read-more">
+                            <div class="content-{{ entry.slug }}">
                                 <p>{{ firstParagraph|raw }}...</p>
                             </div>
-                            <div id="read-more" hidden>
-                                <p>{{ entry.newsContent|raw }}</p>
+                            <div class="content-{{ entry.slug }}" hidden>
+                                <p>{{ entry.newsContent }}</p>
                             </div>
-                            <button id="{{ entry.slug }}-read-more-btn" class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: #read-more">Read More</button>
+                            <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{ entry.slug }}">Read More</button>
                             {% else %}
                             <p> {{ entry.newsContent }} </p>
                             {% endif %}

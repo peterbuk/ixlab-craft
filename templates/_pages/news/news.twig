@@ -15,7 +15,7 @@
       <div class="uk-width-3-4@m" uk-grid>
         <div class="uk-width-1-1" uk-grid>
           <ul class="uk-list">
-            {% set query = craft.entries.section('news').limit(5) %}
+            {% set query = craft.entries.section('news').limit(10) %}
             {% paginate query as pageInfo, pageEntries %}
             {% for entry in pageEntries %}
             <li>
@@ -36,13 +36,13 @@
                 </div>
                 {% if entry.newsContent|length > 400 %}
                   {% set firstParagraph = entry.newsContent|slice(0, 400) %}
-                  <div id="read-more">
+                  <div class="content-{{ entry.slug }}">
                     <p>{{ firstParagraph|raw }}...</p>
                   </div>
-                  <div id="read-more" hidden>
-                    <p>{{ entry.newsContent|raw }}</p>
+                  <div class="content-{{ entry.slug }}" hidden>
+                    <p>{{ entry.newsContent }}</p>
                   </div>
-                  <button id="{{ entry.slug }}-read-more-btn" class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: #read-more">Read More</button>
+                  <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{ entry.slug }}">Read More</button>
                 {% else %}
                   <p> {{ entry.newsContent }} </p>
                 {% endif %}
@@ -95,7 +95,8 @@
           <h2 class="uk-text-large">
             Search News
           </h2>
-          <form class="uk-search uk-search-default">
+          {% set searchPage = craft.entries.section("newsSearch").one() %}
+          <form class="uk-search uk-search-default" action="{{ searchPage.url }}">
           <a href="" class="uk-search-icon-flip" uk-search-icon></a>
             <input class="uk-search-input" type="search" placeholder="Search for...">
           </form>
