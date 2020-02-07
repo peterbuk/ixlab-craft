@@ -18,7 +18,7 @@
     position: 'center-center',
     format: 'png',
 } %}
-<link rel="icon" sizes="{{faviconSize ~ 'x' ~ faviconSize}}" type="image/png" href="{{icon.getUrl(faviconTransform)}}" />
+<link rel="icon" sizes="{{faviconSize ~ 'x' ~ faviconSize}}" type="image/png" href="{{siteUrl ~ icon.getUrl(faviconTransform)}}" />
 {% endif %}
 {% endfor %}
 {# link touch icon #}

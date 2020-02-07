@@ -15,20 +15,15 @@
 @import "uikit/src/scss/uikit-theme.scss";
 
 
-
 // base
-// see http://craftsnippets.com/starter-theme-for-craft-cms#styles
-@import 'base/z-index'; // set all z-indexes here to keep track of them
-@import 'base/mixins';
+// reference http://craftsnippets.com/starter-theme-for-craft-cms#styles
 @import 'base/structure';
 @import 'classes';
-
-// components
-@import 'components/quick_edit';
 
 // pages
 @import 'pages/home/home';
 @import 'pages/news/news';
+@import 'pages/research/research';
 @import 'pages/publications/publications';
 
 
