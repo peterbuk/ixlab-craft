@@ -47,7 +47,7 @@
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
       <h3>Publications Under Sheelagh</h3>
-      <a class="uk-button uk-button-primary" href="{{ entry.publicationPageSheelaghLink }}">Full Publications</a>
+      <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.publicationPageSheelaghLink }}">Full Publications</a>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(sheelaghGroup).all() %}
       {% for pub in pubs %}
@@ -57,7 +57,7 @@
 
     <div> <!-- Parmit Side -->
       <h3>Publications Under Parmit</h3>
-      <a class="uk-button uk-button-primary" href="{{ entry.publicationPageParmitLink }}">Full Publications</a>
+      <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.publicationPageParmitLink }}">Full Publications</a>
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(parmitGroup).all() %}
       {% for pub in pubs %}

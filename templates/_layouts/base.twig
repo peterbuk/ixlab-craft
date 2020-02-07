@@ -2,26 +2,27 @@
 <html lang="{{ currentSite.language }}" dir="{{craft.app.i18n.getLocaleById(currentSite.id).getOrientation()}}">
 <head>
 
-<!-- Template created by Piotr Pogorzelski - craftsnippets.com -->
-<!-- See http://craftsnippets.com/starter-theme-for-craft-cms#system -->
-<!-- feel free to ignore most of this if unused, the starter template broke everything down -->
-{% include '_system/seo' %}
-{% include '_system/meta' %}
-{% include '_system/favicons' %}
-{% include '_system/fonts' %}
-{% include '_system/static' %}  <!-- loads styles/scripts -->
-{% include '_system/tag_manager' %}
+  <!-- Based off of template created by Piotr Pogorzelski - craftsnippets.com -->
+  <!-- See http://craftsnippets.com/starter-theme-for-craft-cms#system for docs-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no" />
+  {% if craft.app.config.general.theme.color is defined %}
+    <meta name="theme-color" content="{{craft.app.config.general.theme.color}}" />
+  {% endif %}
 
+  {% include '_system/seo' %}
+  {% include '_system/favicons' %}
+  {% include '_system/fonts' %}
+  {% include '_system/static' %}  <!-- loads styles/scripts -->
 
-<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 
-{% block head %}{% endblock %}
-
+  {% block head %}{% endblock %}
 </head>
 
 <body class="{{body_class ?? null}} {{craft.app.request.isMobileBrowser() ? 'is-mobile' : 'is-desktop'}}">
 
-{% include '_components/quick_edit' %}
 {% block layout %}{% endblock %}
 {% block endBody %}{% endblock %}
 

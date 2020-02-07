@@ -1,6 +1,4 @@
-/* Use this file for Global components like headers and footers
-  If a component gets messy, split off into own scss files in /components and import it
-*/
+/* Use this file for Global components like headers and footers */
 
 * {
 	-webkit-box-sizing: border-box;
@@ -23,7 +21,7 @@
   font-size: 1rem;
   min-height: 50px;
 }
-.uk-navbar-nav li:hover{
+.uk-navbar-nav li:hover {
   background-color: $offset_color;
 }
 
@@ -32,19 +30,16 @@
     padding: 0;
   }
 }
-
 @media (max-width: 760px) {
   .uk-navbar-nav li a{
     padding: 0 10px;
   }
 }
-
 @media (min-width: 960px) {
   .uk-navbar-nav li {
     padding: 0 15px;
   }
 }
-
 @media (min-width: 1200px) {
   .uk-navbar-nav li {
     padding: 0 20px;
@@ -55,7 +50,6 @@
 .uk-subnav{
   font-family: "Nunito";
 }
-
 .uk-subnav .uk-active {
   font-weight: 700;
 }
@@ -74,13 +68,11 @@
 
 
 /* FOOTER */
-
 footer {
   background-color: $offset_color;
 }
 
 /* full width header */
-
 .fw-header {
   background-color: $offset_color;
 }
