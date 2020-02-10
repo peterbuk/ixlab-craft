@@ -34,17 +34,6 @@
                   {% endif %}
                 {% endif %}
                 </div>
-<<<<<<< HEAD
-                {% if entry.newsContent|length > 400 %}
-                  {% set firstParagraph = entry.newsContent|slice(0, 400) %}
-                  <div class="content-{{ entry.slug }}">
-                    <p>{{ firstParagraph|raw }}...</p>
-                  </div>
-                  <div class="content-{{ entry.slug }}" hidden>
-                    <p>{{ entry.newsContent }}</p>
-                  </div>
-                  <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{ entry.slug }}">Read More</button>
-=======
                 {% if wordcount(entry.newsContent) > 120 %}
                   <div class="content-{{entry.slug}}">
                     {{ entry.newsContent | chop(limit=100, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
@@ -53,7 +42,6 @@
                     {{ entry.newsContent }}
                   </div>
                   <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
->>>>>>> 9eef9b8cad50e5f16f04868a3189580612ed3da0
                 {% else %}
                   <p> {{ entry.newsContent }} </p>
                 {% endif %}
@@ -62,11 +50,8 @@
             </li>
             {% endfor %}
 
-          </ul> <!-- js filter div -->
-        </div><!-- cards grid div -->
-
-        <div class="uk-flex uk-flex-center"> <!-- pagination -->
-          <ul class="uk-pagination uk-flex-center" uk-margin>
+            <div class="uk-flex uk-flex-center"> <!-- start pagination -->
+              <ul class="uk-pagination uk-flex-center uk-padding-remove" uk-margin>
                 {% if pageInfo.firstUrl %}
                   <li><a href="{{ pageInfo.firstUrl }}">First Page</a></li>
                 {% endif %}
@@ -96,8 +81,12 @@
                 {% endif %}
 
                 <li><a href="{{ pageInfo.lastUrl }}">Last Page</a></li>
-          </ul>
-        </div> <!-- pagination -->
+              </ul>
+            </div> <!-- pagination -->
+
+          </ul> <!-- js filter div -->
+    
+        </div><!-- cards grid div -->
 
       </div> <!-- news feed -->
 
@@ -109,7 +98,7 @@
           {% set searchPage = craft.entries.section("newsSearch").one() %}
           <form class="uk-search uk-search-default" action="{{ searchPage.url }}">
           <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-            <input class="uk-search-input" type="search" placeholder="Search for...">
+            <input class="uk-search-input" name="q" type="search" placeholder="Search for...">
           </form>
           <div class="uk-margin-medium-top">
             <h3 class"uk-text-large">
@@ -120,7 +109,7 @@
             {% for category in craft.categories.group('newsCategory') %}
               <!-- only display cateogies that have entries -->
               {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
-                <li><a href="{{ category.url }}">{{ category.title }}</a></li>
+                <li class="categoryPills"><a href="{{ category.url }}">{{ category.title }}</a></li>
               {% endif %}
             {% endfor %}
             </ul>
