@@ -15,7 +15,7 @@
       <div class="uk-width-3-4@m" uk-grid>
         <div class="uk-width-1-1" uk-grid>
           <ul class="uk-list">
-            {% set query = craft.entries.section('news').limit(5) %}
+            {% set query = craft.entries.section('news').limit(10) %}
             {% paginate query as pageInfo, pageEntries %}
             {% for entry in pageEntries %}
             <li>
@@ -34,17 +34,14 @@
                   {% endif %}
                 {% endif %}
                 </div>
-                {% if entry.newsContent|length > 400 %}
-                  {% set lastIndex = entry.newsContent|length %}
-                  {% set firstParagraph = entry.newsContent|slice(0, 400) %}
-                  {% set restofText = entry.newsContent|slice(400, lastIndex) %}
-                  <div id="read-more">
-                    <p>{{ firstParagraph|raw }}...</p>
+                {% if wordcount(entry.newsContent) > 120 %}
+                  <div class="content-{{entry.slug}}">
+                    {{ entry.newsContent | chop(limit=100, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
                   </div>
-                  <div id="read-more" hidden>
-                    <p>{{ entry.newsContent|raw }}</p>
+                  <div class="content-{{entry.slug}}" hidden>
+                    {{ entry.newsContent }}
                   </div>
-                  <button id="{{ entry.slug }}-read-more-btn" class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: #read-more">Read More</button>
+                  <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
                 {% else %}
                   <p> {{ entry.newsContent }} </p>
                 {% endif %}
@@ -53,11 +50,8 @@
             </li>
             {% endfor %}
 
-          </ul> <!-- js filter div -->
-        </div><!-- cards grid div -->
-
-        <div class="uk-flex uk-flex-center"> <!-- pagination -->
-          <ul class="uk-pagination uk-flex-center" uk-margin>
+            <div class="uk-flex uk-flex-center"> <!-- start pagination -->
+              <ul class="uk-pagination uk-flex-center uk-padding-remove" uk-margin>
                 {% if pageInfo.firstUrl %}
                   <li><a href="{{ pageInfo.firstUrl }}">First Page</a></li>
                 {% endif %}
@@ -87,8 +81,12 @@
                 {% endif %}
 
                 <li><a href="{{ pageInfo.lastUrl }}">Last Page</a></li>
-          </ul>
-        </div> <!-- pagination -->
+              </ul>
+            </div> <!-- pagination -->
+
+          </ul> <!-- js filter div -->
+    
+        </div><!-- cards grid div -->
 
       </div> <!-- news feed -->
 
@@ -97,9 +95,10 @@
           <h2 class="uk-text-large">
             Search News
           </h2>
-          <form class="uk-search uk-search-default">
+          {% set searchPage = craft.entries.section("newsSearch").one() %}
+          <form class="uk-search uk-search-default" action="{{ searchPage.url }}">
           <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-            <input class="uk-search-input" type="search" placeholder="Search for...">
+            <input class="uk-search-input" name="q" type="search" placeholder="Search for...">
           </form>
           <div class="uk-margin-medium-top">
             <h3 class"uk-text-large">
@@ -110,7 +109,7 @@
             {% for category in craft.categories.group('newsCategory') %}
               <!-- only display cateogies that have entries -->
               {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
-                <li><a href="{{ category.url }}">{{ category.title }}</a></li>
+                <li class="categoryPills"><a href="{{ category.url }}">{{ category.title }}</a></li>
               {% endif %}
             {% endfor %}
             </ul>

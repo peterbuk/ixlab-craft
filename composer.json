@@ -4,6 +4,7 @@
     "craftcms/ckeditor": "1.0.0-beta.2",
     "craftcms/cms": "3.3.19",
     "craftcms/redactor": "2.4.0",
+    "topshelfcraft/wordsmith": "3.1.1",
     "vlucas/phpdotenv": "^2.4.0"
   },
   "autoload": {

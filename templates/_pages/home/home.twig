@@ -39,16 +39,26 @@
 
   <!-- news section -->
   <section class="uk-margin-large-top">
-    <h1 class="section-header uk-flex uk-flex-center">News</h1>
+    <h1 class="uk-flex uk-flex-center">News</h1>
 
     <div class="uk-child-width-1-3@m uk-grid-divider" uk-grid>
       {% for entry in craft.entries.section('news').orderBy('date desc').limit(3).all() %}
       <div>
         <div class="uk-card uk-card-small uk-card-body">
-          <h3 class="uk-card-title">{{ entry.title }}</h3>
-          <p>{{ entry.date | date('M d, Y') }}</p>
-          <p>{{ entry.newsContent }}</p>
-          <a class="button" href="{{ entry.url }}">Read More</a>
+          <h3 class="uk-card-title uk-margin-remove-bottom">{{ entry.title }}</h3>
+          <p class="uk-text-meta uk-margin-remove-top">{{ entry.date | date('M d, Y') }}</p>
+          {% set content = entry.newsContent %}
+          {% if wordcount(content) > 40 %}
+            <div class="content-{{entry.slug}}">
+              {{ content | chop(limit=30, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
+            </div>
+            <div class="content-{{entry.slug}}" hidden>
+              {{ content }}
+            </div>
+            <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
+          {% else %}
+            {{ content }}
+          {% endif %}
         </div>
       </div>
       {% endfor %}
@@ -62,7 +72,7 @@
 
 <!-- research section -->
   <section class="uk-margin-large-top">
-    <h1 class="section-header uk-flex uk-flex-center">Selected Research</h1>
+    <h1 class="uk-flex uk-flex-center">Selected Research</h1>
 
     <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
       {% for entry in craft.entries.section('research').limit(3).all() %}
