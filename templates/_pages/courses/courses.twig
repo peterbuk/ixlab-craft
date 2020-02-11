@@ -14,7 +14,7 @@
     </div>
     <div class="uk-width-3-4@m" uk-grid>
       {% for entry in craft.entries.section('courses') %}
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-padding-remove-left uk-margin" uk-grid>
           <div class="uk-card-media-left uk-cover-container">
             {% set image = entry.courseFeatureImage %}
             {% if image is defined and image is not null %}
@@ -23,7 +23,7 @@
               <img data-src="{{ image.getUrl('thumbLSquare') }}" alt="Course image" width=data-width height=data-height uk-cover uk-img>
               <canvas width="600" height="400"></canvas>
             {% else %}
-              <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
+              <img src="http://via.placeholder.com/500x500?text=&nbsp;" alt="placeholder" uk-cover>
               <canvas width="600" height="400"></canvas>
             {% endif %}
             {% endif %}
