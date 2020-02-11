@@ -12,7 +12,7 @@
     <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
       <h1 class="uk-heading-medium">Recommended Courses</h1>
     </div>
-    <div class="uk-width-3-4" uk-grid>
+    <div class="uk-width-3-4@m" uk-grid>
       {% for entry in craft.entries.section('courses') %}
         <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
           <div class="uk-card-media-left uk-cover-container">
@@ -20,7 +20,7 @@
             {% if image is defined and image is not null %}
             {% set image = entry.courseFeatureImage.one() %}
             {% if image is not null %}
-              <img data-src="{{ image.getUrl() }}" alt="Course image" width=data-width height=data-height uk-cover uk-img>
+              <img data-src="{{ image.getUrl('thumbLSquare') }}" alt="Course image" width=data-width height=data-height uk-cover uk-img>
               <canvas width="600" height="400"></canvas>
             {% else %}
               <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-cover>
@@ -33,22 +33,20 @@
               {{ entry.courseCode }}
             </div>
             <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
-            <p>{{ entry.description }} </p>
+            {% if wordcount(entry.description) > 50 %}
+              <div class="content-{{entry.slug}}">
+                <p>{{ entry.description | chop(limit=60, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>', append='...') }} </p>
+              </div>
+            {% else %}
+              <p> {{ entry.description }} </p>
+            {% endif %}
+            <a href=" {{ entry.url }}" class="uk-button uk-button-default">Read more</a>
           </div>
         </div>
       {% endfor %}
     </div><!-- courses list -->
 
     <div class="uk-width-1-4" uk-grid>
-      <div>
-        <h2 class="uk-text-large">
-            Search Courses
-          </h2>
-            <form class="uk-search uk-search-default">
-            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-              <input class="uk-search-input" type="search" placeholder="Search for...">
-            </form>
-      </div>
     
     </div><!-- sidebar -->
   </div>
