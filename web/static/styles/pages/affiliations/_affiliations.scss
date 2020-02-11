@@ -1,0 +1,16 @@
+.major-logo {
+  object-fit: contain;
+  // border: 1px solid #999;
+  height: 200px;
+}
+
+.minor-logo {
+  object-fit: contain;
+  // border: 1px solid #999;
+  width: 150px;
+  height: 150px;
+}
+
+.minor-lab + .affil-heading {
+  margin-top: 40px !important;
+}
