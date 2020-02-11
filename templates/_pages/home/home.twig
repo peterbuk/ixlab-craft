@@ -75,7 +75,11 @@
     <h1 class="uk-flex uk-flex-center">Selected Research</h1>
 
     <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
-      {% for entry in craft.entries.section('research').limit(3).all() %}
+      {% set projects = craft.entries({
+          section: 'research',
+          orderBy: 'homePageFeatured desc, postDate desc'
+      }).limit(3).all() %}
+      {% for entry in projects %}
       <div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-media-top">
