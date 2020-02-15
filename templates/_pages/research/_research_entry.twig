@@ -49,8 +49,22 @@
           {% for video in videos %}
             <video data-src="{{ video.getUrl() }}" width="100%" src=".././{{ video.getUrl() }}" controls playsinline uk-video="autoplay:false"></video>
           {% endfor %}
-        {% endif %}
 
+        {% elseif block.type == "videoLink" %}
+          <div class="uk-margin video-container">
+            {% set platform = block.platform %}
+            {% if platform == "youtube" %}
+              <iframe src="https://www.youtube.com/embed/{{block.videoID}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              
+            {% elseif platform == "vimeo" %}
+              <iframe src="https://player.vimeo.com/video/{{block.videoID}}?color=ef0800&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe><script src="https://player.vimeo.com/api/player.js"></script>
+                  
+            {% elseif platform == "other" %}
+              <iframe src="{{block.videoID}}" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
+            {% endif %}
+                  
+            </div>
+        {% endif %}
       {% endfor %}
 
       {% set publication = entry.publication %}
