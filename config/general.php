@@ -32,7 +32,7 @@ return [
         'allowAdminChanges' => false, ],
 
         // https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#errortemplateprefix
-        'errorTemplatePrefix' => '_',
+        'errorTemplatePrefix' => '',
 
         // https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#devmode
         'devMode' => true,
