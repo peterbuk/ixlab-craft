@@ -68,8 +68,8 @@
 {% block content %}
 
   <div class="uk-container">
-  <!-- double div filter workaround: https://github.com/uikit/uikit/issues/3416 -->
-  <div uk-filter=".js-filter1"><div uk-filter=".js-filter2">
+  <!-- duplicate divs for filter workaround, see https://github.com/uikit/uikit/issues/3416 -->
+  <div uk-filter=".js-filter1"><div uk-filter=".js-filter2"><div uk-filter=".js-filter3"><div uk-filter=".js-filter4">
 
     <!--role filter controls-->
     <div class="uk-flex uk-flex-center">
@@ -94,32 +94,54 @@
 
 
     <!-- People Grid -->
-    <div class="uk-child-width-1-2@m" uk-grid>
+    <div class="uk-child-width-1-2@m uk-flex" uk-grid>
+      {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
+      {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
 
-      <!-- Sheelagh Side -->
-      <div><div class="js-filter1" uk-grid>
-        {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
-
-         <!-- Sheelagh Card -->
-        <div class="uk-flex uk-flex-center" data-role="Prof">
-          {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
-          {% if sheelagh %}
-            <div class="uk-card uk-width-2-3">
-              <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-                {% set image = sheelagh.profileImage.one() %}
-                {% if image %}
-                  <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-                {% else %}
-                  <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-                {% endif %}
-                <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
-                <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
-              </div>
-              <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
-            </div>
-          {% endif %}
+      <!-- Sheelagh Card -->
+      <div id="sheelaghCard" class="js-filter1"><div class="uk-flex uk-flex-center" data-role="Prof">
+      {% set sheelagh = craft.entries.section('people').slug('sheelagh-carpendale').one() %}
+      {% if sheelagh %}
+        <div class="uk-card uk-width-2-3">
+          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+            {% set image = sheelagh.profileImage.one() %}
+            {% if image %}
+              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+            {% else %}
+              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+            {% endif %}
+            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
+            <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+          </div>
+          <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
         </div>
+      {% endif %}
+      </div></div>
 
+    
+      <!-- Parmit Card -->
+      <div id="parmitCard" class="js-filter2"><div class="uk-flex uk-flex-center" data-role="Prof"> 
+      {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
+      {% if parmit %}
+        <div class="uk-card uk-width-2-3">
+          <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
+            {% set image = parmit.profileImage.one() %}
+            {% if image %}
+              <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+            {% else %}
+              <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
+            {% endif %}
+            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
+            <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+          </div>
+          <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
+        </div>
+      {% endif %}
+      </div></div>
+
+
+      <!-- Sheelagh Students -->
+      <div id="sheelaghStudents"><div class="js-filter3" uk-grid>
         <!-- postdoc -->
         {{ _self.createCards(sheelaghGroup, postdoc) }}
 
@@ -136,30 +158,9 @@
         {{ _self.createCards(sheelaghGroup, ra) }}
       </div></div>
 
-      <!-- Parmit Side -->
-      <div><div class="js-filter2" uk-grid> 
-        {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
 
-        <!-- Parmit Card -->
-        <div class="uk-flex uk-flex-center" data-role="Prof"> 
-          {% set parmit = craft.entries.section('people').slug('parmit-chilana').one() %}
-          {% if parmit %}
-            <div class="uk-card uk-width-2-3">
-              <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
-                {% set image = parmit.profileImage.one() %}
-                {% if image %}
-                  <img data-src="{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
-                {% else %}
-                  <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
-                {% endif %}
-                <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
-                <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
-              </div>
-              <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
-            </div>
-          {% endif %}
-        </div>
-
+      <!--Parmit Students-->
+      <div id="parmitStudents"><div class="js-filter4" uk-grid>
         <!-- postdoc -->
         {{ _self.createCards(parmitGroup, postdoc) }}
 
@@ -177,7 +178,7 @@
       </div></div>
 
     </div><!--end people grid-->
-  </div></div>
+  </div></div></div></div> <!--end silly dup div workaround for filters-->
   </div>
 
 {% endblock %}
