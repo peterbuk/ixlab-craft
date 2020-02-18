@@ -6,7 +6,7 @@
     <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
         <h1>News: {{ category.title }}</h1>
     </div>
-    <div class="uk-width-3-4" uk-grid>
+    <div class="uk-width-3-4@m" uk-grid>
       <div class="uk-width-1-1" uk-grid>
         <ul class="uk-list">
             {% set query = craft.entries.section('news').relatedTo(category).limit(10) %}
@@ -81,7 +81,7 @@
 
     </div><!-- news area -->
 
-      <div class="uk-width-1-4" uk-grid>
+      <div class="uk-width-1-4@m" uk-grid>
         <div>
             <h2 class="uk-text-large">
                 Search News
