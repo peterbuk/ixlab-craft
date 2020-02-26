@@ -48,6 +48,7 @@
           {% set videos = block.video.all() %}
           {% for video in videos %}
             <video data-src="{{ video.getUrl() }}" width="100%" src=".././{{ video.getUrl() }}" controls playsinline uk-video="autoplay:false"></video>
+            <div class="uk-margin-medium-top"><a class="uk-text-bold" href=".././{{ video.getUrl() }}" >Download Video </a></div>
           {% endfor %}
 
         {% elseif block.type == "videoLink" %}
