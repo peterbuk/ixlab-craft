@@ -3,14 +3,14 @@
 {% extends '_layouts/layout_main' %}
 
 {% set body_class = 'page-publications' %}
-{% set title = "Publications - ixLab" %}
+{% set title = "Publications" %}
 
 {% block content %}
 
 
 {# Macro to create a div for a publication #}
 {% macro createPublication(pub) %}
-<div class="uk-grid-small uk-margin-medium" uk-grid>
+<div class="uk-grid-small uk-margin-medium-bottom" uk-grid>
   <div class="uk-width-1-4">
     {% set image = pub.thumbnailImage.one() %}
     {% if image %}
@@ -18,18 +18,18 @@
     {% else %}
       <img src="{{alias('@assetUrl/img/siteAssets/globalAssets/placeholderPublication.svg')}}" alt="No project image" width="100%">
     {% endif %}
-    <a type="button" onclick="$('#bibtex-{{pub.slug}}').toggle()">[BixTex]</a>
+    <a type="button" onclick="$('#bibtex-{{pub.slug}}').toggle()">[BibTex]</a>
     <a href="{{ pub.pdf.one().getUrl() }}" target="_blank">[PDF]</a>
   </div>
 
   <div class="uk-width-3-4">
     {% if pub.publicationLink %}
-      <a href="{{ pub.publicationLink }}"><h5>{{ pub.title }}</h5></a>
+      <a href="{{ pub.publicationLink }}"><h5 class="uk-margin-remove-bottom">{{ pub.title }}</h5></a>
     {% else %}
-      <h5>{{ pub.title }}</h5>
+      <h5 class="uk-margin-remove-bottom">{{ pub.title }}</h5>
     {% endif %}
     
-    <p>{{ pub.shortCitation }}</p>
+    <p class="uk-margin-remove-top">{{ pub.shortCitation }}</p>
   </div>
 
   <!-- Hidden bibtex block until the link is clicked -->
@@ -42,12 +42,13 @@
 
 <div class="uk-container">
   <h1 class="uk-text-center uk-heading-medium">{{entry.publicationPageHeader}}</h1>
-  <div class="uk-margin-large-bottom">{{ entry.publicationPageHeaderContent }}</div>
 
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
-      <h3>Publications Under Sheelagh</h3>
-      <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.publicationPageSheelaghLink }}">Full Publications</a>
+      <h2>{{ entry.publicationPageLeftHeader }}</h2>
+      
+      {{ entry.publicationPageLeftText }}
+      <h3>Featured Publications</h3>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(sheelaghGroup).all() %}
       {% for pub in pubs %}
@@ -56,8 +57,9 @@
     </div>
 
     <div> <!-- Parmit Side -->
-      <h3>Publications Under Parmit</h3>
-      <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.publicationPageParmitLink }}">Full Publications</a>
+      <h2>{{ entry.publicationPageRightHeader }}</h2>
+      {{ entry.publicationPageRightText }}
+      <h3>Featured Publications</h3>
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(parmitGroup).all() %}
       {% for pub in pubs %}
