@@ -3,12 +3,12 @@
 {% extends '_layouts/layout_main' %}
 
 {% set body_class = 'page-courses' %}
-{% set title = "Courses - ixLab" %}
+{% set title = "Courses" %}
 
 {% block content %}
 
 <div class="uk-container">
-  <h1 class="uk-heading-medium uk-margin-bottom">Recommended Courses</h1>
+  <h1 class="uk-heading-medium uk-margin-bottom">Courses</h1>
   
   <div uk-grid>
     <div class="uk-width-3-4@m uk-grid-collapse" uk-grid>
@@ -27,26 +27,26 @@
             {% endif %}
             {% endif %}
           </div>
+
           <div class="uk-card-body">
             <div class="uk-card-badge uk-label uk-margin-bottom">
               {{ entry.courseCode }}
             </div>
             <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
+            <!-- Truncate description if too long -->
             {% if wordcount(entry.description) > 50 %}
-              <div class="content-{{entry.slug}}">
-                <p>{{ entry.description | chop(limit=60, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>', append='...') }} </p>
-              </div>
+              <p>{{ entry.description | chop(limit=60, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>', append='...') }} </p>
             {% else %}
-              <p> {{ entry.description }} </p>
+              <p>{{ entry.description }}</p>
             {% endif %}
-            <a href=" {{ entry.url }}" class="uk-button uk-button-default">Read more</a>
+            <a href=" {{ entry.courseURL }}" target="_blank" class="uk-button uk-button-default">Course Outline</a>
           </div>
         </div>
       {% endfor %}
     </div><!-- courses list -->
 
-    <div class="uk-width-1-4" uk-grid>
-    </div><!-- sidebar -->
+    {# <div class="uk-width-1-4" uk-grid>
+    </div><!-- sidebar --> #}
   </div>
   
 </div>
