@@ -6,67 +6,8 @@
 {% set body_class = 'page-research' %}
 {% set title = "Research - ixLab" %}
 
-{% macro createResearchCards(project) %}
-  <div class="uk-card uk-card-hover uk-margin-medium-bottom">
-    <div class="uk-card-media-top">
-      {% set image = project.researchFeatureImage.one() %}
-      {% if image %}
-        <img class="uk-align-center uk-margin-remove-bottom" data-src="{{ image.getUrl('thumbWide') }}" alt="Project image" width=data-width height=data-height uk-img>
-      {% else %}
-        <img class="uk-align-center uk-margin-remove-bottom" src="http://via.placeholder.com/800x500?text=Project" alt="placeholder" uk-img>
-      {% endif %}
-    </div>
-    <div class="uk-card-body">
-      <div>
-        <h3 class="uk-margin-remove-bottom">{{ project.title }}</h3>
-        <p class="uk-text-meta uk-margin-remove-top">{{ project.authors }}</p>
-        <p>{{ project.shortDescription }}</p>
-      </div>
-      <a href=" {{ project.url }}" class="uk-button uk-button-default">Read more</a>
-    </div>
-  </div> <!-- end of card -->
-{% endmacro %}
-
-
 {% block content %}
-<div class="uk-container">
 
-  <h1 class="uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">
-    {{ entry.researchPageHeader }}
-  </h1>
-
-  <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
-    <div><!-- left column -->
-      <div class="research-group-intro-box uk-background-muted uk-margin-medium-bottom uk-padding">
-        <p>{{ entry.researchLabLeft }} </p>
-        <div class="uk-margin-top">
-          <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.researchLabLeftUrl }}">Visit the Lab</a>
-        </div>
-      </div> <!-- Sheelagh's Group Intro -->
-      <div>
-        {% set category = craft.categories.group('researchlab').all() %}
-          {% for project in craft.entries.section('research').limit(5).relatedTo(category[1]) %}
-            {{ _self.createResearchCards(project) }}
-          {% endfor %}
-      </div> <!-- Sheelagh's Projects -->
-    </div> <!-- end left column -->
-
-    <div class=""><!-- right column -->
-      <div class="research-group-intro-box uk-background-muted uk-margin-medium-bottom uk-padding">
-        <p> {{ entry.researchLabRight }}</p>
-        <div class="uk-margin-top">
-          <a class="uk-button uk-button-primary uk-button-large" href="{{ entry.researchLabRightUrl }}">Visit the Lab</a>
-        </div>
-      </div><!-- Parmit's Lab Intro -->
-      <div>
-        {% set category = craft.categories.group('researchlab').one() %}
-          {% for project in craft.entries.section('research').limit(5).relatedTo(category) %}
-            {{ _self.createResearchCards(project) }}
-          {% endfor %}
-      </div> <!-- Parmit's Projects -->
-    </div> <!-- end right column -->
-  </div> <!-- end of grid -->
-</div> <!-- end of container -->
-
+{% redirect 'research/theme/featured' %}
 
 {% endblock %}

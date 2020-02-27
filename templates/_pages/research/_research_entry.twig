@@ -9,7 +9,7 @@
 
     {% set featureImage = entry.researchFeatureImage.one() %}
     {% if featureImage %}
-      <img class="uk-align-center uk-padding-large uk-padding-remove-top uk-margin-remove-top" data-src="../{{ featureImage.getUrl('thumbLSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
+      <img class="uk-align-center uk-padding-small uk-padding-remove-top uk-margin-remove-top" data-src="../{{ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
     {% else %}
       <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
     {% endif %}
@@ -23,8 +23,8 @@
     <h2> Research Lab </h2>
     <p> {{ entry.researchLab.one() }} </p>
     
-    <h2 class="heading">Description</h2>
-    <p>{{ entry.shortDescription }}</p>
+    <h2 class="heading">Abstract</h2>
+    <p>{{ entry.abstract }}</p>
       {% for block in entry.moreDetails.all() %}
         {% if block.type == "heading" %}
           <h2 class="uk-margin-medium-top">{{ block.sectionHeading }}</h2>
