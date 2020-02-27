@@ -73,32 +73,27 @@
 
 <!-- research section -->
   <section class="uk-margin-large-top">
-    <h1 class="uk-flex uk-flex-center">Selected Research</h1>
+    <h1 class="uk-flex uk-flex-center">Featured Research</h1>
 
-    <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+    <div class="uk-child-width-1-3@m" uk-grid>
       {% set projects = craft.entries({
-          section: 'research',
-          orderBy: 'homePageFeatured desc, postDate desc'
+        section: 'research',
+        orderBy: 'homePageFeatured desc, postDate desc'
       }).limit(3).all() %}
+
       {% for entry in projects %}
-      <div>
-        <div class="uk-card uk-card-default">
-          <div class="uk-card-media-top">
+        <div><div class="uk-card">
+          <div class="uk-card-body"><a href="{{ entry.url }}">
             {% set image = entry.researchFeatureImage.one() %}
             {% if image %}
-              <img data-src="{{ image.getUrl('thumbWide') }}" alt="Project image" width="{{ image.getWidth('thumbWide') }}" height="{{ image.getHeight('thumbWide') }}" uk-img>
+              <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
             {% else %}
-              <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder">
+              <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder image">
             {% endif %}
-          </div>
-          <div class="uk-card-body">
-            <h3 class="uk-margin-small-bottom">{{ entry.title }}</h3>
-            <p class="uk-text-meta uk-margin-remove-top">{{ entry.authors }}</p>
-            <p>{{ entry.shortDescription }}</p>
-            <a class="uk-button uk-button-text" href="{{ entry.url }}">Read More</a>
-          </div>
-        </div>
-      </div>
+            
+            <h5 class="uk-margin-remove-top uk-text-center">{{ entry.title }}</h5>
+          </a></div>
+        </div></div>
       {% endfor %}
     </div>
 
