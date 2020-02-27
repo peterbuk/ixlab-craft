@@ -7,7 +7,7 @@
 {% set title = "Research - ixLab" %}
 
 {% macro createResearchCards(project) %}
-  <div class="uk-card uk-card-default uk-card-hover uk-margin-medium-bottom">
+  <div class="uk-card uk-card-hover uk-margin-medium-bottom">
     <div class="uk-card-media-top">
       {% set image = project.researchFeatureImage.one() %}
       {% if image %}
