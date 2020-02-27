@@ -10,13 +10,13 @@
   {% if craft.app.config.general.theme.color is defined %}
     <meta name="theme-color" content="{{craft.app.config.general.theme.color}}" />
   {% endif %}
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 
   {% include '_system/seo' %}
   {% include '_system/favicons' %}
   {% include '_system/fonts' %}
   {% include '_system/static' %}  <!-- loads styles/scripts -->
 
-  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 
   {% block head %}{% endblock %}
 </head>
