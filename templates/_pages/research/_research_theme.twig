@@ -4,17 +4,17 @@
 {% set title = "Research - ixLab" %}
 
 {% macro createResearchCards(project) %}
-  <div class="uk-margin-medium-bottom">
+  <div class="uk-margin-medium-bottom uk-card-body">
     <a href=" {{ project.url }}">
       <div>
         {% set image = project.researchFeatureImage.one() ?? null %}
         {% if image and image.kind == "image" %}
-          <img class="uk-align-center uk-margin-remove-bottom" data-src="../{{ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
+          <img class="uk-align-center uk-margin-remove-bottom" data-src="../../{{ image.getUrl('thumbLSquare') }}" alt="Project image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
         {% else %}
           <img class="uk-align-center uk-margin-remove-bottom" src="http://via.placeholder.com/800x500?text=Project" alt="placeholder" uk-img>
         {% endif %}
       </div>
-      <h4 class="uk-margin-remove-bottom">{{ project.title }}</h4>
+      <h5 class="uk-margin-remove-bottom uk-margin-remove-top uk-text-center">{{ project.title }}</h5>
     </a>
   </div> <!-- end of card -->
 {% endmacro %}
@@ -28,7 +28,7 @@
     Featured Research
   </h1>
   <div uk-grid>
-    <div class="uk-width-1-4@m uk-align-right" uk-grid>
+    <div class="uk-width-1-4@m uk-align-right uk-margin-small-right" uk-grid>
       <h4 class="uk-flex-right uk-text-right"> Research Themes </h4>
       <ul class="uk-subnav uk-subnav-pill uk-flex-right uk-margin-small-top">
         {% set query = craft.categories.group('researchTheme') %}
