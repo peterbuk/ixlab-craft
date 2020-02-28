@@ -4,7 +4,7 @@
 {% set title = "Research - ixLab" %}
 
 {% macro createResearchCards(project) %}
-  <div class="uk-margin-medium-bottom uk-card-body">
+  <div class="uk-margin-small-bottom@s uk-margin-medium-bottom@l uk-card-body uk-margin-medium-left@s uk-margin-small-left@l">
     <a href=" {{ project.url }}">
       <div>
         {% set image = project.researchFeatureImage.one() ?? null %}
@@ -85,7 +85,7 @@
     Featured Research
   </h1>
   <div class"uk-grid-large" uk-grid>
-    <div class="uk-width-1-4@m uk-align-right uk-margin-large-right" uk-grid>
+    <div class="uk-width-1-4@m uk-align-right@l" uk-grid>
       <h4 class="uk-flex-right uk-text-center uk-text-right@m uk-padding-remove-left@s"> Research Themes </h4>
       <div class="uk-visible@m">
         {{ _self.createFullResearchThemes(category) }}
@@ -95,7 +95,7 @@
       </div>
 
     </div><!-- left column -->
-    <div class="uk-width-3-4@m uk-grid-large uk-child-width-1-3@s" uk-grid>
+    <div class="uk-width-2-3@m uk-child-width-1-3@s uk-margin-remove-top uk-margin-small-left uk-margin-remove-left@l" uk-grid>
       {% set projectEntries = craft.entries.section('research').relatedTo(category).all() %}
       {% for project in projectEntries %}
         {{ _self.createResearchCards(project) }}
