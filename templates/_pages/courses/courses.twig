@@ -12,7 +12,7 @@
   
   <div uk-grid>
     <div class="uk-width-3-4@m uk-grid-collapse" uk-grid>
-      {% for entry in craft.entries.section('courses') %}
+      {% for entry in craft.entries.section('courses').orderBy('courseNumber asc').all() %}
         <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-padding-remove-left uk-margin" uk-grid>
           <div class="uk-card-media-left uk-cover-container">
             {% set image = entry.courseFeatureImage %}
@@ -30,7 +30,7 @@
 
           <div class="uk-card-body">
             <div class="uk-card-badge uk-label uk-margin-bottom">
-              {{ entry.courseCode }}
+              {{ entry.courseSubject }} {{ entry.courseNumber }}
             </div>
             <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
             <!-- Truncate description if too long -->
