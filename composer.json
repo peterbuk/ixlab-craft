@@ -4,6 +4,7 @@
     "craftcms/ckeditor": "1.0.0-beta.2",
     "craftcms/cms": "3.4.5",
     "craftcms/redactor": "2.5.0",
+    "superbig/craft3-mobiledetect": "1.0.2",
     "topshelfcraft/wordsmith": "3.1.1",
     "vlucas/phpdotenv": "^2.4.0"
   },
