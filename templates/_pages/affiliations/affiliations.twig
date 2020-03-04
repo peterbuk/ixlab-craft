@@ -12,70 +12,11 @@
 </div>
 
 <div class="uk-container">
-  <div class="uk-grid-small" uk-grid>
-  {% for block in entry.affiliationsContent.all() %}
-
-    {% if block.type == "heading" %}
-      <h3 class="uk-width-1-1 affil-heading">{{ block.heading }}</h3>
-    
-    {% elseif block.type == "text" %}
-      <div class="uk-width-1-1">
-      {{ block.text }}
-      </div>
-    {% elseif block.type == "majorLab" %}
-      {% set url = block.labURL %}
-      <div class="uk-width-1-2@s major-lab">
-        {% if url %}<a href="{{ block.labURL }}">{% endif %}
-        {% set logo = block.labLogo.one() %}
-        {% if logo %}
-          <img class="major-logo" src="{{ logo.getUrl() }}" alt="{{ block.labName }} logo">
-        {% else %}
-          <img class="major-logo" src="http://via.placeholder.com/500x200?text=Lab">
-        {% endif %}
-
-        <h5 class="uk-text-center uk-margin-remove-top">{{ block.labName }}</h5>
-        <p>{{ block.labOrganization }}</p>
-        <p>{{ block.labCountry }}</p>
-        {% if url %}</a>{% endif %}
-      </div>
-
-    {% elseif block.type == "minorLab" %}
-      <div class="uk-width-1-3@s minor-lab">
-        <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
-          <div class="uk-width-2-5">
-            {% if url %}<a href="{{ block.labURL }}">{% endif %}
-            {% set logo = block.labLogo.one() %}
-            {% if logo %}
-              <img class="minor-logo" src="{{ logo.getUrl() }}" alt="{{ block.labName }} logo">
-            {% else %}
-              <img class="minor-logo" src="http://via.placeholder.com/250x150?text={{block.labName}}">
-            {% endif %}
-            {% if url %}</a>{% endif %}
-          </div>
-          <div class="uk-width-3-5">
-            {% if url %}<a href="{{ block.labURL }}">{% endif %}
-            <h5 class="uk-margin-remove-bottom">{{ block.labName }}</h5>
-            {% if url %}</a>{% endif %}
-            <p class="uk-margin-remove-top">{{ block.labOrganization }}<br>{{ block.labCountry }}</p>
-          </div>
-        </div>
-        
-      </div>
-    
-    {% endif %}
-    
-  {% endfor %}
-  </div>
+  {{ entry.affiliationText }}
+  
 </div>
 
 
-<!-- 
-  re: getting blocks in alphabetical order
 
-  a) ask content manager to re-arrange in order [current solution]
-  b) collect all minor-lab blocks as they come in, then re-order somehow before rendering
-    This assumes that all minor labs will be part of same "collection"
-    If there are multiple "collections", the matrix might have to be redesigned.
- -->
 
 {% endblock %}
