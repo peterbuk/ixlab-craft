@@ -36,7 +36,7 @@
 
 {% macro createShortResearchThemes(category) %}
   <div class="researchThemes uk-align-center@s uk-margin-remove uk-padding-remove">
-    <ul class="uk-subnav uk-subnav-pill uk-text-center uk-flex-center@s  uk-flex-right@m uk-margin-small-top uk-child-width-1-1@s" uk-margin>
+    <ul class="uk-subnav uk-subnav-pill uk-text-center uk-flex-center@s  uk-flex-right@m uk-margin-small-top uk-child-width-1-1@s uk-margin-small-bottom" uk-margin>
       {% for theme in craft.categories.group('researchTheme').limit(5).all() %}
         {% set entriesInTheme = craft.entries.section('research').relatedTo(theme) %}
         {% if entriesInTheme|length > 0 %}
@@ -51,7 +51,7 @@
   </div>
 
   <div class="researchThemes uk-align-center@s uk-margin-remove uk-padding-remove" hidden>
-    <ul class="uk-subnav uk-subnav-pill uk-text-center uk-flex-right@l uk-margin-small-top uk-child-width-1-1@s" uk-margin>
+    <ul class="uk-subnav uk-subnav-pill uk-text-center uk-flex-right@l uk-margin-small-top uk-child-width-1-1@s uk-margin-small-bottom" uk-margin>
       {% for theme in craft.categories.group('researchTheme').all() %}
         {% set entriesInTheme = craft.entries.section('research').relatedTo(theme) %}
         {% if entriesInTheme|length > 0 %}
@@ -65,7 +65,7 @@
     </ul>
   </div>
 
-  <button class="uk-button uk-button-text uk-align-center" type="button" onclick="toggleThemeBtn(this)" uk-toggle="target: .researchThemes">See More</button>
+  <button class="uk-button uk-button-text uk-align-center uk-margin-remove-top" type="button" onclick="toggleThemeBtn(this)" uk-toggle="target: .researchThemes">See More</button>
 
 {% endmacro %}
 
@@ -82,10 +82,10 @@
     <div class="uk-width-1-4@m">
       <div class="uk-align-right@l" uk-grid>
         <h4 class="uk-flex-right uk-text-center uk-text-right@m uk-padding-remove-left@s"> Research Themes </h4>
-        <div class="uk-visible@m">
+        <div class="uk-visible@m uk-margin-remove-top">
           {{ _self.createFullResearchThemes(category) }}
         </div>
-        <div class="uk-hidden@m">
+        <div class="uk-hidden@m uk-margin-remove-top">
           {{ _self.createShortResearchThemes(category) }}
         </div>
       </div>
