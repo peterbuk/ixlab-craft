@@ -32,8 +32,8 @@
                 {% if image is defined and image is not null %}
                 {% set image = entry.newsFeatureImage.one() %}
                 {% if image is not null %}
-                    <a class="uk-inline" href="{{ image.getUrl() }}">
-                    <img class="uk-align-center" data-src="{{ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
+                    <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
+                    <img class="uk-align-center" data-src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
                     </a>
                 {% endif %}
                 {% endif %}

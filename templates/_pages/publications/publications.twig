@@ -14,12 +14,12 @@
   <div class="uk-width-1-4">
     {% set image = pub.thumbnailImage.one() %}
     {% if image %}
-      <img class="thumbnailImage" src="{{ image.getUrl('thumbSquare') }}" alt="{{pub.title}}">
+      <img class="thumbnailImage" src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="{{pub.title}}">
     {% else %}
       <img src="{{alias('@assetUrl/img/siteAssets/globalAssets/placeholderPublication.svg')}}" alt="No project image" width="100%">
     {% endif %}
     <a type="button" onclick="$('#bibtex-{{pub.slug}}').toggle()">[BibTex]</a>
-    <a href="{{ pub.pdf.one().getUrl() }}" target="_blank">[PDF]</a>
+    <a href="{{ siteUrl ~ pub.pdf.one().getUrl() }}" target="_blank">[PDF]</a>
   </div>
 
   <div class="uk-width-3-4">

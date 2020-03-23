@@ -9,7 +9,7 @@
 
     {% set featureImage = entry.researchFeatureImage.one() %}
     {% if featureImage %}
-      <img class="uk-align-center uk-padding-small uk-padding-remove-top uk-margin-remove-top" data-src="../{{ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
+      <img class="uk-align-center uk-padding-small uk-padding-remove-top uk-margin-remove-top" data-src="{{ siteUrl ~ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
     {% else %}
       <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
     {% endif %}
@@ -34,8 +34,8 @@
             {% set images = block.image.all() %}
             {% for image in images %}
               <div>
-                <a class="uk-inline" href="../{{image.getUrl()}}">
-                  <img src="../{{image.getUrl('thumbLSquare')}}">
+                <a class="uk-inline" href="{{ siteUrl ~ image.getUrl()}}">
+                  <img src="{{ siteUrl ~ image.getUrl('thumbLSquare')}}">
                 </a>
               </div>
             {% endfor %}
@@ -45,8 +45,8 @@
         {% elseif block.type == "video" %}
           {% set videos = block.video.all() %}
           {% for video in videos %}
-            <video data-src="{{ video.getUrl() }}" width="100%" src=".././{{ video.getUrl() }}" controls playsinline uk-video="autoplay:false"></video>
-            <div class="uk-margin-medium-top"><a class="uk-text-bold" href=".././{{ video.getUrl() }}" >Download Video </a></div>
+            <video data-src="{{ siteUrl ~ video.getUrl() }}" width="100%" src="{{ siteUrl ~ video.getUrl() }}" controls playsinline uk-video="autoplay:false"></video>
+            <div class="uk-margin-medium-top"><a class="uk-text-bold" href="{{ siteUrl ~ video.getUrl() }}" >Download Video </a></div>
           {% endfor %}
 
         {% elseif block.type == "videoLink" %}
@@ -64,7 +64,7 @@
                   
             </div>
         {% elseif block.type == "pdf" %}
-            <a href=".././{{ pdf.one.getUrl() }}">Research Paper</a>
+            <a href="{{ siteUrl ~ pdf.one.getUrl() }}">Research Paper</a>
         {% endif %}
       {% endfor %}
 

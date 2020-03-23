@@ -9,7 +9,7 @@
       <div>
         {% set image = project.researchFeatureImage.one() ?? null %}
         {% if image and image.kind == "image" %}
-          <img class="uk-align-center uk-margin-remove-bottom thumbnailImage" data-src="../../{{ image.getUrl('thumbLSquare2') }}" alt="Project image" width="{{ image.getWidth('thumbLSquare2') }}" height="{{ image.getHeight('thumbLSquare2') }}" uk-img>
+          <img class="uk-align-center uk-margin-remove-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare2') }}" alt="Project image" width="{{ image.getWidth('thumbLSquare2') }}" height="{{ image.getHeight('thumbLSquare2') }}" uk-img>
         {% else %}
           <img class="uk-align-center uk-margin-remove-bottom" src="http://via.placeholder.com/800x500?text=Project" alt="placeholder" uk-img>
         {% endif %}

@@ -33,7 +33,7 @@
     position: 'center-center',
     format: 'png',
 } %}
-<link rel="apple-touch-icon" sizes="{{faviconSize ~ 'x' ~ faviconSize}}" href="{{icon.getUrl(faviconTransform)}}" />
+<link rel="apple-touch-icon" sizes="{{faviconSize ~ 'x' ~ faviconSize}}" href="{{siteUrl ~ icon.getUrl(faviconTransform)}}" />
 {% endif %}
 {% endfor %}
 {% endif %}

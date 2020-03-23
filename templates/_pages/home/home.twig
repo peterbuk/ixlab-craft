@@ -6,7 +6,7 @@
 
 {% set bannerImage = entry.bannerImage.one() %}
 {% if bannerImage %}
-  <div id="heroImage" class="uk-margin" style="background-image: url('{{entry.bannerImage.one().getUrl()}}');"></div>
+  <div id="heroImage" class="uk-margin" style="background-image: url('{{ siteUrl ~ entry.bannerImage.one().getUrl()}}');"></div>
 {% endif %}
 
 {% set home = craft.entries.section('home').one() %}
@@ -97,7 +97,7 @@
           <div class="uk-card-body uk-padding-remove-bottom"><a href="{{ entry.url }}">
             {% set image = entry.researchFeatureImage.one() %}
             {% if image %}
-              <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
+              <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
             {% else %}
               <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder image">
             {% endif %}

@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "install": "^0.13.0",
-    "uikit": "^3.2.6"
+    "uikit": "^3.3.7"
   }
 }
