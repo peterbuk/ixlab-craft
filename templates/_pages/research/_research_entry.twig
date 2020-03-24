@@ -63,8 +63,16 @@
             {% endif %}
                   
             </div>
-        {% elseif block.type == "pdf" %}
-            <a href="{{ siteUrl ~ pdf.one.getUrl() }}">Research Paper</a>
+        {% elseif block.type == "researchPaper" %}
+            For more information, view/download the <a href="{{ siteUrl ~ block.researchPDF.one.getUrl() }}">research paper</a>.
+        {% elseif block.type == "supplementalFile" %}
+            {% if block.sFiles %}
+            <a href="{{ siteUrl ~ block.sFiles.one.getUrl() }}">{{ block.labelFile }}</a>
+            {% endif %}
+        {% elseif block.type == "supplementalLink" %}
+            {% if block.sFiles %}
+            <a href="{{ siteUrl ~ block.sLink }}">{{ block.labelLink }}</a>
+            {% endif %}
         {% endif %}
       {% endfor %}
 
