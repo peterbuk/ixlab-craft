@@ -67,11 +67,11 @@
             For more information, view/download the <a href="{{ siteUrl ~ block.researchPDF.one.getUrl() }}">research paper</a>.
         {% elseif block.type == "supplementalFile" %}
             {% if block.sFiles %}
-            <a href="{{ siteUrl ~ block.sFiles.one.getUrl() }}">{{ block.labelFile }}</a>
+            <a href="{{ siteUrl ~ block.sFiles.one.getUrl() }}">{{ block.labelFile }}</a><br>
             {% endif %}
         {% elseif block.type == "supplementalLink" %}
             {% if block.sLink %}
-            <a href="{{ siteUrl ~ block.sLink }}">{{ block.labelLink }}</a>
+            <a href="{{ siteUrl ~ block.sLink }}">{{ block.labelLink }}</a><br>
             {% endif %}
         {% endif %}
       {% endfor %}
