@@ -106,7 +106,7 @@
             </h3>
             <ul class="uk-subnav uk-subnav-pill">
               <li class="uk-active"><a href="{{ siteUrl }}./news">All</a></li>
-            {% for category in craft.categories.group('newsCategory') %}
+            {% for category in craft.categories.group('newsCategory').all() %}
               <!-- only display cateogies that have entries -->
               {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
                 <li class="categoryPills"><a href="{{ category.url }}">{{ category.title }}</a></li>
