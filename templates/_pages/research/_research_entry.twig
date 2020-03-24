@@ -70,7 +70,7 @@
             <a href="{{ siteUrl ~ block.sFiles.one.getUrl() }}">{{ block.labelFile }}</a>
             {% endif %}
         {% elseif block.type == "supplementalLink" %}
-            {% if block.sFiles %}
+            {% if block.sLink %}
             <a href="{{ siteUrl ~ block.sLink }}">{{ block.labelLink }}</a>
             {% endif %}
         {% endif %}
