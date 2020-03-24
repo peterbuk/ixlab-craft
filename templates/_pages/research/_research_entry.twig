@@ -71,7 +71,7 @@
             {% endif %}
         {% elseif block.type == "supplementalLink" %}
             {% if block.sLink %}
-            <a href="{{ siteUrl ~ block.sLink }}">{{ block.labelLink }}</a><br>
+            <a href="{{ block.sLink }}">{{ block.labelLink }}</a><br>
             {% endif %}
         {% endif %}
       {% endfor %}
