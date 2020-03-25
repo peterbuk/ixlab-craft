@@ -50,5 +50,8 @@ return [
 
         'maxUploadFileSize' => 16777216,
 
+        // images not generating on first load
+        // https://craftcms.stackexchange.com/questions/9186
+        'generateTransformsBeforePageLoad' => true,
     ],
 ];
