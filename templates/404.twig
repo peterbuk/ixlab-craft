@@ -14,7 +14,7 @@
   <div class="uk-child-width-1-3@m" uk-grid>
     {% set projects = craft.entries({
       section: 'research',
-      orderBy: 'homePageFeatured desc, postDate desc'
+      orderBy: 'homePagePinned desc, postDate desc'
     }).limit(3).all() %}
 
     {% for entry in projects %}
