@@ -5,6 +5,7 @@
 {% set body_class = 'page-people' %}
 {% set title = "People" %}
 
+{% set assoPostdoc = craft.categories.slug('associated-postdoc').one() %}
 {% set postdoc = craft.categories.slug('postdoc').one() %}
 {% set phd = craft.categories.slug('phd').one() %}
 {% set masters = craft.categories.slug('masters').one() %}
@@ -24,7 +25,12 @@
 
 {# <!-- Card template for each person --> #}
 {% macro pCard(slug, name, role, bio, website, image) %}
-  <div class="uk-card uk-width-1-2" data-role="{{role}}"><a href="#{{slug}}-modal" class="uk-link-reset" uk-toggle>
+  {% set dataRole = role %}
+  {% if role == "Associated Postdoc" %} 
+    {% set dataRole = "Postdoc" %}
+  {% endif %}
+
+  <div class="uk-card uk-width-1-2" data-role="{{dataRole}}"><a href="#{{slug}}-modal" class="uk-link-reset" uk-toggle>
     <div class="uk-card-body uk-card-small uk-flex uk-flex-column uk-flex-middle">
       {% if image %}
         <img data-src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="Project image" width="{{ image.getWidth('thumbSquare') }}" height="{{ image.getHeight('thumbSquare') }}" uk-img>
@@ -66,6 +72,10 @@
 
 
 {% block content %}
+
+  <h1 class="uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">
+    ixLab Current People
+  </h1>
 
   <div class="uk-container">
   <!-- duplicate divs for filter workaround, see https://github.com/uikit/uikit/issues/3416 -->
@@ -143,6 +153,7 @@
       <!-- Sheelagh Students -->
       <div id="sheelaghStudents"><div class="js-filter3" uk-grid>
         <!-- postdoc -->
+        {{ _self.createCards(sheelaghGroup, assoPostdoc) }}
         {{ _self.createCards(sheelaghGroup, postdoc) }}
 
         <!-- phd -->
@@ -162,6 +173,7 @@
       <!--Parmit Students-->
       <div id="parmitStudents"><div class="js-filter4" uk-grid>
         <!-- postdoc -->
+        {{ _self.createCards(parmitGroup, assoPostdoc) }}
         {{ _self.createCards(parmitGroup, postdoc) }}
 
         <!-- phd -->
