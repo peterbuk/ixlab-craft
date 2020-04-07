@@ -1,8 +1,8 @@
 /.env
 /.idea
 /vendor
+/web/static/img
 .DS_Store
 *.sass-cache/
 node_modules
 *config.codekit
-/web/static/img
