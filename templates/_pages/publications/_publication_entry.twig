@@ -12,7 +12,7 @@
     {% set featureImage = entry.publicationImage.one() %}
     {% if featureImage %}
       <a href="{{ siteUrl ~ featureImage.getUrl() }}" class="featured-image">
-        <img class="thumbnailImage uk-align-center uk-padding-small uk-padding-remove-top uk-margin-remove-top" data-src="{{ siteUrl ~ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
+        <img class="thumbnailImage uk-align-center uk-padding-remove-top uk-margin-remove-top" data-src="{{ siteUrl ~ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
       </a>
     {% else %}
       <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
