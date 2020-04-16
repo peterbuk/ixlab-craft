@@ -18,21 +18,20 @@ $base-heading-font-weight: "Bold";
 
 // colors
 $global-color: #666;
-$global-primary-background: #FF9955;
+$global-primary-background: #FCBA03;
 $global-secondary-background: #FFCCA0;
 $global-muted-background: #FFE4CC;
-$global-link-color: #FF6E30;
+// $global-link-color: #FCBA03;
 $black: #000;
 $bright_grey: rgb(242, 241, 241);
-$offset_color: rgb(255, 204, 160);
+$offset_color: #FCBA03;
 
 //NavBar
 $navbar-nav-item-font-family: $base-heading-font-family;
 
 //Buttons
-$button-default-background: $global-secondary-background;
+$button-default-background: $offset_color;
 $button-default-hover-background: $global-primary-background;
-
 $button-primary-color: $black;
 
 //Cards
@@ -40,5 +39,5 @@ $card-default-background: #FFF9F2;
 
 //Pills
 $subnav-pill-item-active-color: $black;
-$subnav-pill-item-active-background: $global-secondary-background;
-
+$subnav-pill-item-active-background: $offset_color;
+$subnav-pill-item-hover-background: $global-secondary-background;

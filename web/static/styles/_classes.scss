@@ -6,6 +6,11 @@
 	box-sizing: border-box;
 }
 
+a {
+  color: $global-link-color;
+  // text-decoration: underline;
+}
+
 
 /* NAVBAR */
 
@@ -14,15 +19,16 @@
 }
 
 .uk-navbar-nav .uk-active {
+  color: #000;
   font-weight: 700;
-  background-color: $offset_color;
 }
-.uk-navbar-nav li a{
-  font-size: 1rem;
+.uk-navbar-nav li a {
+  color: #666;
   min-height: 50px;
+  font-size: 1rem;
 }
 .uk-navbar-nav li:hover {
-  background-color: $offset_color;
+  text-decoration: underline;
 }
 
 @media (max-width: $breakpoint-small) {
@@ -70,15 +76,16 @@
   letter-spacing: .2em;
 }
 
-/* NEWS DROPDOWN */
-.uk-dropdown{
-  background-color: $global-secondary-background;
+
+/* HEADER */
+header {
+  border-bottom: solid 3px $offset_color;
 }
 
 
 /* FOOTER */
 footer {
-  background-color: $offset_color;
+  border-top: solid 3px $offset_color;
 }
 
 /* full width header */
@@ -89,3 +96,9 @@ footer {
 .thumbnailImage {
   border: 1px solid rgba(204, 204, 204, 0.5);
 }
+
+// use this class to separate main h1 of the page from the header
+.page-header {
+  margin-top: 1.5rem;
+}
+
