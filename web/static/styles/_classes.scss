@@ -71,9 +71,19 @@ a {
 
 /* BUTTON */
 .uk-button{
+  background-color: white;
   font-family: "Nunito";
   font-weight: bold;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
+}
+.cta-button {
+  border: solid 3px $offset_color;
+  border-radius: 15px;
+  letter-spacing: 0;
+}
+.cta-button:hover {
+  background-color: $offset_color;
+  color: #666;
 }
 
 

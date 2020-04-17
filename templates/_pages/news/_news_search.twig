@@ -28,7 +28,7 @@
                 </p>
 
                 <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
-                <p class="uk-text-meta">{{ entry.date | date('M, d Y') }}</p>
+                <p class="uk-text-meta">{{ entry.postDate | date('M, d Y') }}</p>
                 <div uk-lightbox="animation: slide">
                 {% set image = entry.newsFeatureImage %}
                 {% if image is defined and image is not null %}
