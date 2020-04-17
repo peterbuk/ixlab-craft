@@ -43,7 +43,30 @@
   <section class="uk-margin-large-top">
     <div class="uk-flex uk-flex-middle uk-grid-match uk-grid-medium" uk-grid>
       <div class="uk-flex uk-flex-center">
-        <div id="aboutText" class="uk-width-3-5@m ">{{ entry.about }}</div>
+        <div id="aboutText" class="uk-width-2-3@m uk-width-2-3@s ">{{ entry.about }}</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- prof intro section -->
+  <section class="uk-margin-large-top">
+    <div class="uk-flex uk-flex-center" uk-grid>
+      <div class="uk-width-1-3@m uk-width-1-2@s uk-flex uk-flex-column uk-flex-middle">
+        {% set leftImage = entry.leftProfileImage.one() %}
+        {% if leftImage %}
+         <img data-src="{{ siteUrl ~ leftImage.getUrl('thumbSquare') }}" alt="{{entry.leftProfileName}}" width="{{ leftImage.getWidth('thumbSquare') }}" height="{{ leftImage.getHeight('thumbSquare') }}" uk-img>
+        {% endif %}
+        <h3 class="uk-margin-remove">{{ entry.leftProfileName }}</h3>
+        <p>{{ entry.leftProfileDescription }}</p>
+      </div>
+      <div class="uk-width-1-3@m uk-width-1-2@s uk-flex uk-flex-column uk-flex-middle">
+        {% set rightImage = entry.rightProfileImage.one() %}
+        {% if rightImage %}
+         <img data-src="{{ siteUrl ~ rightImage.getUrl('thumbSquare') }}" alt="{{entry.rightProfileName}}" width="{{ rightImage.getWidth('thumbSquare') }}" height="{{ rightImage.getHeight('thumbSquare') }}" uk-img>
+        {% endif %}
+        <h3 class="uk-margin-remove">{{ entry.rightProfileName }}</h3>
+        <p>{{ entry.rightProfileDescription }}</p>
       </div>
     </div>
   </section>
@@ -53,7 +76,7 @@
   <section class="uk-margin-large-top">
     <h1 class="uk-flex uk-flex-center">Featured Publications</h1>
 
-    <div class="uk-child-width-1-4@m uk-grid-small" uk-grid>
+    <div class="uk-child-width-1-4@s uk-grid-small" uk-grid>
       {% set projects = craft.entries({
         section: 'publications',
         orderBy: 'homePagePinned desc, postDate desc'
@@ -86,7 +109,7 @@
   <section class="uk-margin-large-top">
     <h1 class="uk-flex uk-flex-center">News</h1>
 
-    <div class="uk-child-width-1-4@m uk-grid-divider" uk-grid>
+    <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-divider" uk-grid>
       {# get pinned news item, if it exists #}
       {# current design limits pinned items to 1, aka the latest one #}
       {% set pinned = craft.entries.section('news').pinToHome(true).orderBy('postDate desc').limit(1).all() %}
