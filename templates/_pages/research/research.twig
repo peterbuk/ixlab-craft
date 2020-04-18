@@ -11,28 +11,37 @@
 {% macro createProject(project) %}
 <div class="uk-grid-small uk-margin-medium-bottom">
   <h4 class="uk-margin-remove-bottom">{{ project.title }}</h4>
-  <h5 class="uk-margin-remove">{{ project.projectSponsor }}</h5>
+  <h5 class="uk-margin-remove">Sponsor: {{ project.projectSponsor }}</h5>
 
   {{ project.projectDescription }}
 
-  <div class="uk-child-width-1-3@m uk-width-1-1 uk-grid-small  popup-gallery" uk-grid>
-    {% set images = project.projectImages.all() %}
-    {% for image in images %}
-      {% if image %}
-        <div>
-          <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
-            <img class="thumbnailImage" src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="{{project.title}} image">
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  {% set images = project.projectImages.all() %}
+  {% if images|length > 0 %}
+    <div class="uk-child-width-1-3@m uk-width-1-1 uk-grid-small  popup-gallery" uk-grid>
+      {% for image in images %}
+        {% if image %}
+          <div>
+            <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
+              <img class="thumbnailImage" src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="{{project.title}} image">
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {% set links = project.projectLinks %}
   {% if links %}
     <h5 class="uk-margin-remove-bottom">Links:</h5>
     {{ links }}
   {% endif %}
+
+  {% set relevantPapers = project.relevantPapers %}
+  {% if relevantPapers %}
+    <h5 class="uk-margin-remove-bottom">Relevant Papers:</h5>
+    <p>{{ relevantPapers }}</p>
+  {% endif %}
+
 
 </div>
 {% endmacro %}
@@ -46,17 +55,21 @@
 
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
-      <h2>{{ entry.researchPageLeftHeader }}</h2>
+      <h2 class="uk-margin-remove-bottom">{{ entry.researchPageLeftHeader }}</h2>
       {{ entry.researchPageLeftText }}
 
       <h3 class="uk-heading-line uk-text-center"><span>Featured Project</span></h3>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set project = craft.entries.section('research').relatedTo(sheelaghGroup).one() %}
+      {% if project %}
         {{ _self.createProject(project) }}
+      {% endif %}
+
+      <a class="cta-button uk-button" href="{{ entry.researchPageLeftLink }}">SEE MORE PROJECTS</a>
     </div>
 
     <div> <!-- Parmit Side -->
-      <h2>{{ entry.researchPageRightHeader }}</h2>
+      <h2 class="uk-margin-remove-bottom">{{ entry.researchPageRightHeader }}</h2>
       {{ entry.researchPageRightText }}
 
       <h3 class="uk-heading-line uk-text-center"><span>Featured Project</span></h3>
@@ -65,6 +78,8 @@
       {% if project %}
         {{ _self.createProject(project) }}
       {% endif %}
+
+      <a class="cta-button uk-button" href="{{ entry.researchPageRightLink }}">SEE MORE PROJECTS</a>
     </div>
 
   </div>
