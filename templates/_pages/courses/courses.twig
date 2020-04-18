@@ -8,46 +8,50 @@
 {% block content %}
 
 <div class="uk-container">
-  <h1 class="page-header uk-heading-medium uk-margin-bottom">Courses</h1>
+  <h1 class="page-header uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">Courses</h1>
   
-  <div uk-grid>
-    <div class="uk-width-3-4@m uk-grid-collapse" uk-grid>
-      {% for entry in craft.entries.section('courses').orderBy('courseNumber asc').all() %}
-        <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-padding-remove-left uk-margin" uk-grid>
-          <div class="uk-card-media-left uk-cover-container">
-            {% set image = entry.courseFeatureImage %}
-            {% if image is defined and image is not null %}
+  <div class="uk-child-width-1-1@s" uk-grid>
+    {% for entry in craft.entries.section('courses').orderBy('courseNumber asc').all() %}
+      <div>
+        <div class="uk-card uk-card-body uk-flex-middle" uk-grid>
+
+          {# course image #}
+          <div class="uk-width-1-3">
             {% set image = entry.courseFeatureImage.one() %}
-            {% if image is not null %}
-              <img data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="Course image" width=data-width height=data-height uk-cover uk-img>
-              <canvas width="600" height="400"></canvas>
+            {% if image %}
+              <a href="{{ siteUrl ~ image.getUrl() }}" class="featured-image">
+                <img class="thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbWide') }}" alt="Course image" width=data-width height=data-height uk-img>
+              </a>
             {% else %}
-              <img src="http://via.placeholder.com/500x500?text=&nbsp;" alt="placeholder" uk-cover>
-              <canvas width="600" height="400"></canvas>
-            {% endif %}
+              <img src="http://via.placeholder.com/800x500?text=&nbsp;" alt="placeholder">
             {% endif %}
           </div>
 
-          <div class="uk-card-body">
-            <div class="uk-card-badge uk-label uk-margin-bottom">
-              {{ entry.courseSubject }} {{ entry.courseNumber }}
-            </div>
-            <h3 class="uk-card-title uk-margin-top">{{ entry.title }}</h3>
-            <!-- Truncate description if too long -->
+          {# course info #}
+          <div class="uk-width-2-3">
+            <h5 class="uk-margin-remove-bottom">{{ entry.courseSubject }} {{ entry.courseNumber }}</h5>
+            <h3 class="uk-card-title uk-margin-remove">{{ entry.title }}</h3>
+            <p class="uk-text-meta uk-margin-remove-top">{{ entry.courseDepartment }}</p>
+            
+
+            {# Truncate description if too long #}
+{# maybe not needed
             {% if wordcount(entry.description) > 50 %}
               <p>{{ entry.description | chop(limit=60, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>', append='...') }} </p>
             {% else %}
               <p>{{ entry.description }}</p>
             {% endif %}
-            <a href=" {{ entry.courseURL }}" target="_blank" class="uk-button uk-button-default">Course Outline</a>
-          </div>
-        </div>
-      {% endfor %}
-    </div><!-- courses list -->
+#}
 
-    {# <div class="uk-width-1-4" uk-grid>
-    </div><!-- sidebar --> #}
+            <p>{{ entry.description }}</p>
+            <a href=" {{ entry.courseURL }}" target="_blank" class="uk-button cta-button">Course Outline</a>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
   </div>
+
   
 </div>
 
