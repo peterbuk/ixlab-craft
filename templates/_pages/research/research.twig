@@ -53,6 +53,8 @@
 <div class="uk-container">
   <h1 class="page-header uk-text-center uk-heading-medium">{{entry.researchPageHeader}}</h1>
 
+  <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmit">Jump to Parmit Chilana</a></div>
+
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
       <h2 class="uk-margin-remove-bottom">{{ entry.researchPageLeftHeader }}</h2>
@@ -68,7 +70,7 @@
       <a class="cta-button uk-button" href="{{ entry.researchPageLeftLink }}">SEE MORE PROJECTS</a>
     </div>
 
-    <div> <!-- Parmit Side -->
+    <div id="parmit"> <!-- Parmit Side -->
       <h2 class="uk-margin-remove-bottom">{{ entry.researchPageRightHeader }}</h2>
       {{ entry.researchPageRightText }}
 

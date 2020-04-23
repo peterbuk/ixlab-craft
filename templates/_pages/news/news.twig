@@ -22,7 +22,7 @@
               <div class="news-entry"> 
                 <p class="uk-margin-remove uk-text-uppercase uk-text-small"> <a href="{{ entry.newsCategory.one().url }}" class="uk-text-muted">{{ entry.newsCategory.one() }}</a></p>
                 <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
-                <p class="uk-text-meta">{{ entry.postDate | date('M, d Y') }}</p>
+                <p class="uk-text-meta">{{ entry.postDate | date('M d, Y') }}</p>
                 <div uk-lightbox="animation: slide">
                 {% set image = entry.newsFeatureImage %}
                 {% if image is defined and image is not null %}

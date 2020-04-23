@@ -71,6 +71,12 @@
 
 
 
+
+
+
+
+
+
 {% block content %}
 
   <h1 class="page-header uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">
@@ -102,11 +108,13 @@
       </ul>
     </div>
 
+    <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmitCard">Jump to Parmit Chilana</a></div>
 
     <!-- People Grid -->
     <div class="uk-child-width-1-2@m uk-flex" uk-grid>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
+
 
       <!-- Sheelagh Card -->
       <div id="sheelaghCard" class="js-filter1"><div class="uk-flex uk-flex-center" data-role="Prof">

@@ -40,6 +40,8 @@
 <div class="uk-container">
   <h1 class="page-header uk-text-center uk-heading-medium">{{entry.publicationPageHeader}}</h1>
 
+  <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmit">Jump to Parmit Chilana</a></div>
+
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
       <h2>{{ entry.publicationPageLeftHeader }}</h2>
@@ -53,7 +55,7 @@
       {% endfor %}
     </div>
 
-    <div> <!-- Parmit Side -->
+    <div id="parmit"> <!-- Parmit Side -->
       <h2>{{ entry.publicationPageRightHeader }}</h2>
       {{ entry.publicationPageRightText }}
       <h3>Featured Publications</h3>
