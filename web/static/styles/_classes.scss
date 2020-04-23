@@ -65,9 +65,21 @@ a {
 .uk-subnav{
   font-family: "Nunito";
 }
+.uk-subnav > * > a {
+  padding: 5px 10px;
+}
+.uk-subnav > * > a:hover {
+  text-decoration: underline;
+}
 .uk-subnav .uk-active {
   font-weight: 700;
 }
+.uk-subnav > .uk-active > a {
+  // background-color: $offset_color;
+  color: $black;
+}
+
+
 
 /* BUTTON */
 .uk-button{

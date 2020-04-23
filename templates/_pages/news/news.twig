@@ -104,14 +104,14 @@
             <h3 class"uk-text-large">
               See News Category
             </h3>
-            <ul class="uk-subnav uk-subnav-pill">
+            <ul class="uk-subnav uk-flex uk-flex-column">
               <li class="uk-active"><a href="{{ siteUrl }}./news">All</a></li>
-            {% for category in craft.categories.group('newsCategory').all() %}
-              <!-- only display cateogies that have entries -->
-              {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
-                <li class="categoryPills"><a href="{{ category.url }}">{{ category.title }}</a></li>
-              {% endif %}
-            {% endfor %}
+              {% for category in craft.categories.group('newsCategory').all() %}
+                <!-- only display cateogies that have entries -->
+                {% if craft.entries.section('news').relatedTo(category)|length > 0 %}
+                  <li><a href="{{ category.url }}">{{ category.title }}</a></li>
+                {% endif %}
+              {% endfor %}
             </ul>
           </div> <!-- category list -->
         </div> 

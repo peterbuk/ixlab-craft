@@ -96,18 +96,18 @@
                 <h3 class"uk-text-large">
                 See News Category
                 </h3>
-                <ul class="uk-subnav uk-subnav-pill">
-                <li><a href="{{ siteUrl }}./news">All</a></li>
-                {% for otherCategory in craft.categories.group('newsCategory').all() %}
-                <!-- only display cateogies that have entries -->
-                {% if craft.entries.section('news').relatedTo(otherCategory)|length > 0 %}
-                    {% if otherCategory.title == category.title %}
+                <ul class="uk-subnav uk-flex uk-flex-column">
+                  <li><a href="{{ siteUrl }}./news">All</a></li>
+                  {% for otherCategory in craft.categories.group('newsCategory').all() %}
+                    <!-- only display cateogies that have entries -->
+                    {% if craft.entries.section('news').relatedTo(otherCategory)|length > 0 %}
+                      {% if otherCategory.title == category.title %}
                         <li class="uk-active"><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
-                    {% else %}
-                        <li class=""><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
+                      {% else %}
+                        <li><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
+                      {% endif %}
                     {% endif %}
-                {% endif %}
-                {% endfor %}
+                  {% endfor %}
                 </ul>
             </div> <!-- category list -->
         </div>

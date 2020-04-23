@@ -38,8 +38,8 @@
         <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
       {% endif %}
       
-      <h3 class="uk-margin-remove uk-text-bold  uk-text-center">{{ name }}</h3>
-      <p class="uk-margin-remove-top">{{ role }}</p>
+      <h3 class="uk-margin-remove uk-text-bold uk-text-center">{{ name }}</h3>
+      <p class="uk-margin-remove-top uk-text-center">{{ role }}</p>
     </div>
   </a></div>
 
@@ -74,7 +74,7 @@
 {% block content %}
 
   <h1 class="page-header uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">
-    ixLab Current People
+    {{ entry.peoplePageHeader }}
   </h1>
 
   <div class="uk-container">
@@ -83,7 +83,7 @@
 
     <!--role filter controls-->
     <div class="uk-flex uk-flex-center">
-      <ul class="uk-subnav uk-subnav-pill">
+      <ul class="uk-subnav">
         <li class="uk-active" uk-filter-control><a href="#">All</a></li>
         <li uk-filter-control="[data-role='Prof']"><a href="#">Professor</a></li>
         <li uk-filter-control="[data-role='Postdoc']"><a href="#">Postdoc</a></li>
@@ -120,8 +120,8 @@
             {% else %}
               <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
             {% endif %}
-            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ sheelagh.title }}</h3></a>
-            <p class="uk-margin-remove-top">{{ sheelagh.role.one().title }}</p>
+            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold uk-text-center">{{ sheelagh.title }}</h3></a>
+            <p class="uk-margin-remove-top uk-text-center">{{ sheelagh.role.one().title }}</p>
           </div>
           <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
         </div>
@@ -141,8 +141,8 @@
             {% else %}
               <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
             {% endif %}
-            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold">{{ parmit.title }}</h3></a>
-            <p class="uk-margin-remove-top">{{ parmit.role.one().title }}</p>
+            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold uk-text-center">{{ parmit.title }}</h3></a>
+            <p class="uk-margin-remove-top uk-text-center">{{ parmit.role.one().title }}</p>
           </div>
           <p class="uk-margin-remove-top">{{ parmit.bio }}</p>
         </div>
