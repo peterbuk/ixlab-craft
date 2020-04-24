@@ -5,6 +5,9 @@
 {% set body_class = 'page-people' %}
 {% set title = "People" %}
 
+{% set sheelaghGroup = craft.categories.slug('innovis').one() %}
+{% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
+
 {% set assoPostdoc = craft.categories.slug('associated-postdoc').one() %}
 {% set postdoc = craft.categories.slug('postdoc').one() %}
 {% set phd = craft.categories.slug('phd').one() %}
@@ -38,12 +41,12 @@
         <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
       {% endif %}
       
-      <h3 class="uk-margin-remove uk-text-bold uk-text-center">{{ name }}</h3>
-      <p class="uk-margin-remove-top uk-text-center">{{ role }}</p>
+      <h2 class="uk-text-center">{{ name }}</h2>
+      <p class="uk-text-center uk-margin-remove-top">{{ role }}</p>
     </div>
   </a></div>
 
-  <!-- create a modal for each student -->
+  <!-- modal for each student -->
   <div id="{{slug}}-modal" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <div uk-grid>
@@ -56,7 +59,7 @@
         </div>
 
         <div class="uk-width-2-3">
-          <h3 class="uk-margin-remove uk-text-bold">{{ name }}</h3>
+          <h2 class="uk-margin-remove">{{ name }}</h2>
           <p class="uk-margin-remove-top">{{ role }}</p>
           <p>{{ bio }}</p>
           {% if website %}
@@ -79,12 +82,12 @@
 
 {% block content %}
 
-  <h1 class="page-header uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">
+  <h1 class="page-header uk-text-center">
     {{ entry.peoplePageHeader }}
   </h1>
 
   <div class="uk-container">
-  <!-- duplicate divs for filter workaround, see https://github.com/uikit/uikit/issues/3416 -->
+  <!-- duplicate divs are for filter workaround, see https://github.com/uikit/uikit/issues/3416 -->
   <div uk-filter=".js-filter1"><div uk-filter=".js-filter2"><div uk-filter=".js-filter3"><div uk-filter=".js-filter4">
 
     <!--role filter controls-->
@@ -111,11 +114,8 @@
     <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmitCard">Jump to Parmit Chilana</a></div>
 
     <!-- People Grid -->
-    {# note: the order of these inner columns change on responsive, see _people.scss #}
+    {# note: the order of these inner elements shift for responsive, see _people.scss #}
     <div class="uk-child-width-1-2@m uk-flex" uk-grid>
-      {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
-      {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
-
 
       <!-- Sheelagh Card -->
       <div id="sheelaghCard" class="js-filter1"><div class="uk-flex uk-flex-center" data-role="Prof">
@@ -129,7 +129,9 @@
             {% else %}
               <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
             {% endif %}
-            <a href="{{ sheelagh.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold uk-text-center">{{ sheelagh.title }}</h3></a>
+            <a href="{{ sheelagh.website }}">
+              <h2 class="uk-margin-remove-bottom uk-text-center">{{ sheelagh.title }}</h2>
+            </a>
             <p class="uk-margin-remove-top uk-text-center">{{ sheelagh.role.one().title }}</p>
           </div>
           <p class="uk-margin-remove-top">{{ sheelagh.bio }}</p>
@@ -150,7 +152,9 @@
             {% else %}
               <img src="http://via.placeholder.com/200x200?text=&nbsp;" alt="placeholder">
             {% endif %}
-            <a href="{{ parmit.website }}"><h3 class="uk-margin-remove-bottom uk-text-bold uk-text-center">{{ parmit.title }}</h3></a>
+            <a href="{{ parmit.website }}">
+              <h2 class="uk-margin-remove-bottom uk-text-center">{{ parmit.title }}</h2>
+            </a>
             <p class="uk-margin-remove-top uk-text-center">{{ parmit.role.one().title }}</p>
           </div>
           <p class="uk-margin-remove-top">{{ parmit.bio }}</p>

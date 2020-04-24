@@ -25,7 +25,7 @@
   </div>
 
   <div class="uk-width-3-4">
-    <a href="{{ pub.url }}"><h4 class="uk-margin-remove-bottom">{{ pub.title }}</h4></a>
+    <a href="{{ pub.url }}"><h3 class="uk-margin-remove">{{ pub.title }}</h3></a>
     <p class="uk-margin-remove-top">{{ pub.citation }}</p>
   </div>
 
@@ -38,16 +38,16 @@
 
 
 <div class="uk-container">
-  <h1 class="page-header uk-text-center uk-heading-medium">{{entry.publicationPageHeader}}</h1>
+  <h1 class="page-header uk-text-center">{{entry.publicationPageHeader}}</h1>
 
   <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmit">Jump to Parmit Chilana</a></div>
 
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
       <h2>{{ entry.publicationPageLeftHeader }}</h2>
-      
       {{ entry.publicationPageLeftText }}
-      <h3>Featured Publications</h3>
+
+      <p class="subtitle ">FEATURED PUBLICATIONS</p>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(sheelaghGroup).all() %}
       {% for pub in pubs %}
@@ -58,7 +58,8 @@
     <div id="parmit"> <!-- Parmit Side -->
       <h2>{{ entry.publicationPageRightHeader }}</h2>
       {{ entry.publicationPageRightText }}
-      <h3>Featured Publications</h3>
+
+      <p class="subtitle">FEATURED PUBLICATIONS</p>
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
       {% set pubs = craft.entries.section('publications').relatedTo(parmitGroup).all() %}
       {% for pub in pubs %}

@@ -10,8 +10,8 @@
 {# Macro to create a div for a research project #}
 {% macro createProject(project) %}
 <div class="uk-grid-small uk-margin-medium-bottom">
-  <h4 class="uk-margin-remove-bottom">{{ project.title }}</h4>
-  <h5 class="uk-margin-remove">Sponsor: {{ project.projectSponsor }}</h5>
+  <h2>{{ project.title }}</h2>
+  <h3 class="uk-margin-remove-top">Sponsor: {{ project.projectSponsor }}</h3>
 
   {{ project.projectDescription }}
 
@@ -32,13 +32,13 @@
 
   {% set links = project.projectLinks %}
   {% if links %}
-    <h5 class="uk-margin-remove-bottom">Links:</h5>
+    <h3>Links:</h3>
     {{ links }}
   {% endif %}
 
   {% set relevantPapers = project.relevantPapers %}
   {% if relevantPapers %}
-    <h5 class="uk-margin-remove-bottom">Relevant Papers:</h5>
+    <h3>Relevant Papers:</h3>
     <p>{{ relevantPapers }}</p>
   {% endif %}
 
@@ -51,16 +51,16 @@
 {% block content %}
 
 <div class="uk-container">
-  <h1 class="page-header uk-text-center uk-heading-medium">{{entry.researchPageHeader}}</h1>
+  <h1 class="page-header uk-text-center">{{entry.researchPageHeader}}</h1>
 
   <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmit">Jump to Parmit Chilana</a></div>
 
   <div class="uk-child-width-1-2@m uk-grid-large" uk-grid>
     <div> <!-- Sheelagh Side -->
-      <h2 class="uk-margin-remove-bottom">{{ entry.researchPageLeftHeader }}</h2>
+      <h2>{{ entry.researchPageLeftHeader }}</h2>
       {{ entry.researchPageLeftText }}
 
-      <h3 class="uk-heading-line uk-text-center"><span>Featured Project</span></h3>
+      <p class="subtitle uk-margin-remove">FEATURED PROJECT</p>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set project = craft.entries.section('research').relatedTo(sheelaghGroup).one() %}
       {% if project %}
@@ -71,10 +71,16 @@
     </div>
 
     <div id="parmit"> <!-- Parmit Side -->
-      <h2 class="uk-margin-remove-bottom">{{ entry.researchPageRightHeader }}</h2>
-      {{ entry.researchPageRightText }}
+      <h2>{{ entry.researchPageRightHeader }}</h2>
 
-      <h3 class="uk-heading-line uk-text-center"><span>Featured Project</span></h3>
+      {# create gap for spacing consistency in case no text #}
+      {% if entry.researchPageRightText|length > 0 %}
+        {{ entry.researchPageRightText }}
+      {% else %}
+        <p>&nbsp;</p>
+      {% endif %}
+
+      <p class="subtitle uk-margin-remove">FEATURED PROJECT</p>
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
       {% set project = craft.entries.section('research').relatedTo(parmitGroup).one() %}
       {% if project %}

@@ -5,54 +5,51 @@
 {% block content %}
 
 <div class="uk-container">
+  <h1 class="page-header">Search Results</h1>
+
   <div uk-grid>
-    <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
-      <h1 class="page-header uk-heading-medium">Search Results</h1>
-    </div>
     <div class="uk-width-3-4@m" uk-grid>
       {% set query = craft.app.request.getParam('q') %}
       {% set entries = craft.entries.section('news').search(query).orderBy('score').limit(10) %}
 
       {% if entries|length %}
-        <h3 class="uk-width-1-1">{{ entries|length }} results for " {{ query }} "</h3>
+        <h2>{{ entries|length }} results for "{{ query }}"</h2>
+
         <ul class="uk-list">
           {% paginate entries as pageInfo, pageEntries %}
           {% for entry in pageEntries %}
             <li>
-            <div class="news-entry"> 
-                <p class="uk-margin-remove uk-text-uppercase uk-text-small">
-                {% set newsCategory = entry.newsCategory %}
-                {% if newsCategory is defined and newsCategory is not null %}
-                    <a href="{{ entry.newsCategory.one().url }}" class="uk-text-muted">{{ entry.newsCategory.one() }}</a>
-                {% endif %}
-                </p>
-
-                <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
-                <p class="uk-text-meta">{{ entry.postDate | date('M d, Y') }}</p>
+              <div class="news-entry"> 
+                <a class="subtitle uk-text-uppercase" href="{{ entry.newsCategory.one().url }}">{{ entry.newsCategory.one() }}</a>
+                <h2>{{ entry.title }}</h2>
+                <p class="uk-margin-remove-top">{{ entry.postDate | date('M d, Y') }}</p>
+    
                 <div uk-lightbox="animation: slide">
-                {% set image = entry.newsFeatureImage %}
-                {% if image is defined and image is not null %}
-                {% set image = entry.newsFeatureImage.one() %}
-                {% if image is not null %}
-                    <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
-                    <img class="uk-align-center" data-src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
-                    </a>
-                {% endif %}
-                {% endif %}
+                  {% set image = entry.newsFeatureImage %}
+                  {% if image is defined and image is not null %}
+                    {% set image = entry.newsFeatureImage.one() %}
+                    {% if image is not null %}
+                      <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
+                        <img class="uk-align-center" data-src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
+                      </a>
+                    {% endif %}
+                  {% endif %}
                 </div>
+    
                 {% if wordcount(entry.newsContent) > 120 %}
-                <div class="content-{{entry.slug}}">
+                  <div class="content-{{entry.slug}}">
                     {{ entry.newsContent | chop(limit=100, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
-                </div>
-                <div class="content-{{entry.slug}}" hidden>
+                  </div>
+                  <div class="content-{{entry.slug}}" hidden>
                     {{ entry.newsContent }}
-                </div>
-                <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
+                  </div>
+                  <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
                 {% else %}
-                <p> {{ entry.newsContent }} </p>
+                  <p> {{ entry.newsContent }} </p>
                 {% endif %}
-                <hr class="uk-divider-icon uk-margin-large-top">
-            </div>
+                
+                <hr class="uk-divider-icon">
+              </div>
             </li>
           {% endfor %}
 
@@ -90,18 +87,17 @@
             </div> <!-- pagination -->
         </ul>
       {% else %}
-          <h3 class="uk-width-1-1">Your search for “{{ query }}” didn’t return any results.</h3>
+        <h2>Your search for “{{ query }}” didn’t return any results.</h2>
       {% endif %}
-      <a href="{{ siteUrl }}./news"><span uk-icon="chevron-left"></span>Return to News</a>
+      <p><a href="{{ siteUrl }}./news"><span uk-icon="chevron-left"></span>Return to News</a></p>
     </div>
-    <div class="uk-width-1-4@m" uk-grid>
+
+    <div class="uk-width-1-4@m">
       <div>
-        <h2 class="uk-text-large">
-          Search News
-        </h2>
+        <h2>Search News</h2>
         {% set searchPage = craft.entries.section("newsSearch").one() %}
-        <form class="uk-search uk-search-default" action="{{ searchPage.url }}">
-        <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+        <form class="uk-search uk-search-default uk-margin-small-top" action="{{ searchPage.url }}">
+          <a href="" class="uk-search-icon-flip" uk-search-icon></a>
           <input class="uk-search-input" name="q" type="search" placeholder="Search for...">
         </form>
       </div>

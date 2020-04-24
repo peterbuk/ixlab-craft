@@ -2,117 +2,120 @@
 
 {% set title = "News" %}
 
+
+
+
 {% block content %}
+
 <div class="uk-container">
+  <h1 class="page-header">News: {{ category.title }}</h1>
+
   <div uk-grid>
-    <div class="uk-width-1-1 uk-margin-bottom" uk-grid>
-        <h1 class="page-header">News: {{ category.title }}</h1>
-    </div>
     <div class="uk-width-3-4@m" uk-grid>
-      <div class="uk-width-1-1" uk-grid>
-        <ul class="uk-list">
-            {% set query = craft.entries.section('news').relatedTo(category).limit(10) %}
-            {% paginate query as pageInfo, pageEntries %}
-            {% for entry in pageEntries %}
-            <li>
-              <div class="news-entry"> 
-                <p class="uk-margin-remove uk-text-uppercase uk-text-small"> <a href="{{ entry.newsCategory.one().url }}" class="uk-text-muted">{{ entry.newsCategory.one() }}</a></p>
-                <h2 class="uk-margin-small-top">{{ entry.title }}</h2>
-                <p class="uk-text-meta">{{ entry.postDate | date('M d, Y') }}</p>
-                <div uk-lightbox="animation: slide">
-                {% set image = entry.newsFeatureImage %}
-                {% if image is defined and image is not null %}
+      <ul class="uk-list">
+        {% set query = craft.entries.section('news').relatedTo(category).limit(10) %}
+        {% paginate query as pageInfo, pageEntries %}
+        {% for entry in pageEntries %}
+        <li>
+          <div class="news-entry"> 
+            <a class="subtitle uk-text-uppercase" href="{{ entry.newsCategory.one().url }}">{{ entry.newsCategory.one() }}</a>
+            <h2>{{ entry.title }}</h2>
+            <p class="uk-margin-remove-top">{{ entry.postDate | date('M d, Y') }}</p>
+
+            <div uk-lightbox="animation: slide">
+              {% set image = entry.newsFeatureImage %}
+              {% if image is defined and image is not null %}
                 {% set image = entry.newsFeatureImage.one() %}
                 {% if image is not null %}
-                    <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
+                  <a class="uk-inline" href="{{ siteUrl ~ image.getUrl() }}">
                     <img class="uk-align-center" data-src="{{ siteUrl ~ image.getUrl('thumbSquare') }}" alt="News image" width=data-width height=data-height uk-img>
-                    </a>
+                  </a>
                 {% endif %}
-                {% endif %}
-                </div>
-                {% if wordcount(entry.newsContent) > 120 %}
-                  <div class="content-{{entry.slug}}">
-                    {{ entry.newsContent | chop(limit=100, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
-                  </div>
-                  <div class="content-{{entry.slug}}" hidden>
-                    {{ entry.newsContent }}
-                  </div>
-                  <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
-                {% else %}
-                  <p> {{ entry.newsContent }} </p>
-                {% endif %}
-                <hr class="uk-divider-icon uk-margin-large-top">
+              {% endif %}
+            </div>
+
+            {% if wordcount(entry.newsContent) > 120 %}
+              <div class="content-{{entry.slug}}">
+                {{ entry.newsContent | chop(limit=100, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
               </div>
-            </li>
+              <div class="content-{{entry.slug}}" hidden>
+                {{ entry.newsContent }}
+              </div>
+              <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
+            {% else %}
+              <p> {{ entry.newsContent }} </p>
+            {% endif %}
+            
+            <hr class="uk-divider-icon">
+          </div>
+        </li>
+        {% endfor %}
+
+        <div class="uk-flex uk-flex-center"> <!-- start pagination -->
+          <ul class="uk-pagination uk-flex-center uk-padding-remove" uk-margin>
+            {% if pageInfo.firstUrl %}
+              <li><a href="{{ pageInfo.firstUrl }}">First Page</a></li>
+            {% endif %}
+
+            {% if pageInfo.prevUrl %}
+              <li>
+                <a href="{{ pageInfo.prevUrl }}">
+                <span class="uk-margin-small-right" uk-pagination-previous></span>
+                </a>
+              </li>
+            {% endif %}
+
+            {% for page, url in pageInfo.getPrevUrls(2) %}
+              <li><a href="{{ url }}">{{ page }}</a></li>
             {% endfor %}
 
-            <div class="uk-flex uk-flex-center"> <!-- pagination -->
-              <ul class="uk-pagination uk-flex-center" uk-margin>
-                {% if pageInfo.firstUrl %}
-                    <li><a href="{{ pageInfo.firstUrl }}">First Page</a></li>
-                {% endif %}
+            <li class="uk-active">{{ pageInfo.currentPage }}</li>
 
-                {% if pageInfo.prevUrl %}
-                <li>
-                    <a href="{{ pageInfo.prevUrl }}">
-                    <span class="uk-margin-small-right" uk-pagination-previous></span>
-                    </a>
-                </li>
-                {% endif %}
+            {% for page, url in pageInfo.getNextUrls(2) %}
+              <li><a href="{{ url }}">{{ page }}</a></li>
+            {% endfor %}
 
-                {% for page, url in pageInfo.getPrevUrls(2) %}
-                    <li><a href="{{ url }}">{{ page }}</a></li>
-                {% endfor %}
+            {% if pageInfo.nextUrl %}
+              <li>
+                <a href="{{ pageInfo.nextUrl }}"><span class="uk-margin-small-left" uk-pagination-next></span></a>
+              </li>
+            {% endif %}
 
-                    <li class="uk-active">{{ pageInfo.currentPage }}</li>
+            <li><a href="{{ pageInfo.lastUrl }}">Last Page</a></li>
+          </ul>
+        </div> <!-- pagination -->
 
-                {% for page, url in pageInfo.getNextUrls(2) %}
-                    <li><a href="{{ url }}">{{ page }}</a></li>
-                {% endfor %}
+      </ul> <!-- js filter div -->
+    </div> <!-- news feed -->
 
-                {% if pageInfo.nextUrl %}
-                <li>
-                    <a href="{{ pageInfo.nextUrl }}"><span class="uk-margin-small-left" uk-pagination-next></span></a>
-                </li>
-                {% endif %}
-                <li><a href="{{ pageInfo.lastUrl }}">Last Page</a></li>
-              </ul>
-            </div> <!-- pagination -->
+    <div class="uk-width-1-4@m"> 
+      <div>
+        <h2>Search News</h2>
+        {% set searchPage = craft.entries.section("newsSearch").one() %}
+        <form class="uk-search uk-search-default uk-margin-small-top" action="{{ searchPage.url }}">
+          <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+          <input class="uk-search-input" name="q" type="search" placeholder="Search for...">
+        </form>
+
+        <h2 class="uk-margin-medium-top">News Categories</h2>
+        <ul class="uk-subnav uk-flex uk-flex-column">
+          <li><a href="{{ siteUrl }}./news">All</a></li>
+          {% for otherCategory in craft.categories.group('newsCategory').all() %}
+            <!-- only display categories that have entries -->
+            {% if craft.entries.section('news').relatedTo(otherCategory)|length > 0 %}
+              {% if otherCategory.title == category.title %}
+                <li class="uk-active"><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
+              {% else %}
+                <li><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
         </ul>
-      </div>
-
-    </div><!-- news area -->
-
-      <div class="uk-width-1-4@m" uk-grid>
-        <div>
-            <h2 class="uk-text-large">
-                Search News
-            </h2>
-            <form class="uk-search uk-search-default">
-            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
-                <input class="uk-search-input" type="search" placeholder="Search for...">
-            </form>
-            <div class="uk-margin-medium-top">
-                <h3 class"uk-text-large">
-                See News Category
-                </h3>
-                <ul class="uk-subnav uk-flex uk-flex-column">
-                  <li><a href="{{ siteUrl }}./news">All</a></li>
-                  {% for otherCategory in craft.categories.group('newsCategory').all() %}
-                    <!-- only display cateogies that have entries -->
-                    {% if craft.entries.section('news').relatedTo(otherCategory)|length > 0 %}
-                      {% if otherCategory.title == category.title %}
-                        <li class="uk-active"><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
-                      {% else %}
-                        <li><a href="{{ otherCategory.url }}">{{ otherCategory.title }}</a></li>
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-            </div> <!-- category list -->
-        </div>
       </div> 
-    </div><!-- sidebar -->
-  </div>
-</div>
+    </div>
+
+  </div><!-- end of grid -->
+</div> <!-- end container -->
+
 {% endblock %}
+

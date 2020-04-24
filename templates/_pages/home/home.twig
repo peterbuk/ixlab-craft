@@ -4,10 +4,10 @@
 {# macro to create a news item card #}
 {% macro newsItem(entry, isPin) %}
   <div class="uk-card">
-    <h4 class="uk-margin-remove-bottom">{{ entry.title }}</h4>
+    <h2 class="uk-margin-remove-bottom">{{ entry.title }}</h2>
 
     {% if not isPin %} {# don't show dates on pinned items #}
-      <p class="uk-text-meta uk-margin-remove-top">{{ entry.postDate | date('M d, Y') }}</p>
+      <p class="subtitle">{{ entry.postDate | date('M d, Y') }}</p>
     {% endif %}
     
     {% set content = entry.newsContent %}
@@ -40,7 +40,7 @@
 <div class="uk-container">
 
   <!-- about section-->
-  <section class="uk-margin-large-top">
+  <section class="uk-margin-top">
     <div class="uk-flex uk-flex-middle uk-grid-match uk-grid-medium" uk-grid>
       <div class="uk-flex uk-flex-center">
         <div id="aboutText" class="uk-width-2-3@m uk-width-2-3@s ">{{ entry.about }}</div>
@@ -57,15 +57,16 @@
         {% if leftImage %}
          <img data-src="{{ siteUrl ~ leftImage.getUrl('thumbSquare') }}" alt="{{entry.leftProfileName}}" width="{{ leftImage.getWidth('thumbSquare') }}" height="{{ leftImage.getHeight('thumbSquare') }}" uk-img>
         {% endif %}
-        <h3 class="uk-margin-remove">{{ entry.leftProfileName }}</h3>
+        <h2>{{ entry.leftProfileName }}</h2>
         <p>{{ entry.leftProfileDescription }}</p>
       </div>
+
       <div class="uk-width-1-3@m uk-width-1-2@s uk-flex uk-flex-column uk-flex-middle">
         {% set rightImage = entry.rightProfileImage.one() %}
         {% if rightImage %}
          <img data-src="{{ siteUrl ~ rightImage.getUrl('thumbSquare') }}" alt="{{entry.rightProfileName}}" width="{{ rightImage.getWidth('thumbSquare') }}" height="{{ rightImage.getHeight('thumbSquare') }}" uk-img>
         {% endif %}
-        <h3 class="uk-margin-remove">{{ entry.rightProfileName }}</h3>
+        <h2>{{ entry.rightProfileName }}</h2>
         <p>{{ entry.rightProfileDescription }}</p>
       </div>
     </div>
@@ -89,10 +90,10 @@
             {% if image %}
               <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
             {% else %}
-              <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder image">
+              <img src="http://via.placeholder.com/400x400?text=&nbsp;" alt="placeholder image">
             {% endif %}
             
-            <h5 class="uk-margin-remove uk-text-center">{{ entry.title }}</h5>
+            <h3 class="uk-margin-remove uk-text-center">{{ entry.title }}</h3>
           </a></div>
         </div></div>
       {% endfor %}
