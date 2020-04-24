@@ -111,6 +111,7 @@
     <div class="uk-hidden@m uk-flex uk-flex-center"><a class="uk-button" href="#parmitCard">Jump to Parmit Chilana</a></div>
 
     <!-- People Grid -->
+    {# note: the order of these inner columns change on responsive, see _people.scss #}
     <div class="uk-child-width-1-2@m uk-flex" uk-grid>
       {% set sheelaghGroup = craft.categories.slug('innovis').one() %}
       {% set parmitGroup = craft.categories.slug('parmits-lab').one() %}
