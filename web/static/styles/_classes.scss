@@ -11,11 +11,59 @@ a {
   // text-decoration: underline;
 }
 
+/* TYPOGRAPHY */
+
+h1 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+
+  margin-top: 0;
+}
+
+h2 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+h3 {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+p {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;  
+  
+  margin-top: 10px;
+}
+
+.subtitle {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #999;
+
+  margin-top: 0;
+  letter-spacing: 0.5px;
+}
+
+
+
 
 /* NAVBAR */
 
 .uk-navbar {
-  padding: 10px 0;
+  padding: 15px 0;
 }
 
 .uk-navbar-nav .uk-active {
@@ -25,7 +73,7 @@ a {
 .uk-navbar-nav li a {
   color: #666;
   min-height: 50px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 .uk-navbar-nav li:hover {
   text-decoration: underline;
@@ -121,6 +169,6 @@ footer {
 
 // use this class to separate main h1 of the page from the header
 .page-header {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 

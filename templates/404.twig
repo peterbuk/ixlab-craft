@@ -1,6 +1,7 @@
 {% extends '_layouts/layout_main' %}
 
 {% set body_class = 'page-404' %}
+{% set title = "404 - Did you get lost?" %}
 
 {% block content %}
 <div class="uk-container">
@@ -11,26 +12,26 @@
     <h3>While you're here, please take a look at some of our featured research projects.</h3>
   </div>
 
-  <div class="uk-child-width-1-3@m" uk-grid>
+  <div class="uk-child-width-1-4@m" uk-grid>
     {% set projects = craft.entries({
-      section: 'research',
+      section: 'publications',
       orderBy: 'homePagePinned desc, postDate desc'
-    }).limit(3).all() %}
+    }).limit(4).all() %}
 
     {% for entry in projects %}
-      <div><div class="uk-card">
-        <div class="uk-card-body"><a href="{{ entry.url }}">
-          {% set image = entry.researchFeatureImage.one() %}
-          {% if image %}
-            <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
-          {% else %}
-            <img src="http://via.placeholder.com/580x320?text=&nbsp;" alt="placeholder image">
-          {% endif %}
-          
-          <h5 class="uk-margin-remove-top uk-text-center">{{ entry.title }}</h5>
-        </a></div>
-      </div></div>
-    {% endfor %}
+    <div><div class="uk-card">
+      <div class="uk-card-body uk-card-small uk-padding-remove-bottom"><a href="{{ entry.url }}">
+        {% set image = entry.publicationImage.one() %}
+        {% if image %}
+          <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
+        {% else %}
+          <img src="http://via.placeholder.com/400x400?text=&nbsp;" alt="placeholder image">
+        {% endif %}
+        
+        <h3 class="uk-margin-remove uk-text-center">{{ entry.title }}</h3>
+      </a></div>
+    </div></div>
+  {% endfor %}
   </div>
 
 </div>

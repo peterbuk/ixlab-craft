@@ -8,9 +8,9 @@
 {% block content %}
 
 <div class="uk-container">
-  <h1 class="page-header uk-margin-medium-top uk-margin-medium-bottom uk-text-center uk-heading-medium">Courses</h1>
+  <h1 class="page-header uk-text-center">Courses</h1>
   
-  <div class="uk-child-width-1-1@s" uk-grid>
+  <div class="uk-grid-small" uk-grid>
     {% for entry in craft.entries.section('courses').orderBy('courseNumber asc').all() %}
       <div>
         <div class="uk-card uk-card-body uk-flex-middle" uk-grid>
@@ -29,19 +29,9 @@
 
           {# course info #}
           <div class="uk-width-2-3">
-            <h5 class="uk-margin-remove-bottom">{{ entry.courseSubject }} {{ entry.courseNumber }}</h5>
-            <h3 class="uk-card-title uk-margin-remove">{{ entry.title }}</h3>
-            <p class="uk-text-meta uk-margin-remove-top">{{ entry.courseDepartment }}</p>
-            
-
-            {# Truncate description if too long #}
-{# maybe not needed
-            {% if wordcount(entry.description) > 50 %}
-              <p>{{ entry.description | chop(limit=60, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>', append='...') }} </p>
-            {% else %}
-              <p>{{ entry.description }}</p>
-            {% endif %}
-#}
+            <h3 class="uk-margin-remove-bottom">{{ entry.courseSubject }} {{ entry.courseNumber }}</h3>
+            <h2 class="uk-margin-remove">{{ entry.title }}</h2>
+            <p class="subtitle">{{ entry.courseDepartment }}</p>
 
             <p>{{ entry.description }}</p>
             <a href=" {{ entry.courseURL }}" target="_blank" class="uk-button cta-button">Course Outline</a>

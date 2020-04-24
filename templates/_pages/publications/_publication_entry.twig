@@ -6,16 +6,14 @@
 
 
 <div class="uk-container">
-  <div class="uk-width-1-1 uk-align-center">
-    <h2 class="uk-align-center uk-margin-remove-bottom uk-padding uk-text-center"> {{ entry.title }}</h2>
+  <h1 class="page-header uk-text-center"> {{ entry.title }}</h1>
 
+  <div class="uk-align-center">
     {% set featureImage = entry.publicationImage.one() %}
     {% if featureImage %}
       <a href="{{ siteUrl ~ featureImage.getUrl() }}" class="featured-image">
-        <img class="thumbnailImage uk-align-center uk-padding-remove-top uk-margin-remove-top" data-src="{{ siteUrl ~ featureImage.getUrl('thumbSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
+        <img class="thumbnailImage uk-align-center uk-padding-remove-top uk-margin-remove-top" data-src="{{ siteUrl ~ featureImage.getUrl('thumbLSquare') }}" alt="Project image" width=data-width height=data-height uk-img>
       </a>
-    {% else %}
-      <img src="http://via.placeholder.com/500x400?text=&nbsp;" alt="placeholder" uk-img>
     {% endif %}
     <hr>
   </div>
