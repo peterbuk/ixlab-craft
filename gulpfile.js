@@ -5,29 +5,17 @@ var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 let cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
-var browserSync = require('browser-sync').create();
 const notifier = require('node-notifier');
 
 
-gulp.task('dev', ['sass:development', 'watch:development', 'browser-sync']);
+gulp.task('dev', ['sass:development', 'watch:development']);
 gulp.task('default', ['dev']);
 gulp.task('prod', ['sass:production', 'uglify:production']);
 
-// browser sync
-gulp.task('browser-sync', function() {
-
-    var file_path = '/ixlab-craft/web/';
-
-    browserSync.init({
-        proxy: "localhost:8888"+file_path
-    });
-
-});
 
 // watch file changes
 gulp.task('watch:development', function() {
   gulp.watch('web/static/styles/**/*.scss', ['sass:development']);
-  gulp.watch("templates/**/*.twig").on('change', browserSync.reload);
 });
 
 
@@ -42,7 +30,6 @@ gulp.task('sass:development', function() {
   .pipe(concat('main.css'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest('web/static'))
-  .pipe(browserSync.stream());
 });
 
 
