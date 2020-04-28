@@ -100,14 +100,6 @@
         <li uk-filter-control="[data-role='Masters']"><a href="#">Masters</a></li>
         <li uk-filter-control="[data-role='Undergrad']"><a href="#">Undergrad</a></li>
         <li uk-filter-control="[data-role='Research Assistant']"><a href="#">Research Assistant</a></li>
-        <li class="uk-inline"><a href="#">Alumni <span uk-icon="icon: chevron-down"></span></a>
-          <div uk-dropdown="mode: click">
-            <ul class="uk-list  uk-margin-remove-bottom">
-              <li><a class="uk-link-muted" href="http://sheelaghcarpendale.ca/People/PreviousPeople" target="_blank">Sheelagh's Students</a></li>
-              <li><a class="uk-link-muted" href="http://hci.cs.sfu.ca/people.html" target="_blank">Parmit's Students</a></li>
-            </ul>
-          </div>
-        </li>
       </ul>
     </div>
 
@@ -180,7 +172,10 @@
 
         <!-- research assistant -->
         {{ _self.createCards(sheelaghGroup, ra) }}
+
+        <div class="uk-flex uk-flex-center uk-width-1-1"><a class="cta-button uk-button" href="http://sheelaghcarpendale.ca/People/PreviousPeople" target="_blank">Alumni</a></div>
       </div></div>
+      
 
 
       <!--Parmit Students-->
@@ -200,10 +195,12 @@
 
         <!-- research assistant -->
         {{ _self.createCards(parmitGroup, ra) }}
+
+        <div class="uk-flex uk-flex-center uk-width-1-1"><a class="cta-button uk-button" href="http://hci.cs.sfu.ca/people.html" target="_blank">Alumni</a></div>
       </div></div>
+      
 
     </div><!--end people grid-->
   </div></div></div></div> <!--end silly dup div workaround for filters-->
   </div>
-
 {% endblock %}
