@@ -35,7 +35,7 @@ return [
         'errorTemplatePrefix' => '',
 
         // https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#devmode
-        'devMode' => true,
+        'devMode' => false,
 
         'theme' => [
             // 'color' => '#000000'

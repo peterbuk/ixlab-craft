@@ -1,33 +1,6 @@
 {% extends '_layouts/layout_main' %}
-
-
-{# macro to create a news item card #}
-{% macro newsItem(entry, isPin) %}
-  <div class="uk-card">
-    <h2 class="uk-margin-remove-bottom">{{ entry.title }}</h2>
-
-    {% if not isPin %} {# don't show dates on pinned items #}
-      <p class="subtitle">{{ entry.postDate | date('M d, Y') }}</p>
-    {% endif %}
-    
-    {% set content = entry.newsContent %}
-    {% if wordcount(content) > 50 %} {# truncate content if over 50 words #}
-      <div class="content-{{entry.slug}}">
-        {{ content | chop(limit=30, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
-      </div>
-      <div class="content-{{entry.slug}}" hidden>
-        {{ content }}
-      </div>
-      <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </div>
-{% endmacro %}
-
-
-
 {% set body_class = 'page-home' %}
+
 
 {% block content %}
 
@@ -85,16 +58,29 @@
 
       {% for entry in projects %}
         <div><div class="uk-card">
-          <div class="uk-card-body uk-card-small uk-padding-remove-bottom"><a href="{{ entry.url }}">
-            {% set image = entry.publicationImage.one() %}
-            {% if image %}
-              <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
-            {% else %}
-              <img src="http://via.placeholder.com/400x400?text=&nbsp;" alt="placeholder image">
+          <div class="uk-card-body uk-card-small uk-padding-remove-bottom">
+            <a href="{{ entry.url }}">
+              {% set image = entry.publicationImage.one() %}
+              {% if image %}
+                <img class="uk-margin-small-bottom thumbnailImage" data-src="{{ siteUrl ~ image.getUrl('thumbLSquare') }}" alt="{{ entry.title }} image" width="{{ image.getWidth('thumbLSquare') }}" height="{{ image.getHeight('thumbLSquare') }}" uk-img>
+              {% else %}
+                <img src="http://via.placeholder.com/400x400?text=&nbsp;" alt="placeholder image">
+              {% endif %}
+            </a>
+
+            {# if the item is pinned, check for custom heading and use, otherwise use title #}
+            {% set heading = entry.title %}
+            {% if entry.homePagePinned %}
+              {% set customHeadingBlock = entry.homePagePinnedHeading.one() %}
+              {% if customHeadingBlock %} {# exists #}
+                {% if customHeadingBlock.heading|length > 0 %}
+                  {% set heading = customHeadingBlock.heading %}
+                {% endif %}
+              {% endif %}
             {% endif %}
-            
-            <h3 class="uk-margin-remove uk-text-center">{{ entry.title }}</h3>
-          </a></div>
+            <p class="uk-margin-remove">{{ heading }}</p>
+
+          </div>
         </div></div>
       {% endfor %}
     </div>
@@ -111,27 +97,38 @@
     <h1 class="uk-flex uk-flex-center">News</h1>
 
     <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-grid-divider" uk-grid>
-      {# get pinned news item, if it exists #}
-      {# current design limits pinned items to 1, aka the latest one #}
-      {% set pinned = craft.entries.section('news').pinToHome(true).orderBy('postDate desc').limit(1).all() %}
-      {% set remainingItems = 4 %} {# number of non-pin items to fetch after #}
-      {% if pinned %}
-        {% set remainingItems = 3 %}
-        <div>{{ _self.newsItem(pinned[0], true)  }}</div>
-      {% endif %}
+      {# fetch 4 pinned news items if exists, otherwise latest #}
+      {% set newsItems = craft.entries({
+        section: 'news',
+        orderBy: 'pinToHome desc, postDate desc'
+      }).limit(4).all() %}
 
-      {# fetch regular news items #}
-      {% for entry in craft.entries.section('news').pinToHome(false).orderBy('postDate desc').limit(remainingItems).all() %}
-        <div>{{ _self.newsItem(entry, false)  }}</div>
+      {% for entry in newsItems %}
+        <div class="uk-card">
+          <h2 class="uk-margin-remove-bottom">{{ entry.title }}</h2>
+          
+          {% set content = entry.newsContent %}
+          {# truncate content if over 50 words #}
+          {% if wordcount(content) > 50 %} 
+            <div class="content-{{entry.slug}}">
+              {{ content | chop(limit=30, unit='w', allowedTags='<h1><h2><h3><h4><h5<h6><p><ul><li><ol><strong><em><del>') }}
+            </div>
+            <div class="content-{{entry.slug}}" hidden>
+              {{ content }}
+            </div>
+            <button class="uk-button uk-button-text" type="button" onclick="toggleReadBtn(this)" uk-toggle="target: .content-{{entry.slug}}">Read More</button>
+          {% else %}
+            {{ content }}
+          {% endif %}
+        </div>
       {% endfor %}
+
     </div>
 
     <div class="uk-flex uk-flex-center uk-margin">
       <a class="cta-button uk-button" href="{{ siteUrl }}./news">See more News</a> 
     </div>
   </section>
-
-
 
 
 
