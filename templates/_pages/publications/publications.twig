@@ -20,8 +20,26 @@
         <img src="{{alias('@assetUrl/img/siteAssets/globalAssets/placeholderPublication.svg')}}" alt="No project image" width="100%">
       {% endif %}
     </a>
-    <a type="button" onclick="$('#bibtex-{{pub.slug}}').toggle()">[BibTex]</a>
     <a href="{{ siteUrl ~ pub.pdf.one().getUrl() }}" target="_blank">[PDF]</a>
+    
+    {# add video link if exists #}
+    {% for block in pub.moreDetails.all() %}
+      {% if block.type == "video" %}
+        <a href={{ siteUrl ~ block.video.one().url }}>[Video]</a>
+
+      {% elseif block.type == "videoLink" %}
+        {% set platform = block.platform %}
+        {% if platform == "youtube" %}
+          <a href="{{ 'https://www.youtube.com/watch?v=' ~ block.videoID }}">[Video]</a>
+        {% elseif platform == "vimeo" %}
+          <a href="{{ 'https://vimeo.com/' ~ block.videoID }}">[Video]</a>
+        {% elseif platform == "other" %}
+          <a href="{{ block.videoID }}">[Video]</a>
+        {% endif %}
+      {% endif %}
+      
+    {% endfor %}
+
   </div>
 
   <div class="uk-width-3-4">
@@ -29,10 +47,6 @@
     <p class="uk-margin-remove-top">{{ pub.citation }}</p>
   </div>
 
-  <!-- Hidden bibtex block until the link is clicked -->
-  <div id="bibtex-{{pub.slug}}" class="bibtex">
-    <pre>{{pub.bibtex}}</pre>
-  </div>
 </div>
 {% endmacro %}
 
