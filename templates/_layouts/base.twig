@@ -22,7 +22,10 @@
 </head>
 
 <body class="{{body_class ?? null}} {{craft.app.request.isMobileBrowser() ? 'is-mobile' : 'is-desktop'}}">
-
+  {% set trackingCode = googleAnalytics.gAnalyticsSnippet is defined ? googleAnalytics.gAnalyticsSnippet %}
+  {% if trackingCode %}
+    {{ trackingCode | raw }}
+  {% endif %}
 {% block layout %}{% endblock %}
 {% block endBody %}{% endblock %}
 
