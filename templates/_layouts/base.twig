@@ -26,6 +26,11 @@
 </head>
 
 <body class="{{body_class ?? null}} {{craft.app.request.isMobileBrowser() ? 'is-mobile' : 'is-desktop'}}">
+  {% set tagManager = googleTagManager.gTagSnippet is defined ? googleTagManager.gTagSnippet %}
+  {% if tagManager %}
+    {{ tagManager | raw }}
+  {% endif %}
+  
 {% block layout %}{% endblock %}
 {% block endBody %}{% endblock %}
 
